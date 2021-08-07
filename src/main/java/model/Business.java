@@ -5,12 +5,15 @@
  */
 package model;
 
+import model.UserAccount.UserAccountDirectory;
+
 /**
  *
  * @author aprilyz
  */
 public class Business {
      private static Business business;
+     private UserAccountDirectory userAccountDirectory;
      
      public static Business getInstance(){
         if(business == null){
@@ -18,4 +21,22 @@ public class Business {
         }
         return business;
     }
+
+    public Business() {
+        this.userAccountDirectory =  new UserAccountDirectory();
+    }
+     
+    public static void setBusiness(Business business) {
+        Business.business = business;
+    }
+
+    public UserAccountDirectory getUserAccountDirectory() {
+        return userAccountDirectory;
+    }
+
+    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
+        this.userAccountDirectory = userAccountDirectory;
+    }
+     
+     
 }

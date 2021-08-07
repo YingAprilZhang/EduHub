@@ -7,14 +7,10 @@ package ui;
 import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.event.AncestorListener;
 import model.Business;
+import model.UserAccount.UserAccount;
+import model.UserAccount.UserAccount.Role;
+import model.db.DB4OUtil;
 
 /**
  *
@@ -25,16 +21,18 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private Business business;
-    // private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    Image image=new ImageIcon("images/bg.png").getImage();
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     public MainJFrame() {
         initComponents();
-        // business = dB4OUtil.retrieveSystem();
-        this.setSize(1428, 892);
-       // jLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-      
+        
+        Business.setBusiness(dB4OUtil.retrieveSystem());
+        
+        this.setSize(1440, 875);
+        signInLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        signUpLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        usernameField.setText("sysadmin");
+        passwordField.setText("sysadmin");
     }
 
     /**
@@ -46,86 +44,116 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        signInLbl = new javax.swing.JLabel();
+        mainPanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         signUpLbl = new javax.swing.JLabel();
+        signInLbl = new javax.swing.JLabel();
         suLogo = new javax.swing.JLabel();
         passwordLbl = new javax.swing.JLabel();
-        jPasswordField = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
         usernameField = new javax.swing.JTextField();
         siLogo = new javax.swing.JLabel();
         name = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1428, 892));
+        setPreferredSize(new java.awt.Dimension(1440, 875));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new java.awt.CardLayout());
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1440, 875));
+        mainPanel.setRequestFocusEnabled(false);
+        mainPanel.setLayout(new java.awt.CardLayout());
 
-        jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
 
-        signInLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        signInLbl.setText("Sign in");
-        jLayeredPane1.add(signInLbl);
-        signInLbl.setBounds(380, 660, 80, 22);
+        jLabel1.setFont(new java.awt.Font("Chalkduster", 1, 115)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(114, 151, 198));
+        jLabel1.setText("EduHub");
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(900, 140, 530, 180);
 
         signUpLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         signUpLbl.setText("Sign up");
-        jLayeredPane1.add(signUpLbl);
-        signUpLbl.setBounds(210, 660, 80, 22);
+        signUpLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signUpLblMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                signUpLblMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                signUpLblMouseEntered(evt);
+            }
+        });
+        jPanel2.add(signUpLbl);
+        signUpLbl.setBounds(470, 540, 80, 30);
 
-        suLogo.setText("logo");
-        jLayeredPane1.add(suLogo);
-        suLogo.setBounds(150, 660, 50, 30);
+        signInLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        signInLbl.setText("Sign in");
+        signInLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signInLblMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                signInLblMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                signInLblMouseEntered(evt);
+            }
+        });
+        jPanel2.add(signInLbl);
+        signInLbl.setBounds(290, 540, 80, 30);
+
+        suLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-add-user-male-56.png"))); // NOI18N
+        jPanel2.add(suLogo);
+        suLogo.setBounds(400, 510, 60, 80);
 
         passwordLbl.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         passwordLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         passwordLbl.setText("Password");
-        jLayeredPane1.add(passwordLbl);
-        passwordLbl.setBounds(140, 570, 65, 22);
+        jPanel2.add(passwordLbl);
+        passwordLbl.setBounds(230, 430, 80, 22);
 
-        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldActionPerformed(evt);
+                passwordFieldActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jPasswordField);
-        jPasswordField.setBounds(220, 560, 210, 40);
+        jPanel2.add(passwordField);
+        passwordField.setBounds(320, 420, 210, 40);
 
         usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameFieldActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(usernameField);
-        usernameField.setBounds(220, 500, 210, 40);
+        jPanel2.add(usernameField);
+        usernameField.setBounds(320, 360, 210, 40);
 
-        siLogo.setText("logo");
-        jLayeredPane1.add(siLogo);
-        siLogo.setBounds(330, 650, 40, 40);
+        siLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-login-rounded-48.png"))); // NOI18N
+        jPanel2.add(siLogo);
+        siLogo.setBounds(220, 520, 60, 70);
 
         name.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         name.setText("Username");
-        jLayeredPane1.add(name);
-        name.setBounds(120, 510, 90, 17);
+        jPanel2.add(name);
+        name.setBounds(220, 370, 90, 17);
 
+        bg.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg.png"))); // NOI18N
-        bg.setText("jLabel1");
-        jLayeredPane1.add(bg);
-        bg.setBounds(0, 0, 1430, 890);
+        bg.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(bg);
+        bg.setBounds(0, 0, 1440, 870);
 
-        jPanel1.add(jLayeredPane1, "card2");
+        mainPanel.add(jPanel2, "card3");
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1430, 890));
+        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,9 +162,58 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameFieldActionPerformed
 
-    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldActionPerformed
+    }//GEN-LAST:event_passwordFieldActionPerformed
+
+    private void signUpLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLblMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_signUpLblMouseClicked
+
+    private void signUpLblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLblMouseExited
+        // TODO add your handling code here:
+        signUpLbl.setFont(new Font("Lucida",  Font.PLAIN, 18));
+    }//GEN-LAST:event_signUpLblMouseExited
+
+    private void signUpLblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLblMouseEntered
+        // TODO add your handling code here:
+        signUpLbl.setFont(new Font("Lucida",  Font.BOLD, 18));
+    }//GEN-LAST:event_signUpLblMouseEntered
+
+    private void signInLblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInLblMouseEntered
+        // TODO add your handling code here:
+         signInLbl.setFont(new Font("Lucida",  Font.BOLD, 18));
+    }//GEN-LAST:event_signInLblMouseEntered
+
+    private void signInLblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInLblMouseExited
+        // TODO add your handling code here:
+         signInLbl.setFont(new Font("Lucida",  Font.PLAIN, 18));
+    }//GEN-LAST:event_signInLblMouseExited
+
+    private void signInLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signInLblMouseClicked
+        // TODO add your handling code here:
+        UserAccount uc = Business.getInstance().getUserAccountDirectory()
+                .authenticateUser(usernameField.getText(), passwordField.getText());
+       if (uc != null) {
+            Role role = uc.getRole();
+            switch (role) {
+                case SysAdmin:
+                    // mainPanel.add("SystemAdminWorkAreaJPanel",role.createWorkArea(container, uc, system));
+                    break;
+                case Teacher:
+                    // mainPanel.add("AdminWorkAreaJPanel",role.createWorkArea(container, uc, system));
+                    break;
+                case Student:
+                    // mainPanel.add("DeliveryManWorkAreaJPanel",role.createWorkArea(container, uc, system));
+                    break;
+                default:
+                    break;
+            }
+            CardLayout layout = (CardLayout)mainPanel.getLayout();
+            layout.next(mainPanel);
+       }
+    }//GEN-LAST:event_signInLblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -174,11 +251,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel name;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JLabel siLogo;
     private javax.swing.JLabel signInLbl;

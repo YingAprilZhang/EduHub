@@ -67,7 +67,7 @@ public class DB4OUtil {
         ObjectContainer conn = createConnection();
         ObjectSet<Business> systems = conn.query(Business.class); // Change to the object you want to save
         Business business;
-        if (systems.size() == 0){
+        if (systems.isEmpty()){
             business = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         }
         else{
