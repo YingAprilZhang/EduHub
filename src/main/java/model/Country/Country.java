@@ -5,9 +5,11 @@
  */
 package model.Country;
 
+import java.util.List;
 import model.Accountant.Accountant;
 import model.CountryManager.CountryManager;
 import model.DataAnalyze.MacroData;
+import model.School.School;
 
 /**
  *
@@ -16,7 +18,7 @@ import model.DataAnalyze.MacroData;
 public class Country {
     String Name;
     CountryManager countryManager;
-    ArrayList<School> schoolList;
+    List<School> schoolList;
     MacroData macroData;
     Accountant accountant;
 }
