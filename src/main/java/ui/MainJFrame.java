@@ -9,7 +9,6 @@ import java.awt.Cursor;
 import java.awt.Font;
 import model.Business;
 import model.UserAccount.UserAccount;
-import model.UserAccount.UserAccount.Role;
 import model.db.DB4OUtil;
 
 /**
@@ -74,7 +73,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(114, 151, 198));
         jLabel1.setText("EduHub");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(900, 140, 530, 180);
+        jLabel1.setBounds(880, 140, 530, 180);
 
         signUpLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         signUpLbl.setText("Sign up");
@@ -148,7 +147,7 @@ public class MainJFrame extends javax.swing.JFrame {
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg.png"))); // NOI18N
         bg.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jPanel2.add(bg);
-        bg.setBounds(0, 0, 1440, 870);
+        bg.setBounds(580, 270, 820, 560);
 
         mainPanel.add(jPanel2, "card3");
 
@@ -167,7 +166,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void signUpLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLblMouseClicked
         // TODO add your handling code here:
-        
+        SignUpJPanel signUpJPanel = new SignUpJPanel(mainPanel);
+        mainPanel.add("SignUpJPanel",signUpJPanel);
+        CardLayout layout = (CardLayout)mainPanel.getLayout();
+        layout.next(mainPanel);
     }//GEN-LAST:event_signUpLblMouseClicked
 
     private void signUpLblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLblMouseExited
@@ -195,20 +197,7 @@ public class MainJFrame extends javax.swing.JFrame {
         UserAccount uc = Business.getInstance().getUserAccountDirectory()
                 .authenticateUser(usernameField.getText(), passwordField.getText());
        if (uc != null) {
-            Role role = uc.getRole();
-            switch (role) {
-                case SysAdmin:
-                    // mainPanel.add("SystemAdminWorkAreaJPanel",role.createWorkArea(container, uc, system));
-                    break;
-                case Teacher:
-                    // mainPanel.add("AdminWorkAreaJPanel",role.createWorkArea(container, uc, system));
-                    break;
-                case Student:
-                    // mainPanel.add("DeliveryManWorkAreaJPanel",role.createWorkArea(container, uc, system));
-                    break;
-                default:
-                    break;
-            }
+            // mainPanel.add("SystemAdminWorkAreaJPanel",role.createWorkArea(container, uc, system));
             CardLayout layout = (CardLayout)mainPanel.getLayout();
             layout.next(mainPanel);
        }

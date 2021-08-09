@@ -13,7 +13,7 @@ import model.UserAccount.UserAccount;
  *
  * @author aprilyz
  */
-public class TeacherRole {
+public class TeacherRole extends Role {
      public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
         return new StudentAreaJPanel(userProcessContainer, account, business);
     }

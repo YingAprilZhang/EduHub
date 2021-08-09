@@ -1,7 +1,7 @@
 package model;
 
 import model.UserAccount.UserAccount;
-import model.UserAccount.UserAccount.Role;
+import model.Role.Role;
 
 
 /**
@@ -22,7 +22,7 @@ public class ConfigureASystem {
         
         
         
-       UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", Role.SysAdmin);
+       // UserAccount ua = business.getUserAccountDirectory().createUserAccount("worldManager", "worldManager", new WorldManagerRole());
         
         return business;
     }

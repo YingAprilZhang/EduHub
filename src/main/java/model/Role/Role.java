@@ -15,14 +15,16 @@ import model.UserAccount.UserAccount;
  */
 public abstract class Role {
     public enum RoleType{
-        SysAdmin("Sysadmin"),
         Accountant("Accountant"),
         CountryManager("CountryManager"),
         WorldManager("WorldManager"),
         DataMaintainer("DataMaintainer"),
         CharityEdu("CharityEdu"),
         CharityFunding("CharityFunding"),
-        CompanyRole("CompanyRole");
+        CompanyRole("CompanyRole"),
+        Student("Student"),
+        Teacher("Teacher"),
+        Principal("Principal");
         
         private String value;
         private RoleType(String value){

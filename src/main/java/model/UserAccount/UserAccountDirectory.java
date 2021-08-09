@@ -6,7 +6,8 @@
 package model.UserAccount;
 
 import java.util.ArrayList;
-import model.UserAccount.UserAccount.Role;
+import model.Role.Role;
+
 
 /**
  *
