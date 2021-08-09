@@ -5,6 +5,10 @@
  */
 package model.UserAccount;
 
+import model.Country.Country;
+import model.Organization.Organization;
+import model.Role.Role;
+
 /**
  *
  * @author aprilyz
@@ -12,15 +16,11 @@ package model.UserAccount;
 public class UserAccount {
     private String username;
     private String password;
+    private String name;
+    private Country country;
     private Role role;
-            
-    public enum Role{
-        SysAdmin,
-        Student,
-        Teacher,
-        Principal
-        ;
-    }
+    private Organization organization;
+    
 
     public String getUsername() {
         return username;
@@ -44,6 +44,30 @@ public class UserAccount {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
     
     
