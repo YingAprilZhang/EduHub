@@ -5,6 +5,7 @@
  */
 package model.Country;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.Accountant.Accountant;
 import model.CountryManager.CountryManager;
@@ -19,6 +20,25 @@ public class Country {
     String Name;
     CountryManager countryManager;
     List<School> schoolList;
-    ArrayList<MacroData> macroDataList;
+    List<MacroData> macroDataList;
     Accountant accountant;
+    
+    public Country(){
+        macroDataList = new ArrayList<MacroData>();
+    }
+
+    public List<MacroData> getMacroDataList() {
+        return macroDataList;
+    }
+
+    public MacroData addMacroData(){
+        MacroData md = new MacroData();
+        macroDataList.add(md);
+        return md;
+    }
+    
+    @Override
+    public String toString(){
+        return Name;
+    }
 }

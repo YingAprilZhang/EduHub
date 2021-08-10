@@ -3,59 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.CountryDataMaintainer;
+package ui.CountryManager;
 
-import java.awt.CardLayout;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 import model.Business;
-import model.Country.Country;
-import model.DataAnalyze.MacroData;
-import model.Role.DataMaintainerRole;
-import model.Role.Role;
 import model.UserAccount.UserAccount;
 
 /**
  *
  * @author changxu
  */
-public class CountryDataMaintainJPanel extends javax.swing.JPanel {
+public class CountryManagerAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CountryDataMaintainJPanel
+     * Creates new form CountryManagerAreaJPanel
      */
-    
     JPanel userProcessContainer;
     UserAccount account;
     Business business;
-    DataMaintainerRole role;
-    Country country;
     
-    public CountryDataMaintainJPanel(JPanel userProcessContainer, UserAccount account, Business business) {
+    public CountryManagerAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.account = account;
-        this.business = business;
-        this.role = (DataMaintainerRole) account.getRole();
-        this.country = role.getCountry();
-        
-        if(country != null){           
-            lblCountry.setText(country.toString());
-            refreshTable();
-        }        
-        
-    }
-    
-    public void refreshTable(){
-        DefaultTableModel model = (DefaultTableModel) tblYear.getModel();
-        model.setRowCount(0);
-        for(MacroData md:country.getMacroDataList()){
-            Object[] row = new Object[1];
-            row[0] = md;
-            model.addRow(row);            
-        }
-        
     }
 
     /**
@@ -73,19 +41,15 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lblCountry = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblYear = new javax.swing.JTable();
         logoView = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-
-        setBackground(new java.awt.Color(255, 255, 255));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel3.setText("Country Data Maintainer Work Area");
+        jLabel3.setText("Country Manager Work Area");
 
-        logoAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-add-database-64.png"))); // NOI18N
+        logoAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
         logoAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoAddMouseClicked(evt);
@@ -93,7 +57,7 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Add New Annual Data");
+        jLabel1.setText("View My Requests");
 
         lblCountry.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblCountry.setText("<Country Label>");
@@ -101,18 +65,7 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setText("Country:");
 
-        tblYear.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        tblYear.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Year"
-            }
-        ));
-        jScrollPane1.setViewportView(tblYear);
-
-        logoView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-view-50.png"))); // NOI18N
+        logoView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-combo-chart-64.png"))); // NOI18N
         logoView.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoViewMouseClicked(evt);
@@ -120,7 +73,7 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel2.setText("View Annual Data");
+        jLabel2.setText("Analyze Education Data");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -131,19 +84,18 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(logoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addGap(169, 169, 169)
-                        .addComponent(logoView, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(lblCountry))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(logoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(logoView, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 494, Short.MAX_VALUE)
                 .addComponent(bg))
         );
         layout.setVerticalGroup(
@@ -158,17 +110,18 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblCountry))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1)))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoView, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))))
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -182,24 +135,22 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         MaintainRegionalDataJPanel mrdj = (MaintainRegionalDataJPanel) new MaintainRegionalDataJPanel(userProcessContainer, country);
         userProcessContainer.add("MaintainRegionalDataJPanel", mrdj);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
-        crdLyt.next(userProcessContainer);                  
-
+        crdLyt.next(userProcessContainer);
     }//GEN-LAST:event_logoAddMouseClicked
 
     private void logoViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoViewMouseClicked
         // TODO add your handling code here:
-        int selectedRow = tblYear.getSelectedRow();        
+        int selectedRow = tblYear.getSelectedRow();
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(this, "Please select a year.");
             return;
         }
-        
+
         MacroData md = (MacroData) tblYear.getValueAt(selectedRow, 0);
         ViewRegionalDataJPanel vrdj = (ViewRegionalDataJPanel) new ViewRegionalDataJPanel(userProcessContainer, md, country);
         userProcessContainer.add("ViewRegionalDataJPanel", vrdj);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
-        crdLyt.next(userProcessContainer);                          
-
+        crdLyt.next(userProcessContainer);
     }//GEN-LAST:event_logoViewMouseClicked
 
 
@@ -209,10 +160,8 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCountry;
     private javax.swing.JLabel logoAdd;
     private javax.swing.JLabel logoView;
-    private javax.swing.JTable tblYear;
     // End of variables declaration//GEN-END:variables
 }
