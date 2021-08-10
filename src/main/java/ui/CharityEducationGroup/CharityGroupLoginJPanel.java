@@ -34,13 +34,14 @@ public class CharityGroupLoginJPanel extends javax.swing.JPanel {
         setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Welcome to Charity Education Group ");
         add(jLabel3);
         jLabel3.setBounds(0, 40, 1430, 140);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/charity.jpeg"))); // NOI18N
         add(jLabel2);
-        jLabel2.setBounds(210, 280, 620, 500);
+        jLabel2.setBounds(210, 280, 300, 250);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg.png"))); // NOI18N
         add(jLabel1);

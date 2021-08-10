@@ -5,16 +5,26 @@
  */
 package ui.CharityEducationGroup;
 
+import javax.swing.JPanel;
+import model.Business;
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author kkkkayla
  */
-public class ChrityEduGroupJPanel extends javax.swing.JPanel {
+public class CharityEduGroupJPanel extends javax.swing.JPanel {
 
+    private JPanel container;
+
+    private UserAccount userAccount;
+    
+    private Business system;
+    
     /**
      * Creates new form ChrityEduGroupJPanel
      */
-    public ChrityEduGroupJPanel() {
+    public CharityEduGroupJPanel(JPanel container, UserAccount account, Business system) {
         initComponents();
     }
 
