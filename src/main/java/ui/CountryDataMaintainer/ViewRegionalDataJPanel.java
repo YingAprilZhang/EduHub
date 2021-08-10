@@ -9,12 +9,12 @@ package ui.CountryDataMaintainer;
  *
  * @author changxu
  */
-public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
+public class ViewRegionalDataJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form MaintainRegionalDataJPanel
      */
-    public MaintainRegionalDataJPanel() {
+    public ViewRegionalDataJPanel() {
         initComponents();
     }
 
@@ -36,7 +36,6 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         name2 = new javax.swing.JLabel();
         logoGender = new javax.swing.JLabel();
         passwordLbl1 = new javax.swing.JLabel();
-        usernameField1 = new javax.swing.JTextField();
         name3 = new javax.swing.JLabel();
         usernameField2 = new javax.swing.JTextField();
         usernameField3 = new javax.swing.JTextField();
@@ -47,7 +46,6 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         usernameField6 = new javax.swing.JTextField();
         usernameField7 = new javax.swing.JTextField();
         usernameField8 = new javax.swing.JTextField();
-        logoGender1 = new javax.swing.JLabel();
         name6 = new javax.swing.JLabel();
         name7 = new javax.swing.JLabel();
         usernameField9 = new javax.swing.JTextField();
@@ -58,6 +56,8 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         name10 = new javax.swing.JLabel();
         usernameField12 = new javax.swing.JTextField();
         name11 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        logoGender2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -97,7 +97,7 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
 
         name2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         name2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        name2.setText("Add New Annual Data");
+        name2.setText("View Annual Data");
         jLayeredPane1.add(name2);
         name2.setBounds(60, 40, 320, 60);
 
@@ -110,15 +110,6 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         passwordLbl1.setText("MALE");
         jLayeredPane1.add(passwordLbl1);
         passwordLbl1.setBounds(380, 250, 40, 22);
-
-        usernameField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField1ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField1);
-        usernameField1.setBounds(110, 120, 210, 30);
 
         name3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -201,10 +192,6 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         jLayeredPane1.add(usernameField8);
         usernameField8.setBounds(290, 290, 210, 40);
 
-        logoGender1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-kyrgyzstani-som-50.png"))); // NOI18N
-        jLayeredPane1.add(logoGender1);
-        logoGender1.setBounds(840, 170, 60, 70);
-
         name6.setFont(new java.awt.Font("Lucida Grande", 2, 18)); // NOI18N
         name6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         name6.setText("Country Macro Data");
@@ -277,6 +264,14 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         jLayeredPane1.add(name11);
         name11.setBounds(860, 350, 200, 30);
 
+        jLabel2.setText("<Year Placeholder>");
+        jLayeredPane1.add(jLabel2);
+        jLabel2.setBounds(120, 120, 180, 30);
+
+        logoGender2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-kyrgyzstani-som-50.png"))); // NOI18N
+        jLayeredPane1.add(logoGender2);
+        logoGender2.setBounds(840, 170, 60, 70);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -302,10 +297,6 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameFieldActionPerformed
-
-    private void usernameField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField1ActionPerformed
 
     private void usernameField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField2ActionPerformed
         // TODO add your handling code here:
@@ -354,9 +345,10 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel logoGender;
-    private javax.swing.JLabel logoGender1;
+    private javax.swing.JLabel logoGender2;
     private javax.swing.JLabel name;
     private javax.swing.JLabel name1;
     private javax.swing.JLabel name10;
@@ -372,7 +364,6 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JLabel passwordLbl1;
     private javax.swing.JTextField usernameField;
-    private javax.swing.JTextField usernameField1;
     private javax.swing.JTextField usernameField10;
     private javax.swing.JTextField usernameField11;
     private javax.swing.JTextField usernameField12;
