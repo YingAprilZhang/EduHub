@@ -5,6 +5,13 @@
  */
 package ui.CountryDataMaintainer;
 
+import javax.swing.JPanel;
+import model.Business;
+import model.Country.Country;
+import model.Role.DataMaintainerRole;
+import model.Role.Role;
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author changxu
@@ -14,8 +21,31 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CountryDataMaintainJPanel
      */
-    public CountryDataMaintainJPanel() {
+    
+    JPanel userProcessContainer;
+    UserAccount account;
+    Business business;
+    DataMaintainerRole role;
+    Country country;
+    
+    public CountryDataMaintainJPanel(JPanel userProcessContainer, UserAccount account, Business business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.business = business;
+        this.role = (DataMaintainerRole) account.getRole();
+        this.country = role.getCountry();
+        
+        if(country != null){           
+            lblCountry.setText(country.toString);
+        }
+        
+        refreshTable();
+        
+    }
+    
+    public void refreshTable(){
+        
     }
 
     /**
@@ -29,7 +59,14 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
 
         bg = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        logoMaintain = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblCountry = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblYear = new javax.swing.JTable();
+        logoMaintain1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -38,13 +75,32 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel3.setText("Country Data Maintainer Work Area");
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jButton1.setText("Maintain Regional Data");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        logoMaintain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-add-database-64.png"))); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setText("Add New Annual Data");
+
+        lblCountry.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblCountry.setText("<Country Label>");
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel4.setText("Country:");
+
+        tblYear.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        tblYear.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Year"
             }
-        });
+        ));
+        jScrollPane1.setViewportView(tblYear);
+
+        logoMaintain1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-view-50.png"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel2.setText("View Annual Data");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -54,32 +110,60 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(logoMaintain, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addGap(169, 169, 169)
+                        .addComponent(logoMaintain1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblCountry))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
                 .addComponent(bg))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(bg)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(jLabel3)
-                .addGap(149, 149, 149)
-                .addComponent(jButton1)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblCountry))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logoMaintain, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoMaintain1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCountry;
+    private javax.swing.JLabel logoMaintain;
+    private javax.swing.JLabel logoMaintain1;
+    private javax.swing.JTable tblYear;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,12 +9,12 @@ package ui.CountryDataMaintainer;
  *
  * @author changxu
  */
-public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
+public class ViewRegionalDataJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form MaintainRegionalDataJPanel
      */
-    public MaintainRegionalDataJPanel() {
+    public ViewRegionalDataJPanel() {
         initComponents();
     }
 
@@ -28,77 +28,249 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        signInLbl = new javax.swing.JLabel();
-        signUpLbl = new javax.swing.JLabel();
-        suLogo = new javax.swing.JLabel();
         passwordLbl = new javax.swing.JLabel();
-        jPasswordField = new javax.swing.JPasswordField();
         usernameField = new javax.swing.JTextField();
-        siLogo = new javax.swing.JLabel();
         name = new javax.swing.JLabel();
         name1 = new javax.swing.JLabel();
-        bg = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        name2 = new javax.swing.JLabel();
+        logoGender = new javax.swing.JLabel();
+        passwordLbl1 = new javax.swing.JLabel();
+        name3 = new javax.swing.JLabel();
+        usernameField2 = new javax.swing.JTextField();
+        usernameField3 = new javax.swing.JTextField();
+        name4 = new javax.swing.JLabel();
+        usernameField4 = new javax.swing.JTextField();
+        usernameField5 = new javax.swing.JTextField();
+        name5 = new javax.swing.JLabel();
+        usernameField6 = new javax.swing.JTextField();
+        usernameField7 = new javax.swing.JTextField();
+        usernameField8 = new javax.swing.JTextField();
+        name6 = new javax.swing.JLabel();
+        name7 = new javax.swing.JLabel();
+        usernameField9 = new javax.swing.JTextField();
+        name8 = new javax.swing.JLabel();
+        usernameField10 = new javax.swing.JTextField();
+        name9 = new javax.swing.JLabel();
+        usernameField11 = new javax.swing.JTextField();
+        name10 = new javax.swing.JLabel();
+        usernameField12 = new javax.swing.JTextField();
+        name11 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        logoGender2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        signInLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        signInLbl.setText("Sign in");
-        jLayeredPane1.add(signInLbl);
-        signInLbl.setBounds(380, 660, 80, 22);
-
-        signUpLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        signUpLbl.setText("Sign up");
-        jLayeredPane1.add(signUpLbl);
-        signUpLbl.setBounds(210, 660, 80, 22);
-
-        suLogo.setText("logo");
-        jLayeredPane1.add(suLogo);
-        suLogo.setBounds(150, 660, 50, 30);
-
-        passwordLbl.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        passwordLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        passwordLbl.setText("Password");
+        passwordLbl.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        passwordLbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        passwordLbl.setText("FEMALE");
         jLayeredPane1.add(passwordLbl);
-        passwordLbl.setBounds(140, 570, 65, 22);
+        passwordLbl.setBounds(620, 250, 70, 22);
 
-        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(jPasswordField);
-        jPasswordField.setBounds(220, 560, 210, 40);
-
+        usernameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
         usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameFieldActionPerformed(evt);
             }
         });
         jLayeredPane1.add(usernameField);
-        usernameField.setBounds(220, 500, 210, 40);
+        usernameField.setBounds(540, 290, 210, 40);
 
-        siLogo.setText("logo");
-        jLayeredPane1.add(siLogo);
-        siLogo.setBounds(330, 650, 40, 40);
-
-        name.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        name.setFont(new java.awt.Font("Lucida Grande", 2, 18)); // NOI18N
         name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        name.setText("Maintain Regional Data");
+        name.setText("Gender Equality Data");
         jLayeredPane1.add(name);
-        name.setBounds(60, 60, 320, 60);
+        name.setBounds(100, 190, 320, 50);
 
         name1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        name1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        name1.setText("Username");
+        name1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name1.setText("Out-of-school Childern Rate");
         jLayeredPane1.add(name1);
-        name1.setBounds(120, 510, 90, 17);
+        name1.setBounds(60, 300, 200, 17);
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg.png"))); // NOI18N
-        bg.setText("jLabel1");
-        jLayeredPane1.add(bg);
-        bg.setBounds(0, 0, 1430, 890);
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel1.setText("Year:");
+        jLayeredPane1.add(jLabel1);
+        jLabel1.setBounds(60, 110, 90, 50);
+
+        name2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        name2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name2.setText("View Annual Data");
+        jLayeredPane1.add(name2);
+        name2.setBounds(60, 40, 320, 60);
+
+        logoGender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-unisex-50.png"))); // NOI18N
+        jLayeredPane1.add(logoGender);
+        logoGender.setBounds(50, 180, 60, 70);
+
+        passwordLbl1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        passwordLbl1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        passwordLbl1.setText("MALE");
+        jLayeredPane1.add(passwordLbl1);
+        passwordLbl1.setBounds(380, 250, 40, 22);
+
+        name3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name3.setText("Mean Years of Education");
+        jLayeredPane1.add(name3);
+        name3.setBounds(60, 370, 200, 17);
+
+        usernameField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField2ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField2);
+        usernameField2.setBounds(290, 360, 210, 40);
+
+        usernameField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField3ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField3);
+        usernameField3.setBounds(540, 360, 210, 40);
+
+        name4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name4.setText("School Enrollment Rate");
+        jLayeredPane1.add(name4);
+        name4.setBounds(60, 440, 210, 17);
+
+        usernameField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField4ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField4);
+        usernameField4.setBounds(290, 430, 210, 40);
+
+        usernameField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField5ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField5);
+        usernameField5.setBounds(540, 430, 210, 40);
+
+        name5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name5.setText("Progression to Higher Education");
+        jLayeredPane1.add(name5);
+        name5.setBounds(60, 510, 230, 17);
+
+        usernameField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField6ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField6);
+        usernameField6.setBounds(290, 500, 210, 40);
+
+        usernameField7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField7ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField7);
+        usernameField7.setBounds(540, 500, 210, 40);
+
+        usernameField8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField8ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField8);
+        usernameField8.setBounds(290, 290, 210, 40);
+
+        name6.setFont(new java.awt.Font("Lucida Grande", 2, 18)); // NOI18N
+        name6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name6.setText("Country Macro Data");
+        jLayeredPane1.add(name6);
+        name6.setBounds(900, 180, 320, 50);
+
+        name7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name7.setText("Unemployment Rate");
+        jLayeredPane1.add(name7);
+        name7.setBounds(860, 300, 200, 17);
+
+        usernameField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField9ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField9);
+        usernameField9.setBounds(1090, 290, 210, 40);
+
+        name8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name8.setText("on education(% of GDP)");
+        jLayeredPane1.add(name8);
+        name8.setBounds(860, 370, 200, 30);
+
+        usernameField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField10ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField10);
+        usernameField10.setBounds(1090, 360, 210, 40);
+
+        name9.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name9.setText("Pupil-teacher Ratio");
+        jLayeredPane1.add(name9);
+        name9.setBounds(860, 440, 210, 17);
+
+        usernameField11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField11ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField11);
+        usernameField11.setBounds(1090, 430, 210, 40);
+
+        name10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name10.setText("GDP");
+        jLayeredPane1.add(name10);
+        name10.setBounds(860, 510, 230, 17);
+
+        usernameField12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        usernameField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameField12ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(usernameField12);
+        usernameField12.setBounds(1090, 500, 210, 40);
+
+        name11.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name11.setText("Government expenditure");
+        jLayeredPane1.add(name11);
+        name11.setBounds(860, 350, 200, 30);
+
+        jLabel2.setText("<Year Placeholder>");
+        jLayeredPane1.add(jLabel2);
+        jLabel2.setBounds(120, 120, 180, 30);
+
+        logoGender2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-kyrgyzstani-som-50.png"))); // NOI18N
+        jLayeredPane1.add(logoGender2);
+        logoGender2.setBounds(840, 170, 60, 70);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,26 +294,86 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldActionPerformed
-
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameFieldActionPerformed
 
+    private void usernameField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField2ActionPerformed
+
+    private void usernameField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField3ActionPerformed
+
+    private void usernameField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField4ActionPerformed
+
+    private void usernameField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField5ActionPerformed
+
+    private void usernameField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField6ActionPerformed
+
+    private void usernameField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField7ActionPerformed
+
+    private void usernameField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField8ActionPerformed
+
+    private void usernameField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField9ActionPerformed
+
+    private void usernameField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField10ActionPerformed
+
+    private void usernameField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField11ActionPerformed
+
+    private void usernameField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameField12ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel bg;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JLabel logoGender;
+    private javax.swing.JLabel logoGender2;
     private javax.swing.JLabel name;
     private javax.swing.JLabel name1;
+    private javax.swing.JLabel name10;
+    private javax.swing.JLabel name11;
+    private javax.swing.JLabel name2;
+    private javax.swing.JLabel name3;
+    private javax.swing.JLabel name4;
+    private javax.swing.JLabel name5;
+    private javax.swing.JLabel name6;
+    private javax.swing.JLabel name7;
+    private javax.swing.JLabel name8;
+    private javax.swing.JLabel name9;
     private javax.swing.JLabel passwordLbl;
-    private javax.swing.JLabel siLogo;
-    private javax.swing.JLabel signInLbl;
-    private javax.swing.JLabel signUpLbl;
-    private javax.swing.JLabel suLogo;
+    private javax.swing.JLabel passwordLbl1;
     private javax.swing.JTextField usernameField;
+    private javax.swing.JTextField usernameField10;
+    private javax.swing.JTextField usernameField11;
+    private javax.swing.JTextField usernameField12;
+    private javax.swing.JTextField usernameField2;
+    private javax.swing.JTextField usernameField3;
+    private javax.swing.JTextField usernameField4;
+    private javax.swing.JTextField usernameField5;
+    private javax.swing.JTextField usernameField6;
+    private javax.swing.JTextField usernameField7;
+    private javax.swing.JTextField usernameField8;
+    private javax.swing.JTextField usernameField9;
     // End of variables declaration//GEN-END:variables
 }

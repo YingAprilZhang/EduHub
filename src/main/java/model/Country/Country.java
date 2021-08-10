@@ -19,6 +19,6 @@ public class Country {
     String Name;
     CountryManager countryManager;
     List<School> schoolList;
-    MacroData macroData;
+    ArrayList<MacroData> macroDataList;
     Accountant accountant;
 }
