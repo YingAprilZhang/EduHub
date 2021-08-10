@@ -5,6 +5,13 @@
  */
 package ui.CountryDataMaintainer;
 
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import model.Country.Country;
+import model.DataAnalyze.MacroData;
+
 /**
  *
  * @author changxu
@@ -14,8 +21,30 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
     /**
      * Creates new form MaintainRegionalDataJPanel
      */
-    public ViewRegionalDataJPanel() {
+    
+    JPanel userProcessContainer;
+    MacroData md;
+    Country country;
+    
+    public ViewRegionalDataJPanel(JPanel userProcessContainer, MacroData md, Country country) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.md = md;
+        this.country = country;
+        
+        txtExp.setText(String.valueOf(md.getEduExp()));
+        txtFemaleEnroll.setText(String.valueOf(md.getFemaleEnroll()));
+        txtFemaleMeanYear.setText(String.valueOf(md.getFemaleMeanYears()));
+        txtFemaleOut.setText(String.valueOf(md.getFemaleOutSchool()));
+        txtFemaleProgression.setText(String.valueOf(md.getFemaleProgress()));
+        txtGDP.setText(String.valueOf(md.getGdp()));
+        txtMaleEnroll.setText(String.valueOf(md.getMaleEnroll()));
+        txtMaleMeanYear.setText(String.valueOf(md.getMaleMeanYears()));
+        txtMaleOut.setText(String.valueOf(md.getMaleOutSchool()));
+        txtMaleProgression.setText(String.valueOf(md.getMaleProgress()));
+        txtPupilTeacher.setText(String.valueOf(md.getPupilTeacher()));
+        txtUnemployment.setText(String.valueOf(md.getUnemploy()));
+        txtYear.setText(md.getYear());
     }
 
     /**
@@ -29,7 +58,6 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         passwordLbl = new javax.swing.JLabel();
-        usernameField = new javax.swing.JTextField();
         name = new javax.swing.JLabel();
         name1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -37,27 +65,31 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         logoGender = new javax.swing.JLabel();
         passwordLbl1 = new javax.swing.JLabel();
         name3 = new javax.swing.JLabel();
-        usernameField2 = new javax.swing.JTextField();
-        usernameField3 = new javax.swing.JTextField();
         name4 = new javax.swing.JLabel();
-        usernameField4 = new javax.swing.JTextField();
-        usernameField5 = new javax.swing.JTextField();
         name5 = new javax.swing.JLabel();
-        usernameField6 = new javax.swing.JTextField();
-        usernameField7 = new javax.swing.JTextField();
-        usernameField8 = new javax.swing.JTextField();
         name6 = new javax.swing.JLabel();
         name7 = new javax.swing.JLabel();
-        usernameField9 = new javax.swing.JTextField();
         name8 = new javax.swing.JLabel();
-        usernameField10 = new javax.swing.JTextField();
         name9 = new javax.swing.JLabel();
-        usernameField11 = new javax.swing.JTextField();
         name10 = new javax.swing.JLabel();
-        usernameField12 = new javax.swing.JTextField();
         name11 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         logoGender2 = new javax.swing.JLabel();
+        txtMaleOut = new javax.swing.JTextField();
+        txtFemaleOut = new javax.swing.JTextField();
+        txtFemaleMeanYear = new javax.swing.JTextField();
+        txtMaleMeanYear = new javax.swing.JTextField();
+        txtMaleEnroll = new javax.swing.JTextField();
+        txtFemaleEnroll = new javax.swing.JTextField();
+        txtFemaleProgression = new javax.swing.JTextField();
+        txtMaleProgression = new javax.swing.JTextField();
+        txtUnemployment = new javax.swing.JTextField();
+        txtExp = new javax.swing.JTextField();
+        txtPupilTeacher = new javax.swing.JTextField();
+        txtGDP = new javax.swing.JTextField();
+        txtYear = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -68,15 +100,6 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         passwordLbl.setText("FEMALE");
         jLayeredPane1.add(passwordLbl);
         passwordLbl.setBounds(620, 250, 70, 22);
-
-        usernameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFieldActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField);
-        usernameField.setBounds(540, 290, 210, 40);
 
         name.setFont(new java.awt.Font("Lucida Grande", 2, 18)); // NOI18N
         name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -99,7 +122,7 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         name2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         name2.setText("View Annual Data");
         jLayeredPane1.add(name2);
-        name2.setBounds(60, 40, 320, 60);
+        name2.setBounds(60, 60, 320, 60);
 
         logoGender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-unisex-50.png"))); // NOI18N
         jLayeredPane1.add(logoGender);
@@ -117,80 +140,17 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         jLayeredPane1.add(name3);
         name3.setBounds(60, 370, 200, 17);
 
-        usernameField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField2ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField2);
-        usernameField2.setBounds(290, 360, 210, 40);
-
-        usernameField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField3ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField3);
-        usernameField3.setBounds(540, 360, 210, 40);
-
         name4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         name4.setText("School Enrollment Rate");
         jLayeredPane1.add(name4);
         name4.setBounds(60, 440, 210, 17);
 
-        usernameField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField4ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField4);
-        usernameField4.setBounds(290, 430, 210, 40);
-
-        usernameField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField5ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField5);
-        usernameField5.setBounds(540, 430, 210, 40);
-
         name5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         name5.setText("Progression to Higher Education");
         jLayeredPane1.add(name5);
         name5.setBounds(60, 510, 230, 17);
-
-        usernameField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField6ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField6);
-        usernameField6.setBounds(290, 500, 210, 40);
-
-        usernameField7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField7ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField7);
-        usernameField7.setBounds(540, 500, 210, 40);
-
-        usernameField8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField8ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField8);
-        usernameField8.setBounds(290, 290, 210, 40);
 
         name6.setFont(new java.awt.Font("Lucida Grande", 2, 18)); // NOI18N
         name6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -204,29 +164,11 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         jLayeredPane1.add(name7);
         name7.setBounds(860, 300, 200, 17);
 
-        usernameField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField9ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField9);
-        usernameField9.setBounds(1090, 290, 210, 40);
-
         name8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         name8.setText("on education(% of GDP)");
         jLayeredPane1.add(name8);
         name8.setBounds(860, 370, 200, 30);
-
-        usernameField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField10ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField10);
-        usernameField10.setBounds(1090, 360, 210, 40);
 
         name9.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -234,29 +176,11 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         jLayeredPane1.add(name9);
         name9.setBounds(860, 440, 210, 17);
 
-        usernameField11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField11ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField11);
-        usernameField11.setBounds(1090, 430, 210, 40);
-
         name10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         name10.setText("GDP");
         jLayeredPane1.add(name10);
         name10.setBounds(860, 510, 230, 17);
-
-        usernameField12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        usernameField12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameField12ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(usernameField12);
-        usernameField12.setBounds(1090, 500, 210, 40);
 
         name11.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -264,13 +188,103 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         jLayeredPane1.add(name11);
         name11.setBounds(860, 350, 200, 30);
 
-        jLabel2.setText("<Year Placeholder>");
-        jLayeredPane1.add(jLabel2);
-        jLabel2.setBounds(120, 120, 180, 30);
-
         logoGender2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-kyrgyzstani-som-50.png"))); // NOI18N
         jLayeredPane1.add(logoGender2);
         logoGender2.setBounds(840, 170, 60, 70);
+
+        txtMaleOut.setEditable(false);
+        txtMaleOut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtMaleOut);
+        txtMaleOut.setBounds(290, 290, 210, 40);
+
+        txtFemaleOut.setEditable(false);
+        txtFemaleOut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtFemaleOut);
+        txtFemaleOut.setBounds(540, 290, 210, 40);
+
+        txtFemaleMeanYear.setEditable(false);
+        txtFemaleMeanYear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtFemaleMeanYear);
+        txtFemaleMeanYear.setBounds(540, 360, 210, 40);
+
+        txtMaleMeanYear.setEditable(false);
+        txtMaleMeanYear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtMaleMeanYear);
+        txtMaleMeanYear.setBounds(290, 360, 210, 40);
+
+        txtMaleEnroll.setEditable(false);
+        txtMaleEnroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtMaleEnroll);
+        txtMaleEnroll.setBounds(290, 430, 210, 40);
+
+        txtFemaleEnroll.setEditable(false);
+        txtFemaleEnroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtFemaleEnroll);
+        txtFemaleEnroll.setBounds(540, 430, 210, 40);
+
+        txtFemaleProgression.setEditable(false);
+        txtFemaleProgression.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtFemaleProgression);
+        txtFemaleProgression.setBounds(540, 500, 210, 40);
+
+        txtMaleProgression.setEditable(false);
+        txtMaleProgression.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtMaleProgression);
+        txtMaleProgression.setBounds(290, 500, 210, 40);
+
+        txtUnemployment.setEditable(false);
+        txtUnemployment.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtUnemployment);
+        txtUnemployment.setBounds(1090, 290, 210, 40);
+
+        txtExp.setEditable(false);
+        txtExp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtExp);
+        txtExp.setBounds(1090, 360, 210, 40);
+
+        txtPupilTeacher.setEditable(false);
+        txtPupilTeacher.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtPupilTeacher);
+        txtPupilTeacher.setBounds(1090, 430, 210, 40);
+
+        txtGDP.setEditable(false);
+        txtGDP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtGDP);
+        txtGDP.setBounds(1090, 500, 210, 40);
+
+        txtYear.setEditable(false);
+        txtYear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        jLayeredPane1.add(txtYear);
+        txtYear.setBounds(110, 120, 210, 30);
+
+        btnSave.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(btnSave);
+        btnSave.setBounds(230, 600, 110, 40);
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(btnBack);
+        btnBack.setBounds(20, 10, 110, 40);
+
+        btnUpdate.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(btnUpdate);
+        btnUpdate.setBounds(60, 600, 110, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -294,58 +308,99 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFieldActionPerformed
+        double maleOutSchool;
+        double femaleOutSchool;
+        double maleMeanYears;
+        double femaleMeanYears;
+        double maleEnroll;
+        double femaleEnroll;
+        double maleProgress;
+        double femaleProgress;
 
-    private void usernameField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField2ActionPerformed
+        double unemploy;
+        double eduExp;
+        double pupilTeacher;
+        double gdp;
+
+        try{
+            maleOutSchool = Double.parseDouble(txtMaleOut.getText());
+            femaleOutSchool = Double.parseDouble(txtFemaleOut.getText());
+            maleMeanYears = Double.parseDouble(txtMaleMeanYear.getText());
+            femaleMeanYears = Double.parseDouble(txtFemaleMeanYear.getText());
+            maleEnroll = Double.parseDouble(txtMaleEnroll.getText());
+            femaleEnroll = Double.parseDouble(txtFemaleEnroll.getText());
+            maleProgress = Double.parseDouble(txtMaleProgression.getText());
+            femaleProgress = Double.parseDouble(txtFemaleProgression.getText());
+
+            unemploy = Double.parseDouble(txtUnemployment.getText());
+            eduExp = Double.parseDouble(txtExp.getText());
+            pupilTeacher = Double.parseDouble(txtPupilTeacher.getText());
+            gdp = Double.parseDouble(txtGDP.getText());
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Please make sure all data are double format.");
+            return;
+        }
+
+        if(txtYear.getText().isBlank()){
+            JOptionPane.showMessageDialog(this, "Please make sure to enter all data.");
+            return;
+        }
+
+        MacroData md = country.addMacroData();
+        md.setMaleOutSchool(maleOutSchool) ;
+        md.setFemaleOutSchool(femaleOutSchool);
+        md.setMaleMeanYears(maleMeanYears);
+        md.setFemaleMeanYears(femaleMeanYears);
+        md.setMaleEnroll(maleEnroll);
+        md.setFemaleEnroll(femaleEnroll);
+        md.setMaleProgress(maleProgress);
+        md.setFemaleProgress(femaleProgress);
+
+        md.setUnemploy(unemploy);
+        md.setEduExp(eduExp);
+        md.setPupilTeacher(pupilTeacher);
+        md.setGdp(gdp);
+
+        back();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField2ActionPerformed
+        back();
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void usernameField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField3ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField3ActionPerformed
+        txtExp.setEditable(true);
+        txtFemaleEnroll.setEditable(true);
+        txtFemaleMeanYear.setEditable(true);
+        txtFemaleOut.setEditable(true);
+        txtFemaleProgression.setEditable(true);
+        txtGDP.setEditable(true);
+        txtMaleEnroll.setEditable(true);
+        txtMaleMeanYear.setEditable(true);
+        txtMaleOut.setEditable(true);
+        txtMaleProgression.setEditable(true);
+        txtPupilTeacher.setEditable(true);
+        txtUnemployment.setEditable(true);
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void usernameField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField4ActionPerformed
+    public void back(){
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.last(userProcessContainer);
 
-    private void usernameField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField5ActionPerformed
-
-    private void usernameField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField6ActionPerformed
-
-    private void usernameField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField7ActionPerformed
-
-    private void usernameField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField8ActionPerformed
-
-    private void usernameField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField9ActionPerformed
-
-    private void usernameField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField10ActionPerformed
-
-    private void usernameField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField11ActionPerformed
-
-    private void usernameField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameField12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameField12ActionPerformed
-
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel logoGender;
     private javax.swing.JLabel logoGender2;
@@ -363,17 +418,18 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel name9;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JLabel passwordLbl1;
-    private javax.swing.JTextField usernameField;
-    private javax.swing.JTextField usernameField10;
-    private javax.swing.JTextField usernameField11;
-    private javax.swing.JTextField usernameField12;
-    private javax.swing.JTextField usernameField2;
-    private javax.swing.JTextField usernameField3;
-    private javax.swing.JTextField usernameField4;
-    private javax.swing.JTextField usernameField5;
-    private javax.swing.JTextField usernameField6;
-    private javax.swing.JTextField usernameField7;
-    private javax.swing.JTextField usernameField8;
-    private javax.swing.JTextField usernameField9;
+    private javax.swing.JTextField txtExp;
+    private javax.swing.JTextField txtFemaleEnroll;
+    private javax.swing.JTextField txtFemaleMeanYear;
+    private javax.swing.JTextField txtFemaleOut;
+    private javax.swing.JTextField txtFemaleProgression;
+    private javax.swing.JTextField txtGDP;
+    private javax.swing.JTextField txtMaleEnroll;
+    private javax.swing.JTextField txtMaleMeanYear;
+    private javax.swing.JTextField txtMaleOut;
+    private javax.swing.JTextField txtMaleProgression;
+    private javax.swing.JTextField txtPupilTeacher;
+    private javax.swing.JTextField txtUnemployment;
+    private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }

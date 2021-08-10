@@ -6,6 +6,7 @@
 package model.Role;
 
 import javax.swing.JPanel;
+import model.Business;
 import model.UserAccount.UserAccount;
 import ui.CountryDataMaintainer.CountryDataMaintainJPanel;
 
@@ -13,8 +14,8 @@ import ui.CountryDataMaintainer.CountryDataMaintainJPanel;
  *
  * @author changxu
  */
-public class DataMaintainerRole {
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+public class DataMaintainerRole extends Role {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
         return new CountryDataMaintainJPanel(userProcessContainer, account, business);
     }
 
