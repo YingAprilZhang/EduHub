@@ -13,15 +13,12 @@ import model.UserAccount.UserAccount;
  *
  * @author aprilyz
  */
-public class TeacherRole extends Role {
+public class SysAdminRole extends Role {
+   
 
-    TeacherRole
-    
-    public TeacherRole() {
-        
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
-        return new StudentAreaJPanel(userProcessContainer, account, business);
-    }
 }

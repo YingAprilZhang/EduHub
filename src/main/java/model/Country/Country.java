@@ -19,14 +19,16 @@ import model.School.School;
  * @author changxu
  */
 public class Country {
-    String Name;
+    String name;
     CountryManager countryManager;
     List<School> schoolList;
     Map<Integer, MacroData> macroDataMap;
     Accountant accountant;
     
-    public Country(){
-        macroDataMap = new TreeMap<Integer, MacroData>();        
+    public Country(String name){
+        this.name = name;
+        this.schoolList = new ArrayList<>();
+        this.macroDataMap = new TreeMap<Integer, MacroData>();        
     }
 
     public Map<Integer, MacroData> getMacroDataMap() {
@@ -51,6 +53,6 @@ public class Country {
     
     @Override
     public String toString(){
-        return Name;
+        return name;
     }
 }
