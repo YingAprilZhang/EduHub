@@ -7,6 +7,8 @@ package model.Country;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import model.Accountant.Accountant;
 import model.CountryManager.CountryManager;
 import model.DataAnalyze.MacroData;
@@ -20,22 +22,32 @@ public class Country {
     String Name;
     CountryManager countryManager;
     List<School> schoolList;
-    List<MacroData> macroDataList;
+    Map<Integer, MacroData> macroDataMap;
     Accountant accountant;
     
     public Country(){
-        macroDataList = new ArrayList<MacroData>();
+        macroDataMap = new TreeMap<Integer, MacroData>();        
     }
 
-    public List<MacroData> getMacroDataList() {
-        return macroDataList;
+    public Map<Integer, MacroData> getMacroDataMap() {
+        return macroDataMap;
     }
 
-    public MacroData addMacroData(){
+    public MacroData addMacroData(Integer year){
         MacroData md = new MacroData();
-        macroDataList.add(md);
+        macroDataMap.put(year, md);        
         return md;
     }
+
+    public CountryManager getCountryManager() {
+        return countryManager;
+    }
+
+    public void setCountryManager(CountryManager countryManager) {
+        this.countryManager = countryManager;
+    }
+    
+    
     
     @Override
     public String toString(){

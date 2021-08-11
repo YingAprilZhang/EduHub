@@ -5,11 +5,24 @@
  */
 package model.CountryManager;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Request.Request;
+
 /**
  *
  * @author changxu
  */
-public class CountryManager {
-    String Name;
+public class CountryManager {    
+    List<Request> requestQueue;
+    
+    public CountryManager(){
+        requestQueue = new ArrayList<Request>();
+    }
+
+    public List<Request> getRequestQueue() {
+        return requestQueue;
+    }
+    
     
 }
