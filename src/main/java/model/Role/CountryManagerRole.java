@@ -7,6 +7,7 @@ package model.Role;
 
 import javax.swing.JPanel;
 import model.Business;
+import model.CountryManager.CountryManager;
 import model.UserAccount.UserAccount;
 import ui.CountryManager.CountryManagerAreaJPanel;
 
@@ -15,8 +16,10 @@ import ui.CountryManager.CountryManagerAreaJPanel;
  * @author changxu
  */
 public class CountryManagerRole extends Role{
+        
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
         return new CountryManagerAreaJPanel(userProcessContainer, account, business);
     }
 
+    
 }

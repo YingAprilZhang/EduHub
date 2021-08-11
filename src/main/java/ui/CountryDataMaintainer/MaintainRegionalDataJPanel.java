@@ -120,6 +120,7 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         jLayeredPane1.add(passwordLbl1);
         passwordLbl1.setBounds(380, 250, 40, 22);
 
+        txtYear.setText("YYYY");
         txtYear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
         jLayeredPane1.add(txtYear);
         txtYear.setBounds(110, 120, 210, 30);
@@ -282,6 +283,7 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
             double eduExp;
             double pupilTeacher;
             double gdp;
+            Integer year; 
 
         try{
             maleOutSchool = Double.parseDouble(txtMaleOut.getText());
@@ -306,9 +308,16 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         if(txtYear.getText().isBlank()){
             JOptionPane.showMessageDialog(this, "Please make sure to enter all data.");
             return;
+        }else{
+            try{
+                year = Integer.parseInt(txtYear.getText());
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Please make sure to enter correct format(yyyy) for year");
+                return;
+            }
         }
         
-        MacroData md = country.addMacroData();
+        MacroData md = country.addMacroData(year);
         md.setMaleOutSchool(maleOutSchool) ;
         md.setFemaleOutSchool(femaleOutSchool);
         md.setMaleMeanYears(maleMeanYears);

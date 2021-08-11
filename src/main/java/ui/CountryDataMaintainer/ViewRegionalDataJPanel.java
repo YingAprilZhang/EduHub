@@ -349,7 +349,7 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
             return;
         }
 
-        MacroData md = country.addMacroData();
+        
         md.setMaleOutSchool(maleOutSchool) ;
         md.setFemaleOutSchool(femaleOutSchool);
         md.setMaleMeanYears(maleMeanYears);

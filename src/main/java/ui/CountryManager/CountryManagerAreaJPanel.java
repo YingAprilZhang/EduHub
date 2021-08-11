@@ -5,8 +5,13 @@
  */
 package ui.CountryManager;
 
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Business;
+import model.Country.Country;
+import model.CountryManager.CountryManager;
+import model.Role.CountryManagerRole;
 import model.UserAccount.UserAccount;
 
 /**
@@ -21,9 +26,23 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount account;
     Business business;
+    Country country;
+    CountryManagerRole role;
+    CountryManager countryManager;
     
     public CountryManagerAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.business = business;
+        this.role = (CountryManagerRole) account.getRole();
+        this.country = account.getCountry();
+        this.countryManager = country.getCountryManager();
+        
+        if(country != null){           
+            lblCountry.setText(country.toString());            
+        }
+        
     }
 
     /**
@@ -37,11 +56,11 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
 
         bg = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        logoAdd = new javax.swing.JLabel();
+        logoRequest = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblCountry = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        logoView = new javax.swing.JLabel();
+        logoAnalyze = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
@@ -49,10 +68,10 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel3.setText("Country Manager Work Area");
 
-        logoAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
-        logoAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+        logoRequest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
+        logoRequest.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoAddMouseClicked(evt);
+                logoRequestMouseClicked(evt);
             }
         });
 
@@ -65,10 +84,10 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setText("Country:");
 
-        logoView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-combo-chart-64.png"))); // NOI18N
-        logoView.addMouseListener(new java.awt.event.MouseAdapter() {
+        logoAnalyze.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-combo-chart-64.png"))); // NOI18N
+        logoAnalyze.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoViewMouseClicked(evt);
+                logoAnalyzeMouseClicked(evt);
             }
         });
 
@@ -88,11 +107,11 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(lblCountry))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(logoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(logoRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(logoView, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 494, Short.MAX_VALUE)
@@ -112,13 +131,13 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
                     .addComponent(lblCountry))
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel1)))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoView, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel2)))
@@ -126,19 +145,19 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoAddMouseClicked
+    private void logoRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoRequestMouseClicked
         // TODO add your handling code here:
         if(country == null){
             JOptionPane.showMessageDialog(this, "Plese select a country first.");
             return;
         }
-        MaintainRegionalDataJPanel mrdj = (MaintainRegionalDataJPanel) new MaintainRegionalDataJPanel(userProcessContainer, country);
-        userProcessContainer.add("MaintainRegionalDataJPanel", mrdj);
+        CountryManagerRequestJPanel cmrj = (CountryManagerRequestJPanel) new CountryManagerRequestJPanel(userProcessContainer, account, countryManager);
+        userProcessContainer.add("CountryManagerRequestJPanel", cmrj);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
-    }//GEN-LAST:event_logoAddMouseClicked
+    }//GEN-LAST:event_logoRequestMouseClicked
 
-    private void logoViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoViewMouseClicked
+    private void logoAnalyzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoAnalyzeMouseClicked
         // TODO add your handling code here:
         int selectedRow = tblYear.getSelectedRow();
         if (selectedRow < 0){
@@ -151,7 +170,7 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.add("ViewRegionalDataJPanel", vrdj);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
-    }//GEN-LAST:event_logoViewMouseClicked
+    }//GEN-LAST:event_logoAnalyzeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -161,7 +180,7 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblCountry;
-    private javax.swing.JLabel logoAdd;
-    private javax.swing.JLabel logoView;
+    private javax.swing.JLabel logoAnalyze;
+    private javax.swing.JLabel logoRequest;
     // End of variables declaration//GEN-END:variables
 }

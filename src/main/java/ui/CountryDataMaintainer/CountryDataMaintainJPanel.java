@@ -38,7 +38,7 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         this.account = account;
         this.business = business;
         this.role = (DataMaintainerRole) account.getRole();
-        this.country = role.getCountry();
+        this.country = account.getCountry();
         
         if(country != null){           
             lblCountry.setText(country.toString());
@@ -50,8 +50,10 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
     public void refreshTable(){
         DefaultTableModel model = (DefaultTableModel) tblYear.getModel();
         model.setRowCount(0);
-        for(MacroData md:country.getMacroDataList()){
+        
+        for(Integer year:country.getMacroDataMap().keySet()){
             Object[] row = new Object[1];
+            MacroData md = country.getMacroDataMap().get(year);
             row[0] = md;
             model.addRow(row);            
         }
