@@ -8,6 +8,7 @@ package model.Role;
 import javax.swing.JPanel;
 import model.Business;
 import model.UserAccount.UserAccount;
+import ui.CharityFundingGroup.CharityFundingWorkAreaJPanel;
 
 /**
  *
@@ -15,7 +16,7 @@ import model.UserAccount.UserAccount;
  */
 public class CharityFundingRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
-        return new CharityFundJPanel(userProcessContainer, account, business); //kaila
+        return new CharityFundingWorkAreaJPanel(userProcessContainer, account, business); //kaila
     }
     
 }

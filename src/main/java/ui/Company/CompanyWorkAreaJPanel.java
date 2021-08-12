@@ -9,12 +9,12 @@ package ui.Company;
  *
  * @author kkkkayla
  */
-public class CompanyJPanel extends javax.swing.JPanel {
+public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CompanyJPanel
      */
-    public CompanyJPanel() {
+    public CompanyWorkAreaJPanel() {
         initComponents();
     }
 
