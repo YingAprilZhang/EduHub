@@ -173,7 +173,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addGap(416, 416, 416))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(381, Short.MAX_VALUE)
+                        .addContainerGap(340, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
