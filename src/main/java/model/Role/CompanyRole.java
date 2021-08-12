@@ -13,7 +13,7 @@ import model.UserAccount.UserAccount;
  * @author changxu
  */
 public class CompanyRole {
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new CustomerAreaJPanel(userProcessContainer, account, business); //kaila
     }
 

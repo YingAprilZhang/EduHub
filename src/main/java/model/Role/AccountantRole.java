@@ -14,7 +14,7 @@ import model.UserAccount.UserAccount;
  */
 public class AccountantRole extends Role{
 
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new AccountantAreaJPanel(userProcessContainer, account, business);
     }
     

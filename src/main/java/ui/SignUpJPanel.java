@@ -7,8 +7,12 @@ package ui;
 
 import java.awt.CardLayout;
 import java.awt.Cursor;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Business;
+import model.Country.Country;
+import model.Org.Organization;
+import model.Role.Role;
 
 /**
  *
@@ -27,9 +31,25 @@ public class SignUpJPanel extends javax.swing.JPanel {
         
         initComponents();
         
+        populateComboRole(); 
+        populateComboOrganization(); 
+        
         backLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         submitBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
     }
+    
+        private void populateComboRole(){
+            for (Role.RoleType type : Role.RoleType.values()) {
+                roleBox.addItem(type.getValue());
+            }
+        }
+        
+        private void populateComboOrganization() {
+            for (Organization organization : business.getOrganizationDirectory().getOrganizationList()) {
+                organizationBox.addItem(organization.getName());
+            }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,13 +69,15 @@ public class SignUpJPanel extends javax.swing.JPanel {
         lblUsername = new javax.swing.JLabel();
         userNameField = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
-        userNameField1 = new javax.swing.JTextField();
-        userNameField2 = new javax.swing.JTextField();
-        userNameField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        passWordField = new javax.swing.JTextField();
+        nameField = new javax.swing.JTextField();
+        countryField = new javax.swing.JTextField();
+        roleBox = new javax.swing.JComboBox<>();
         lblTemperature2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        organizationBox = new javax.swing.JComboBox<>();
         submitBtn = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
@@ -92,36 +114,49 @@ public class SignUpJPanel extends javax.swing.JPanel {
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPassword.setText("Password");
 
-        userNameField1.addActionListener(new java.awt.event.ActionListener() {
+        passWordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameField1ActionPerformed(evt);
+                passWordFieldActionPerformed(evt);
             }
         });
 
-        userNameField2.addActionListener(new java.awt.event.ActionListener() {
+        nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameField2ActionPerformed(evt);
+                nameFieldActionPerformed(evt);
             }
         });
 
-        userNameField3.addActionListener(new java.awt.event.ActionListener() {
+        countryField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameField3ActionPerformed(evt);
+                countryFieldActionPerformed(evt);
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        roleBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
 
         lblTemperature2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblTemperature2.setText("Organization");
 
-        jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        organizationBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        organizationBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationBoxActionPerformed(evt);
+            }
+        });
 
         submitBtn.setBackground(new java.awt.Color(51, 153, 255));
         submitBtn.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         submitBtn.setText("Submit");
+        submitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                submitBtnMouseClicked(evt);
+            }
+        });
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -151,11 +186,11 @@ public class SignUpJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(userNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(userNameField2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(userNameField3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(passWordField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(organizationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(submitBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(349, 349, 349)))
                 .addComponent(bg))
@@ -176,24 +211,24 @@ public class SignUpJPanel extends javax.swing.JPanel {
                     .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passWordField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userNameField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblName))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userNameField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCountry))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTemperature1))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTemperature2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(organizationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
                 .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -202,33 +237,55 @@ public class SignUpJPanel extends javax.swing.JPanel {
 
     private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
         // TODO add your handling code here:
-        workArea.remove(this);
-        CardLayout layout = (CardLayout) workArea.getLayout();
-        layout.previous(workArea);
+        back();
     }//GEN-LAST:event_backLblMouseClicked
 
     private void userNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameFieldActionPerformed
 
-    private void userNameField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameField1ActionPerformed
+    private void passWordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passWordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userNameField1ActionPerformed
+    }//GEN-LAST:event_passWordFieldActionPerformed
 
-    private void userNameField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameField2ActionPerformed
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userNameField2ActionPerformed
+    }//GEN-LAST:event_nameFieldActionPerformed
 
-    private void userNameField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameField3ActionPerformed
+    private void countryFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userNameField3ActionPerformed
+    }//GEN-LAST:event_countryFieldActionPerformed
 
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here
+        Country country = business.getCountryDirectory().getCountryByName(countryField.getText());
+        Role.RoleType type = Role.getRoleTypeByValue(roleBox.getSelectedItem().toString());
+        Role role = Role.RoleTypeToRoleMapping.get(type);
+        Organization org = business.getOrganizationDirectory().getOrgByName(organizationBox.getSelectedItem().toString()); 
+        business.getUserAccountDirectory().createUserAccount(userNameField.getText(), 
+                passWordField.getText(), nameField.getText(), country, role, org);
+        JOptionPane.showMessageDialog(null, "User successfully signed up!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        back();
+    }//GEN-LAST:event_submitBtnActionPerformed
+
+    private void submitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseClicked
+        // TODO add your handling code here 
+    }//GEN-LAST:event_submitBtnMouseClicked
+
+    private void organizationBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationBoxActionPerformed
+
+    private void back() {
+        workArea.remove(this);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JTextField countryField;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblCountry;
     private javax.swing.JLabel lblName;
@@ -236,14 +293,11 @@ public class SignUpJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTemperature1;
     private javax.swing.JLabel lblTemperature2;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JComboBox<String> organizationBox;
+    private javax.swing.JTextField passWordField;
+    private javax.swing.JComboBox<String> roleBox;
     private javax.swing.JButton submitBtn;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtAddress1;
     private javax.swing.JTextField userNameField;
-    private javax.swing.JTextField userNameField1;
-    private javax.swing.JTextField userNameField2;
-    private javax.swing.JTextField userNameField3;
-    private javax.swing.JTextField usernameField;
-    private javax.swing.JTextField usernameField1;
     // End of variables declaration//GEN-END:variables
 }

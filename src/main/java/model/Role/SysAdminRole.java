@@ -8,23 +8,27 @@ package model.Role;
 import javax.swing.JPanel;
 import model.Business;
 import model.UserAccount.UserAccount;
+import ui.SysAdmin.SysAdminJPanel;
 
 /**
  *
  * @author aprilyz
  */
-public class PrincipalRole extends Role {
+public class SysAdminRole extends Role {
     
-    public static PrincipalRole principalRole;
+    public static SysAdminRole sysAdminRole;
     
-     public static PrincipalRole getInstance(){
-        if(principalRole == null){
-            principalRole = new PrincipalRole();
+     public static SysAdminRole getInstance(){
+        if(sysAdminRole == null){
+            sysAdminRole = new SysAdminRole();
         }
-        return principalRole;
+        return sysAdminRole;
     }
-     
+   
+
+    @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new PrincipalAreaJPanel(userProcessContainer, account);
+        return new SysAdminJPanel(userProcessContainer, account);
     }
+    
 }

@@ -6,7 +6,7 @@
 package model.UserAccount;
 
 import model.Country.Country;
-import model.Organization.Organization;
+import model.Org.Organization;
 import model.Role.Role;
 
 /**

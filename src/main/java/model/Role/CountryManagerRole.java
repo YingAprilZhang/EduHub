@@ -17,7 +17,7 @@ import ui.CountryManager.CountryManagerAreaJPanel;
  */
 public class CountryManagerRole extends Role{
         
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new CountryManagerAreaJPanel(userProcessContainer, account, business);
     }
 
