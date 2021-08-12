@@ -14,7 +14,17 @@ import model.UserAccount.UserAccount;
  * @author aprilyz
  */
 public class PrincipalRole extends Role {
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
-        return new PrincipalAreaJPanel(userProcessContainer, account, business);
+    
+    public static PrincipalRole principalRole;
+    
+     public static PrincipalRole getInstance(){
+        if(principalRole == null){
+            principalRole = new PrincipalRole();
+        }
+        return principalRole;
+    }
+     
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+        return new PrincipalAreaJPanel(userProcessContainer, account);
     }
 }

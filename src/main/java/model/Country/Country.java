@@ -31,6 +31,30 @@ public class Country {
         this.macroDataMap = new TreeMap<Integer, MacroData>();        
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<School> getSchoolList() {
+        return schoolList;
+    }
+
+    public void setSchoolList(List<School> schoolList) {
+        this.schoolList = schoolList;
+    }
+
+    public Accountant getAccountant() {
+        return accountant;
+    }
+
+    public void setAccountant(Accountant accountant) {
+        this.accountant = accountant;
+    }
+
     public Map<Integer, MacroData> getMacroDataMap() {
         return macroDataMap;
     }

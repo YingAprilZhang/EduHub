@@ -17,10 +17,18 @@ import model.Role.Role.RoleType;
 public class Organization {
      private String name;
      private Country country;
+     private OrgType orgType;
+
+    Organization(String name, Country country, OrgType orgType) {
+        this.name = name;
+        this.country = country;
+        this.orgType = orgType;
+    }
      
      public enum OrgType{
         School,
-        Charity;
+        CharityEdu,
+        CharityFunding;
     }
 
      
@@ -42,6 +50,18 @@ public class Organization {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public OrgType getOrgType() {
+        return orgType;
+    }
+
+    public void setOrgType(OrgType orgType) {
+        this.orgType = orgType;
+    }
+    
+    public static OrgType getOrgTypeByName(String name) {
+        return Enum.valueOf(Organization.OrgType.class, name);
     }
     
      

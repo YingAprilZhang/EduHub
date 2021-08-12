@@ -8,17 +8,27 @@ package model.Role;
 import javax.swing.JPanel;
 import model.Business;
 import model.UserAccount.UserAccount;
+import ui.SysAdmin.SysAdminJPanel;
 
 /**
  *
  * @author aprilyz
  */
 public class SysAdminRole extends Role {
+    
+    public static SysAdminRole sysAdminRole;
+    
+     public static SysAdminRole getInstance(){
+        if(sysAdminRole == null){
+            sysAdminRole = new SysAdminRole();
+        }
+        return sysAdminRole;
+    }
    
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Business business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+        return new SysAdminJPanel(userProcessContainer, account);
     }
     
 }

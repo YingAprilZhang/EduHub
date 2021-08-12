@@ -7,6 +7,7 @@ package ui;
 
 import java.awt.CardLayout;
 import java.awt.Cursor;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Business;
 import model.Country.Country;
@@ -45,10 +46,9 @@ public class SignUpJPanel extends javax.swing.JPanel {
         }
         
         private void populateComboOrganization() {
-            Role.RoleType type = Role.getRoleTypeByValue((String)roleBox.getSelectedItem());
-            // for (Role.RoleType type : Organization.RoleToOrgMapping.) {
-            //    roleBox.addItem(type.getValue());
-            // }
+            for (Organization organization : business.getOrganizationDirectory().getOrganizationList()) {
+                organizationBox.addItem(organization.getName());
+            }
         }
 
     /**
@@ -76,6 +76,8 @@ public class SignUpJPanel extends javax.swing.JPanel {
         lblTemperature2 = new javax.swing.JLabel();
         organizationBox = new javax.swing.JComboBox<>();
         submitBtn = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
@@ -131,13 +133,11 @@ public class SignUpJPanel extends javax.swing.JPanel {
         });
 
         roleBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        roleBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblTemperature2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblTemperature2.setText("Organization");
 
         organizationBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        organizationBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         organizationBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organizationBoxActionPerformed(evt);
@@ -237,9 +237,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
 
     private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
         // TODO add your handling code here:
-        workArea.remove(this);
-        CardLayout layout = (CardLayout) workArea.getLayout();
-        layout.previous(workArea);
+        back();
     }//GEN-LAST:event_backLblMouseClicked
 
     private void userNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameFieldActionPerformed
@@ -261,9 +259,13 @@ public class SignUpJPanel extends javax.swing.JPanel {
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here
         Country country = business.getCountryDirectory().getCountryByName(countryField.getText());
-        
-        business.getUserAccountDirectory().createUserAccount(userNameField.getText(), passWordField.getText(), 
-                nameField.getText(), country, new WorldManagerRole());
+        Role.RoleType type = Role.getRoleTypeByValue(roleBox.getSelectedItem().toString());
+        Role role = Role.RoleTypeToRoleMapping.get(type);
+        Organization org = business.getOrganizationDirectory().getOrgByName(organizationBox.getSelectedItem().toString()); 
+        business.getUserAccountDirectory().createUserAccount(userNameField.getText(), 
+                passWordField.getText(), nameField.getText(), country, role, org);
+        JOptionPane.showMessageDialog(null, "User successfully signed up!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        back();
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void submitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseClicked
@@ -274,6 +276,11 @@ public class SignUpJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_organizationBoxActionPerformed
 
+    private void back() {
+        workArea.remove(this);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLbl;
@@ -291,10 +298,6 @@ public class SignUpJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField passWordField;
     private javax.swing.JComboBox<String> roleBox;
     private javax.swing.JButton submitBtn;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtAddress1;
     private javax.swing.JTextField userNameField;
-    private javax.swing.JTextField usernameField;
-    private javax.swing.JTextField usernameField1;
     // End of variables declaration//GEN-END:variables
 }

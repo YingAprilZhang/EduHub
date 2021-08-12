@@ -6,6 +6,7 @@
 package model;
 
 import model.Country.CountryDirectory;
+import model.Org.OrganizationDirectory;
 import model.UserAccount.UserAccountDirectory;
 
 /**
@@ -16,6 +17,7 @@ public class Business {
      private static Business business;
      private UserAccountDirectory userAccountDirectory;
      private CountryDirectory countryDirectory;
+     private OrganizationDirectory organizationDirectory;
      
      public static Business getInstance(){
         if(business == null){
@@ -27,6 +29,7 @@ public class Business {
     public Business() {
         this.userAccountDirectory =  new UserAccountDirectory();
         this.countryDirectory =  new CountryDirectory();
+        this.organizationDirectory =  new OrganizationDirectory();
     }
      
     public static void setBusiness(Business business) {
@@ -47,6 +50,14 @@ public class Business {
 
     public void setCountryDirectory(CountryDirectory countryDirectory) {
         this.countryDirectory = countryDirectory;
+    }
+
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
+    }
+
+    public void setOrganizationDirectory(OrganizationDirectory organizationDirectory) {
+        this.organizationDirectory = organizationDirectory;
     }
      
      

@@ -13,8 +13,18 @@ import model.UserAccount.UserAccount;
  * @author changxu
  */
 public class WorldManagerRole {
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new WorldManagerAreaJPanel(userProcessContainer, account, business);
+    
+    public static WorldManagerRole worldManagerRole;
+    
+     public static WorldManagerRole getInstance(){
+        if(worldManagerRole == null){
+            worldManagerRole = new WorldManagerRole();
+        }
+        return worldManagerRole;
+    }
+     
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+        return new WorldManagerAreaJPanel(userProcessContainer, account);
     }
 
 }

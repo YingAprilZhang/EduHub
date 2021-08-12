@@ -45,10 +45,19 @@ public abstract class Role {
         }
     }
     
+    /*
     public static final Map<RoleType, Organization.OrgType> RoleToOrgMapping = new HashMap<RoleType, Organization.OrgType>() {{
         put(RoleType.Student, Organization.OrgType.School);
         put(RoleType.Teacher, Organization.OrgType.School);
         put(RoleType.Principal, Organization.OrgType.School);
+    }};
+    */
+    
+    public static final Map<RoleType, Role> RoleTypeToRoleMapping = new HashMap<RoleType, Role>() {{
+        put(RoleType.SysAdmin, SysAdminRole.getInstance());
+        put(RoleType.Student, StudentRole.getInstance());
+        put(RoleType.Teacher,TeacherRole.getInstance());
+        put(RoleType.Principal, PrincipalRole.getInstance());
     }};
     
     
@@ -60,9 +69,7 @@ public abstract class Role {
         return result;
     }
     
-    public abstract JPanel createWorkArea(JPanel userProcessContainer, 
-            UserAccount account,  
-            Business business);
+    public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account);
 
     @Override
     public String toString() {

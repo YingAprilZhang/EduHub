@@ -16,7 +16,7 @@ import model.db.DB4OUtil;
  * @author aprilyz
  */
 public class MainJFrame extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form MainJFrame
      */
@@ -197,7 +197,7 @@ public class MainJFrame extends javax.swing.JFrame {
         UserAccount uc = Business.getInstance().getUserAccountDirectory()
                 .authenticateUser(usernameField.getText(), passwordField.getText());
        if (uc != null) {
-            // mainPanel.add("SystemAdminWorkAreaJPanel",role.createWorkArea(container, uc, system));
+            mainPanel.add("roleWorkAreaJPanel",uc.getRole().createWorkArea(mainPanel, uc));
             CardLayout layout = (CardLayout)mainPanel.getLayout();
             layout.next(mainPanel);
        }
