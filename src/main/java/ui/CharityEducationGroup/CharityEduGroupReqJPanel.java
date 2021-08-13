@@ -5,16 +5,26 @@
  */
 package ui.CharityEducationGroup;
 
+import javax.swing.JPanel;
+import model.Business;
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author kkkkayla
  */
-public class ChrityEduGroupJPanel extends javax.swing.JPanel {
+public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 
+    private JPanel container;
+
+    private UserAccount userAccount;
+    
+    private Business system;
+    
     /**
      * Creates new form ChrityEduGroupJPanel
      */
-    public ChrityEduGroupJPanel() {
+    public CharityEduGroupReqJPanel(JPanel container, UserAccount account, Business system) {
         initComponents();
     }
 
@@ -32,7 +42,9 @@ public class ChrityEduGroupJPanel extends javax.swing.JPanel {
         lblWelcome = new javax.swing.JLabel();
         cmbSchool = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
+        btnCancel = new javax.swing.JButton();
+        btnAccept1 = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -50,31 +62,43 @@ public class ChrityEduGroupJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(90, 220, 800, 250);
+        jScrollPane1.setBounds(120, 290, 800, 250);
 
         lblWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         lblWelcome.setText("Welcome Charity Group");
+        lblWelcome.setToolTipText("");
+        lblWelcome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         add(lblWelcome);
-        lblWelcome.setBounds(90, 60, 600, 40);
+        lblWelcome.setBounds(10, 110, 1050, 40);
 
         cmbSchool.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cmbSchool);
-        cmbSchool.setBounds(160, 150, 96, 27);
+        cmbSchool.setBounds(180, 220, 130, 40);
 
         jLabel1.setText("School:");
         add(jLabel1);
-        jLabel1.setBounds(100, 150, 100, 30);
+        jLabel1.setBounds(130, 220, 100, 30);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg.png"))); // NOI18N
-        add(jLabel2);
-        jLabel2.setBounds(0, 0, 1440, 875);
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
+        add(bg);
+        bg.setBounds(1060, 0, 383, 900);
+
+        btnCancel.setText("Cancel");
+        add(btnCancel);
+        btnCancel.setBounds(750, 590, 170, 29);
+
+        btnAccept1.setText("Accept");
+        add(btnAccept1);
+        btnAccept1.setBounds(530, 590, 170, 29);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg;
+    private javax.swing.JButton btnAccept1;
+    private javax.swing.JButton btnCancel;
     private javax.swing.JComboBox<String> cmbSchool;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblWelcome;

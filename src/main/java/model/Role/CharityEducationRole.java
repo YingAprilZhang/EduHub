@@ -8,25 +8,27 @@ package model.Role;
 import javax.swing.JPanel;
 import model.Business;
 import model.UserAccount.UserAccount;
-import ui.CharityFundingGroup.CharityFundingWorkAreaJPanel;
+import ui.CharityEducationGroup.CharityEduGroupWorkAreaJPanel;
+import ui.Principal.PrincipalAreaJPanel;
 
 /**
  *
- * @author changxu
+ * @author kkkkayla
  */
 
-public class CharityFundingRole extends Role {
+
+public class CharityEducationRole extends Role {
     
-    public static CharityFundingRole charityEduRole;
+    public static CharityEducationRole charityEduRole;
     
-     public static CharityFundingRole getInstance(){
+     public static CharityEducationRole getInstance(){
         if(charityEduRole == null){
-            charityEduRole = new CharityFundingRole();
+            charityEduRole = new CharityEducationRole();
         }
         return charityEduRole;
     }
      
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new CharityFundingWorkAreaJPanel(userProcessContainer, account);
+        return new CharityEduGroupWorkAreaJPanel(userProcessContainer, account);
     }
 }

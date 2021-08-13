@@ -7,14 +7,26 @@ package model.Role;
 
 import javax.swing.JPanel;
 import model.UserAccount.UserAccount;
+import ui.Company.CompanyWorkAreaJPanel;
+import model.Business;
 
 /**
  *
  * @author changxu
  */
-public class CompanyRole {
+public class CompanyRole extends Role {
+    
+    public static CompanyRole companyRole;
+    
+     public static CompanyRole getInstance(){
+        if(companyRole == null){
+            companyRole = new CompanyRole();
+        }
+        return companyRole;
+    }
+    
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new CustomerAreaJPanel(userProcessContainer, account, business); //kaila
+        return new CompanyWorkAreaJPanel(userProcessContainer, account); //kaila
     }
 
 }
