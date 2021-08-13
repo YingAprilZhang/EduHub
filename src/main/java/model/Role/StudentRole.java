@@ -8,6 +8,7 @@ package model.Role;
 import javax.swing.JPanel;
 import model.Business;
 import model.UserAccount.UserAccount;
+import ui.StudentAreaJPanel.StudentAreaJPanel;
 
 /**
  *
@@ -25,6 +26,6 @@ public class StudentRole extends Role {
     }
      
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new StudentAreaJPanel(userProcessContainer, account, business);
+        return new StudentAreaJPanel(userProcessContainer, account);
     }
 }
