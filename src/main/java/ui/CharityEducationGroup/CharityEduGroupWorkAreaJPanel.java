@@ -23,7 +23,7 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
     Business business;
     CharityEduGroup eduGroup;
 
-    public CharityEduGroupWorkAreaJPanel(JPanel userProcessContainer,UserAccount account, Business business) {
+    public CharityEduGroupWorkAreaJPanel(JPanel userProcessContainer,UserAccount account) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
