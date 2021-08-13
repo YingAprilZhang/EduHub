@@ -1,9 +1,5 @@
 package model;
 
-import model.UserAccount.UserAccount;
-import model.Role.Role;
-import model.Role.SysAdminRole;
-
 
 /**
  *
@@ -20,9 +16,10 @@ public class ConfigureASystem {
         //initialize some organizations
         //have some employees 
         //create user account
-
         
-       UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", SysAdminRole.getInstance());
+        
+        
+       //  UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         
         return business;
     }
