@@ -16,7 +16,7 @@ import ui.CountryDataMaintainer.CountryDataMaintainJPanel;
  */
 public class DataMaintainerRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new CountryDataMaintainJPanel(userProcessContainer, account, business);
+        return new CountryDataMaintainJPanel(userProcessContainer, account);
     }
 
 }

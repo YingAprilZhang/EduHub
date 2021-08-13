@@ -144,7 +144,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
             }
         });
         subMainPanel.add(signUpLbl);
-        signUpLbl.setBounds(430, 530, 80, 30);
+        signUpLbl.setBounds(440, 530, 80, 30);
 
         signInLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         signInLbl.setText("Sign in");
@@ -164,7 +164,7 @@ public class NewMainJFrame extends javax.swing.JFrame {
 
         suLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-add-user-male-56.png"))); // NOI18N
         subMainPanel.add(suLogo);
-        suLogo.setBounds(360, 500, 60, 80);
+        suLogo.setBounds(370, 500, 60, 80);
 
         passwordLbl.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         passwordLbl.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
