@@ -15,6 +15,20 @@ import ui.CountryDataMaintainer.CountryDataMaintainJPanel;
  * @author changxu
  */
 public class DataMaintainerRole extends Role {
+    
+    public static DataMaintainerRole dataMaintainerRole;
+    
+     public static DataMaintainerRole getInstance(){
+        if(dataMaintainerRole == null){
+            dataMaintainerRole = new DataMaintainerRole();
+        }
+        return dataMaintainerRole;
+    }
+
+    public DataMaintainerRole() {
+        super(RoleType.DataMaintainer);
+    }
+    
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new CountryDataMaintainJPanel(userProcessContainer, account);
     }

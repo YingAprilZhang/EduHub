@@ -28,6 +28,10 @@ public class CharityEducationRole extends Role {
         return charityEduRole;
     }
      
+     public CharityEducationRole() {
+        super(RoleType.CharityEdu);
+    }
+     
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new CharityEduGroupWorkAreaJPanel(userProcessContainer, account);
     }

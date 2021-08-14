@@ -23,6 +23,10 @@ public class CompanyRole extends Role {
             companyRole = new CompanyRole();
         }
         return companyRole;
+     }
+
+    public CompanyRole() {
+        super(RoleType.CompanyRole);
     }
     
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {

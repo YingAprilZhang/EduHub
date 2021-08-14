@@ -25,6 +25,10 @@ public class StudentRole extends Role {
         return studentRole;
     }
      
+    public StudentRole() {
+        super(Role.RoleType.Student);
+    }
+     
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new StudentAreaJPanel(userProcessContainer, account);
     }

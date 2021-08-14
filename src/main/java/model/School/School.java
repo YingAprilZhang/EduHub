@@ -5,10 +5,16 @@
  */
 package model.School;
 
+import model.Country.Country;
+import model.Principal.Principal;
+
 /**
  *
  * @author aprilyz
  */
 public class School {
+    private String name;
+    private Country country;
+    private Principal principal;
     
 }
