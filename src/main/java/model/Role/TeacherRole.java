@@ -24,6 +24,10 @@ public class TeacherRole extends Role {
         }
         return teacherRole;
     }
+
+    public TeacherRole() {
+        super(Role.RoleType.Teacher);
+    }
     
      public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new TeacherAreaJPanel(userProcessContainer, account);

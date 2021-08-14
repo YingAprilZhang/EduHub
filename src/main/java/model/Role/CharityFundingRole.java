@@ -24,6 +24,10 @@ public class CharityFundingRole extends Role {
             charityEduRole = new CharityFundingRole();
         }
         return charityEduRole;
+     }
+
+    public CharityFundingRole() {
+        super(RoleType.CharityFunding);
     }
      
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {

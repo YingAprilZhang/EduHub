@@ -12,7 +12,7 @@ import model.UserAccount.UserAccount;
  *
  * @author changxu
  */
-public class WorldManagerRole {
+public class WorldManagerRole extends Role {
     
     public static WorldManagerRole worldManagerRole;
     
@@ -21,6 +21,10 @@ public class WorldManagerRole {
             worldManagerRole = new WorldManagerRole();
         }
         return worldManagerRole;
+    }
+     
+     public WorldManagerRole() {
+        super(Role.RoleType.WorldManager);
     }
      
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {

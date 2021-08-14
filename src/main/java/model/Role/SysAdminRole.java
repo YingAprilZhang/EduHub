@@ -25,7 +25,10 @@ public class SysAdminRole extends Role {
         return sysAdminRole;
     }
    
-
+     public SysAdminRole() {
+        super(Role.RoleType.SysAdmin);
+    }
+     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new SysAdminJPanel(userProcessContainer, account);

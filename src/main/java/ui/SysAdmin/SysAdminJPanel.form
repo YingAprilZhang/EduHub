@@ -55,7 +55,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="orgBtn1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="userBtn" alignment="0" max="32767" attributes="0"/>
                           <Component id="orgBtn" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -68,7 +68,7 @@
                       <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                       <Component id="orgBtn" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="orgBtn1" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="userBtn" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace pref="484" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -83,12 +83,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orgBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="orgBtn1">
+            <Component class="javax.swing.JButton" name="userBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Manage XXXXXX"/>
+                <Property name="text" type="java.lang.String" value="Manage Users"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orgBtn1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userBtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

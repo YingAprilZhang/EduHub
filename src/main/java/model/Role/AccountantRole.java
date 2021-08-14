@@ -13,9 +13,22 @@ import model.UserAccount.UserAccount;
  * @author changxu
  */
 public class AccountantRole extends Role{
+    
+    public static AccountantRole accountantRole;
+    
+     public static AccountantRole getInstance(){
+        if(accountantRole == null){
+            accountantRole = new AccountantRole();
+        }
+        return accountantRole;
+    }
+     
+     public AccountantRole() {
+        super(RoleType.Accountant);
+    }
 
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new AccountantAreaJPanel(userProcessContainer, account, business);
+        return new AccountantAreaJPanel(userProcessContainer, account);
     }
     
 }

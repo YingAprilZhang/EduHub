@@ -17,6 +17,13 @@ import model.UserAccount.UserAccount;
  * @author changxu
  */
 public abstract class Role {
+    
+    RoleType roleType;
+
+    public Role(RoleType roleType) {
+        this.roleType = roleType;
+    }
+    
     public enum RoleType{
         SysAdmin("SysAdmin"),
         Accountant("Accountant"),
@@ -44,6 +51,15 @@ public abstract class Role {
             return value;
         }
     }
+
+    public RoleType getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
+    }
+
     
     /*
     public static final Map<RoleType, Organization.OrgType> RoleToOrgMapping = new HashMap<RoleType, Organization.OrgType>() {{
@@ -58,6 +74,13 @@ public abstract class Role {
         put(RoleType.Student, StudentRole.getInstance());
         put(RoleType.Teacher,TeacherRole.getInstance());
         put(RoleType.Principal, PrincipalRole.getInstance());
+        put(RoleType.Accountant, AccountantRole.getInstance());
+        put(RoleType.CharityEdu, CharityEducationRole.getInstance());
+        put(RoleType.CharityFunding, CharityFundingRole.getInstance());
+        put(RoleType.CompanyRole, CompanyRole.getInstance());
+        put(RoleType.CountryManager, CountryManagerRole.getInstance());
+        put(RoleType.DataMaintainer, DataMaintainerRole.getInstance());
+        put(RoleType.WorldManager, WorldManagerRole.getInstance());
     }};
     
     

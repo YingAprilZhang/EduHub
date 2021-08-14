@@ -5,10 +5,12 @@
  */
 package model.Principal;
 
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author aprilyz
  */
-public class Principal {
+public class Principal extends UserAccount{
     
 }

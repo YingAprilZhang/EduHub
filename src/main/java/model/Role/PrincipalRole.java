@@ -24,6 +24,10 @@ public class PrincipalRole extends Role {
         }
         return principalRole;
     }
+
+    public PrincipalRole() {
+        super(RoleType.Principal);
+    }
      
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new PrincipalAreaJPanel(userProcessContainer, account);
