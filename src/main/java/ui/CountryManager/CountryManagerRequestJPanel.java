@@ -5,7 +5,9 @@
  */
 package ui.CountryManager;
 
+import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.CountryManager.CountryManager;
@@ -86,6 +88,8 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
         btnViewSent = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(250, 250, 250));
+
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
@@ -161,9 +165,9 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
                 .addComponent(bg)
                 .addGap(0, 25, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
@@ -179,6 +183,17 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
 
     private void btnViewReceivedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReceivedActionPerformed
         // TODO add your handling code here:
+        int indexRow = tblReceived.getSelectedRow();
+        if(indexRow < 0){
+            JOptionPane.showMessageDialog(this, "Please select a request to view.");
+            return;
+        }
+        Request r = (Request) tblReceived.getValueAt(indexRow, 2);
+        CountryViewRequestJPanel cvrjp = (CountryViewRequestJPanel) new CountryViewRequestJPanel(userProcessContainer, account, r);
+        userProcessContainer.add("CountryViewRequestJPanel", cvrjp);
+        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+        crdLyt.next(userProcessContainer);
+
     }//GEN-LAST:event_btnViewReceivedActionPerformed
 
     private void btnViewSentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSentActionPerformed
