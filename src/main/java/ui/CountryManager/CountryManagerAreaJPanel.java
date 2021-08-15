@@ -30,11 +30,11 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
     CountryManagerRole role;
     CountryManager countryManager;
     
-    public CountryManagerAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business) {
+    public CountryManagerAreaJPanel(JPanel userProcessContainer, UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
-        this.business = business;
+        this.business = Business.getInstance();
         this.role = (CountryManagerRole) account.getRole();
         this.country = account.getCountry();
         this.countryManager = country.getCountryManager();

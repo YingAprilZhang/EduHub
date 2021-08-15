@@ -5,6 +5,10 @@
  */
 package ui.Accountant;
 
+import javax.swing.JPanel;
+import model.Business;
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author changxu
@@ -14,7 +18,11 @@ public class AccountantWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AccountantWorkAreaJPanel
      */
-    public AccountantWorkAreaJPanel() {
+    JPanel userProcessContainer;
+    UserAccount account;
+    Business business;
+    
+    public AccountantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
         initComponents();
     }
 
@@ -120,29 +128,29 @@ public class AccountantWorkAreaJPanel extends javax.swing.JPanel {
 
     private void logoRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoRequestMouseClicked
         // TODO add your handling code here:
-        if(country == null){
-            JOptionPane.showMessageDialog(this, "Plese select a country first.");
-            return;
-        }
-        CountryManagerRequestJPanel cmrj = (CountryManagerRequestJPanel) new CountryManagerRequestJPanel(userProcessContainer, account, countryManager);
-        userProcessContainer.add("CountryManagerRequestJPanel", cmrj);
-        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
-        crdLyt.next(userProcessContainer);
+//        if(country == null){
+//            JOptionPane.showMessageDialog(this, "Plese select a country first.");
+//            return;
+//        }
+//        CountryManagerRequestJPanel cmrj = (CountryManagerRequestJPanel) new CountryManagerRequestJPanel(userProcessContainer, account, countryManager);
+//        userProcessContainer.add("CountryManagerRequestJPanel", cmrj);
+//        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+//        crdLyt.next(userProcessContainer);
     }//GEN-LAST:event_logoRequestMouseClicked
 
     private void logoAnalyzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoAnalyzeMouseClicked
         // TODO add your handling code here:
-        int selectedRow = tblYear.getSelectedRow();
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(this, "Please select a year.");
-            return;
-        }
-
-        MacroData md = (MacroData) tblYear.getValueAt(selectedRow, 0);
-        ViewRegionalDataJPanel vrdj = (ViewRegionalDataJPanel) new ViewRegionalDataJPanel(userProcessContainer, md, country);
-        userProcessContainer.add("ViewRegionalDataJPanel", vrdj);
-        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
-        crdLyt.next(userProcessContainer);
+//        int selectedRow = tblYear.getSelectedRow();
+//        if (selectedRow < 0){
+//            JOptionPane.showMessageDialog(this, "Please select a year.");
+//            return;
+//        }
+//
+//        MacroData md = (MacroData) tblYear.getValueAt(selectedRow, 0);
+//        ViewRegionalDataJPanel vrdj = (ViewRegionalDataJPanel) new ViewRegionalDataJPanel(userProcessContainer, md, country);
+//        userProcessContainer.add("ViewRegionalDataJPanel", vrdj);
+//        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+//        crdLyt.next(userProcessContainer);
     }//GEN-LAST:event_logoAnalyzeMouseClicked
 
 

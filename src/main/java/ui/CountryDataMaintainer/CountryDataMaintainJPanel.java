@@ -32,11 +32,11 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
     DataMaintainerRole role;
     Country country;
     
-    public CountryDataMaintainJPanel(JPanel userProcessContainer, UserAccount account, Business business) {
+    public CountryDataMaintainJPanel(JPanel userProcessContainer, UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
-        this.business = business;
+        this.business = Business.getInstance();
         this.role = (DataMaintainerRole) account.getRole();
         this.country = account.getCountry();
         
