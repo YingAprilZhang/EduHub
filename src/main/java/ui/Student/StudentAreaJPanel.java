@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.StudentAreaJPanel;
+package ui.Student;
 
 import javax.swing.JPanel;
 import model.UserAccount.UserAccount;
