@@ -26,22 +26,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblCountry" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="logoRequest" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="logoEquality" min="-2" pref="60" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="logoAnalyze" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="logoDevelopment" min="-2" pref="60" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="494" max="32767" attributes="0"/>
+              <EmptySpace pref="575" max="32767" attributes="0"/>
               <Component id="bg" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -55,14 +50,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="logoRequest" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="logoEquality" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -70,7 +60,7 @@
               </Group>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="logoAnalyze" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="logoDevelopment" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -94,17 +84,17 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="36" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Country Manager Work Area"/>
+        <Property name="text" type="java.lang.String" value="Analyze Education Data"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="logoRequest">
+    <Component class="javax.swing.JLabel" name="logoEquality">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/icons8-communicate-50.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoRequestMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoEqualityMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -112,33 +102,17 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="View My Requests"/>
+        <Property name="text" type="java.lang.String" value="Education Equality Data"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCountry">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&lt;Country Label&gt;"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Country:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="logoAnalyze">
+    <Component class="javax.swing.JLabel" name="logoDevelopment">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/icons8-combo-chart-64.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoAnalyzeMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoDevelopmentMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -146,7 +120,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Analyze Education Data"/>
+        <Property name="text" type="java.lang.String" value="Education Development Data"/>
       </Properties>
     </Component>
   </SubComponents>

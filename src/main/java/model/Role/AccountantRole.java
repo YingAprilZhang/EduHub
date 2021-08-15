@@ -28,7 +28,7 @@ public class AccountantRole extends Role{
     }
 
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new AccountantAreaJPanel(userProcessContainer, account);
+        return new AccountantWorkAreaJPanel(userProcessContainer, account, business);
     }
     
 }

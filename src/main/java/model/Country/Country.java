@@ -24,6 +24,7 @@ public class Country {
     List<School> schoolList;
     Map<Integer, MacroData> macroDataMap;
     Accountant accountant;
+    Double accountBalance;
     
     public Country(String name){
         this.name = name;
@@ -71,6 +72,14 @@ public class Country {
 
     public void setCountryManager(CountryManager countryManager) {
         this.countryManager = countryManager;
+    }
+
+    public Double getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(Double accountBalance) {
+        this.accountBalance = accountBalance;
     }
     
     

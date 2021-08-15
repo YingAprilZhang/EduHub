@@ -3,46 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.CountryManager;
-
-import java.awt.CardLayout;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import model.Business;
-import model.Country.Country;
-import model.CountryManager.CountryManager;
-import model.Role.CountryManagerRole;
-import model.UserAccount.UserAccount;
+package ui.Accountant;
 
 /**
  *
  * @author changxu
  */
-public class CountryManagerAreaJPanel extends javax.swing.JPanel {
+public class AccountantWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CountryManagerAreaJPanel
+     * Creates new form AccountantWorkAreaJPanel
      */
-    JPanel userProcessContainer;
-    UserAccount account;
-    Business business;
-    Country country;
-    CountryManagerRole role;
-    CountryManager countryManager;
-    
-    public CountryManagerAreaJPanel(JPanel userProcessContainer, UserAccount account, Business business) {
+    public AccountantWorkAreaJPanel() {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.account = account;
-        this.business = business;
-        this.role = (CountryManagerRole) account.getRole();
-        this.country = account.getCountry();
-        this.countryManager = country.getCountryManager();
-        
-        if(country != null){           
-            lblCountry.setText(country.toString());            
-        }
-        
     }
 
     /**
@@ -63,12 +36,10 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         logoAnalyze = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(250, 250, 250));
-
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel3.setText("Country Manager Work Area");
+        jLabel3.setText("Accountant Work Area");
 
         logoRequest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
         logoRequest.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -94,7 +65,7 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel2.setText("Analyze Education Data");
+        jLabel2.setText("View Financial Statements");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -116,7 +87,7 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
                         .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 494, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 598, Short.MAX_VALUE)
                 .addComponent(bg))
         );
         layout.setVerticalGroup(
@@ -161,12 +132,15 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
 
     private void logoAnalyzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoAnalyzeMouseClicked
         // TODO add your handling code here:
-        if(country == null){
-            JOptionPane.showMessageDialog(this, "Plese select a country first.");
+        int selectedRow = tblYear.getSelectedRow();
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(this, "Please select a year.");
             return;
         }
-        ManagerAnalyzeWorkAreaJPanel mawajp = (ManagerAnalyzeWorkAreaJPanel) new ManagerAnalyzeWorkAreaJPanel(userProcessContainer, account, country);
-        userProcessContainer.add("ManagerAnalyzeWorkAreaJPanel", mawajp);
+
+        MacroData md = (MacroData) tblYear.getValueAt(selectedRow, 0);
+        ViewRegionalDataJPanel vrdj = (ViewRegionalDataJPanel) new ViewRegionalDataJPanel(userProcessContainer, md, country);
+        userProcessContainer.add("ViewRegionalDataJPanel", vrdj);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
     }//GEN-LAST:event_logoAnalyzeMouseClicked
