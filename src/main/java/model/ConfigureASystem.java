@@ -1,5 +1,6 @@
 package model;
 
+import model.Role.CharityEducationRole;
 import model.UserAccount.UserAccount;
 import model.Role.Role;
 import model.Role.SysAdminRole;
@@ -23,6 +24,7 @@ public class ConfigureASystem {
 
         
        UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", SysAdminRole.getInstance());
+       UserAccount ua1 = business.getUserAccountDirectory().createUserAccount("charityedu", "charityedu", CharityEducationRole.getInstance());
         
         return business;
     }

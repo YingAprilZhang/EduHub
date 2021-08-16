@@ -5,6 +5,15 @@
  */
 package ui.CharityEducationGroup;
 
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Business;
+import model.CharityEducationGroup.CharityEduGroup;
+import model.CharityEducationGroup.SingleClass;
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author kkkkayla
@@ -14,8 +23,19 @@ public class ManageClassJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageClassJPanel
      */
-    public ManageClassJPanel() {
+    JPanel userProcessContainer;
+    Business business;
+    UserAccount account;
+    CharityEduGroup eduGroup;
+    
+    public ManageClassJPanel(JPanel userProcessContainer,UserAccount account, Business business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
+        
+        //lblName.setText(TOOL_TIP_TEXT_KEY);
+        
+        populateClass();
     }
 
     /**
@@ -30,13 +50,13 @@ public class ManageClassJPanel extends javax.swing.JPanel {
         bg = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        labelName = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableMenu = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        buttonBack = new javax.swing.JButton();
+        tblClass = new javax.swing.JTable();
+        btnAdd = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
@@ -46,10 +66,10 @@ public class ManageClassJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Charity Education Group: ");
 
-        labelName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelName.setText("<Value>");
+        lblName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblName.setText("<Value>");
 
-        tableMenu.setModel(new javax.swing.table.DefaultTableModel(
+        tblClass.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -75,34 +95,34 @@ public class ManageClassJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableMenu.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tableMenu);
+        tblClass.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblClass);
 
-        jButton1.setText("Add Class");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Add Class");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Delete Class");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete Class");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Edit Class");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setText("Edit Class");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
 
-        buttonBack.setText("<<back");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("<<back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -122,16 +142,16 @@ public class ManageClassJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelName))
+                                .addComponent(lblName))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(251, 251, 251)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(buttonBack))
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)))
                 .addComponent(bg))
         );
@@ -141,53 +161,95 @@ public class ManageClassJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(bg))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(buttonBack)
-                .addGap(58, 58, 58)
+                .addGap(117, 117, 117)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(labelName))
+                    .addComponent(lblName))
                 .addGap(49, 49, 49)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAdd)
+                    .addComponent(btnDelete)
+                    .addComponent(btnEdit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(38, 38, 38))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        AddClassJPanel acjp = new AddClassJPanel(userProcessContainer, eduGroup);
+        userProcessContainer.add("AddClassJPanel",acjp);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        int selectedRowIndex = tblClass.getSelectedRow();
+        if ( selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select the class first.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblClass.getModel();
+        
+        int id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
+        eduGroup.getEduClass().removeClassByID(id);
+        populateClass();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        int selectedRowIndex = tblClass.getSelectedRow();
+        if ( selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select the class first.");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblClass.getModel();
+        
+        int id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
+        SingleClass singleClass = eduGroup.getEduClass().findClassByID(id);
+        EditClassJPanel  editClassJPanel1 = new EditClassJPanel(userProcessContainer, eduGroup, singleClass);
+        userProcessContainer.add("EditMenuFoodJPanel1",editClassJPanel1);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnEditActionPerformed
 
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         //backAction();
-    }//GEN-LAST:event_buttonBackActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
+    public void populateClass() {
+        DefaultTableModel model = (DefaultTableModel) tblClass.getModel();
+        model.setRowCount(0);
+        for (SingleClass singleClass: eduGroup.getEduClass().getClassList()) {
+            Object row[] = new Object[2];
+            row[0] = singleClass.getClassID();
+            row[1] = singleClass.getName();
+            
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JButton buttonBack;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelName;
-    private javax.swing.JTable tableMenu;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JTable tblClass;
     // End of variables declaration//GEN-END:variables
+
+
 }
