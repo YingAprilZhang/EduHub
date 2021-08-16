@@ -5,6 +5,10 @@
  */
 package ui.CharityFundingGroup;
 
+import javax.swing.JPanel;
+import model.Business;
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author kkkkayla
@@ -14,9 +18,14 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CharityFundGroupJPanel
      */
+    private JPanel container;
+
+    private UserAccount userAccount;
+    
+    private Business system;
     
     
-    public CharityFundGroupReqJPanel() {
+    public CharityFundGroupReqJPanel(JPanel container, UserAccount account, Business system) {
         initComponents();
     }
 
@@ -58,6 +67,7 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         jScrollPane1.setBounds(120, 290, 800, 250);
 
         lblWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblWelcome.setText("Welcome Funding Group");
         lblWelcome.setToolTipText("");
         lblWelcome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -81,6 +91,11 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         btnDeny.setBounds(750, 590, 170, 29);
 
         btnAccept1.setText("Accept");
+        btnAccept1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccept1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAccept1);
         btnAccept1.setBounds(530, 590, 170, 29);
 
@@ -105,6 +120,10 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAccept1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccept1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAccept1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

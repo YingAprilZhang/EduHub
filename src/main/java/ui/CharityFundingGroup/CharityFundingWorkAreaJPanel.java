@@ -5,6 +5,7 @@
  */
 package ui.CharityFundingGroup;
 
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.Business;
 import model.CharityFundingGroup.CharityFundingGroup;
@@ -24,12 +25,14 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Business business;
     CharityFundingGroup fundGroup;
+    UserAccount account;
     
     
     public CharityFundingWorkAreaJPanel(JPanel userProcessContainer,UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
+        this.account = account;
         
     }
 
@@ -49,6 +52,10 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         btnManageReq = new javax.swing.JButton();
         btnManageClass1 = new javax.swing.JButton();
+        logoFunding = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        logoRequest1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
@@ -66,12 +73,12 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         labelName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelName.setText("<value>");
         jPanel1.add(labelName);
-        labelName.setBounds(270, 270, 79, 40);
+        labelName.setBounds(330, 270, 79, 40);
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("Charity Funding Group:");
         jPanel1.add(enterpriseLabel);
-        enterpriseLabel.setBounds(20, 280, 210, 22);
+        enterpriseLabel.setBounds(70, 280, 210, 22);
 
         btnManageReq.setText("Manage Request");
         btnManageReq.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +87,7 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageReq);
-        btnManageReq.setBounds(250, 550, 400, 29);
+        btnManageReq.setBounds(430, 780, 400, 29);
 
         btnManageClass1.setText("Manage Funding ");
         btnManageClass1.addActionListener(new java.awt.event.ActionListener() {
@@ -89,37 +96,86 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageClass1);
-        btnManageClass1.setBounds(250, 450, 400, 29);
+        btnManageClass1.setBounds(440, 700, 400, 29);
+
+        logoFunding.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-exchange-40.png"))); // NOI18N
+        logoFunding.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoFundingMouseClicked(evt);
+            }
+        });
+        jPanel1.add(logoFunding);
+        logoFunding.setBounds(80, 380, 60, 60);
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel2.setText("Manage Funding");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(150, 400, 300, 22);
+
+        logoRequest1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
+        logoRequest1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoRequest1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(logoRequest1);
+        logoRequest1.setBounds(80, 480, 50, 50);
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel3.setText("Manage Request");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(150, 500, 143, 22);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1437, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 877, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageReqActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnManageReqActionPerformed
 
     private void btnManageClass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageClass1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnManageClass1ActionPerformed
+
+    private void logoFundingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoFundingMouseClicked
+        // TODO add your handling code here:
+        //        if(country == null){
+            //            JOptionPane.showMessageDialog(this, "Plese select a country first.");
+            //            return;
+            //        }
+        ManageFundingJPanel mfjp = new ManageFundingJPanel(userProcessContainer, account, business);
+        userProcessContainer.add(mfjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(mfjp);
+    }//GEN-LAST:event_logoFundingMouseClicked
+
+    private void logoRequest1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoRequest1MouseClicked
+        // TODO add your handling code here:
+        //        if(country == null){
+            //            JOptionPane.showMessageDialog(this, "Plese select a country first.");
+            //            return;
+            //        }
+        CharityFundGroupReqJPanel cfgrjp = new CharityFundGroupReqJPanel(userProcessContainer, account, business);
+        userProcessContainer.add(cfgrjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(cfgrjp);
+    }//GEN-LAST:event_logoRequest1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -128,7 +184,11 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageReq;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelName;
+    private javax.swing.JLabel logoFunding;
+    private javax.swing.JLabel logoRequest1;
     // End of variables declaration//GEN-END:variables
 }

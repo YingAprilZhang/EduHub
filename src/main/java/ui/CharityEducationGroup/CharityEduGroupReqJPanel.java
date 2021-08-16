@@ -26,6 +26,9 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
      */
     public CharityEduGroupReqJPanel(JPanel container, UserAccount account, Business system) {
         initComponents();
+        this.container= container;
+        this.userAccount = account;
+        
     }
 
     /**
@@ -46,6 +49,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         btnCancel = new javax.swing.JButton();
         btnAccept1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -65,6 +69,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         jScrollPane1.setBounds(120, 290, 800, 250);
 
         lblWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblWelcome.setText("Welcome Charity Group");
         lblWelcome.setToolTipText("");
         lblWelcome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -73,7 +78,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 
         cmbSchool.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cmbSchool);
-        cmbSchool.setBounds(180, 220, 130, 40);
+        cmbSchool.setBounds(180, 220, 130, 30);
 
         jLabel1.setText("School:");
         add(jLabel1);
