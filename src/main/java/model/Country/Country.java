@@ -13,6 +13,7 @@ import model.Accountant.Accountant;
 import model.CountryManager.CountryManager;
 import model.DataAnalyze.MacroData;
 import model.School.School;
+import model.Student.EduData;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Country {
     CountryManager countryManager;
     List<School> schoolList;
     Map<Integer, MacroData> macroDataMap;
+    Map<Integer, EduData> eduDataMap;
     Accountant accountant;
     Double accountBalance;
     

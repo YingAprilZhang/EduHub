@@ -5,16 +5,20 @@
  */
 package model.School;
 
+import java.util.List;
 import model.Country.Country;
 import model.Principal.Principal;
+import model.Student.Student;
 
 /**
  *
  * @author aprilyz
  */
 public class School {
-    private String name;
-    private Country country;
-    private Principal principal;
+    public String name;
+    public Country country;
+    public Principal principal;
+    
+    public List<Student> studentList;
     
 }

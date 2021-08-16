@@ -87,7 +87,11 @@ public abstract class Role {
     public static RoleType getRoleTypeByValue(String value) {
         RoleType result = null;
         for(RoleType r: RoleType.values()) {
-            result = r.value.equals(value) ? r : null;
+            result = value.equals(r.getValue()) ? r : null;
+            if (value.equals(r.getValue())) {
+                result = r;
+                break;
+            }
         }
         return result;
     }

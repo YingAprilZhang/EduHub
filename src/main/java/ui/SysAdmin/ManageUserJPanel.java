@@ -31,6 +31,7 @@ public class ManageUserJPanel extends javax.swing.JPanel {
         initComponents();
         populateComboRole(); 
         populateComboOrganization(); 
+        refreshTable();
     }
 
      private void populateComboRole(){
@@ -348,9 +349,9 @@ public class ManageUserJPanel extends javax.swing.JPanel {
             row[0] = ua;
             row[1] = ua.getPassword();
             row[2] = ua.getName();
-            row[3] = ua.getCountry().getName();
+            row[3] = ua.getCountry() == null ? "" : ua.getCountry().getName();
             row[4] = ua.getRole().getRoleType().getValue();
-            row[5] = ua.getOrganization().getName();
+            row[5] = ua.getOrganization() == null ? "" : ua.getOrganization().getName();
             model.addRow(row);
         }
      }

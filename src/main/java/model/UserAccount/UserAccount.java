@@ -70,5 +70,10 @@ public class UserAccount {
         this.organization = organization;
     }
     
+     @Override
+    public String toString(){
+        return username;
+    }
+    
     
 }

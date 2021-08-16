@@ -9,9 +9,13 @@ package model.Student;
  *
  * @author aprilyz
  */
-public class Student {
-    public String name;
-    public int id;
-    public String gender;
+public class EduData {
+    public String year;
+    
+    public Student student;
+    double literacyScore;
+    double mathScore;
+    double scienceScore;
+    double totalScore;
     
 }

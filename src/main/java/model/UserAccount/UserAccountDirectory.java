@@ -20,15 +20,15 @@ public class UserAccountDirectory {
      private ArrayList<UserAccount> userAccountList;
 
     public UserAccountDirectory() {
-        userAccountList = new ArrayList();
+        this.userAccountList = new ArrayList();
     }
 
     public ArrayList<UserAccount> getUserAccountList() {
-        return userAccountList;
+        return this.userAccountList;
     }
     
     public UserAccount authenticateUser(String username, String password){
-        for (UserAccount ua : userAccountList)
+        for (UserAccount ua : this.userAccountList)
             if (ua.getUsername().equals(username) && ua.getPassword().equals(password)){
                 return ua;
             }
@@ -40,7 +40,7 @@ public class UserAccountDirectory {
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setRole(role);
-        userAccountList.add(userAccount);
+        this.userAccountList.add(userAccount);
         return userAccount;
     }
     
@@ -53,12 +53,12 @@ public class UserAccountDirectory {
         userAccount.setCountry(country);
         userAccount.setRole(role);
         userAccount.setOrganization(organization);
-        userAccountList.add(userAccount);
+        this.userAccountList.add(userAccount);
         return userAccount;
     }
     
     public boolean checkIfUsernameIsUnique(String username){
-        for (UserAccount ua : userAccountList){
+        for (UserAccount ua : this.userAccountList){
             if (ua.getUsername().equals(username))
                 return false;
         }

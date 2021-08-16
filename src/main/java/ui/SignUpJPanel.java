@@ -13,6 +13,7 @@ import model.Business;
 import model.Country.Country;
 import model.Org.Organization;
 import model.Role.Role;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -261,6 +262,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
         // TODO add your handling code here
         Country country = business.getCountryDirectory().getCountryByName(countryField.getText());
         Role.RoleType type = Role.getRoleTypeByValue(roleBox.getSelectedItem().toString());
+
         Role role = Role.RoleTypeToRoleMapping.get(type);
         Organization org = business.getOrganizationDirectory().getOrgByName(organizationBox.getSelectedItem().toString()); 
         business.getUserAccountDirectory().createUserAccount(userNameField.getText(), 
