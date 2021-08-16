@@ -28,6 +28,7 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
         this.workArea = workArea;
         initComponents();
         populateComboOrgType();
+        refreshTable();
     }
     
     private void populateComboOrgType(){

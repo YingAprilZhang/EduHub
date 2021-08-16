@@ -39,13 +39,13 @@ public class PrincipalAreaJPanel extends javax.swing.JPanel {
 
         bg = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        reqLbl = new javax.swing.JLabel();
         logoRequest = new javax.swing.JLabel();
         lblCountry = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         logoAnalyze = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        schoolLbl = new javax.swing.JLabel();
+        studentLbl = new javax.swing.JLabel();
         logoRequest1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -55,8 +55,8 @@ public class PrincipalAreaJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel3.setText("School Principal Work Area");
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Manage My Requests");
+        reqLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        reqLbl.setText("Manage My Requests");
 
         logoRequest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
         logoRequest.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -78,11 +78,16 @@ public class PrincipalAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel2.setText("Manage School Information");
+        schoolLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        schoolLbl.setText("Manage School Information");
+        schoolLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                schoolLblMouseClicked(evt);
+            }
+        });
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel5.setText("View Student Data");
+        studentLbl.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        studentLbl.setText("View Student Data Summary");
 
         logoRequest1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
         logoRequest1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,20 +106,21 @@ public class PrincipalAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
+                        .addComponent(reqLbl))
                     .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCountry))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
+                        .addComponent(schoolLbl))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoRequest1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)))
+                        .addComponent(studentLbl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblCountry)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 619, Short.MAX_VALUE)
                 .addComponent(bg))
         );
@@ -126,28 +132,30 @@ public class PrincipalAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(jLabel3)
-                .addGap(36, 36, 36)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblCountry))
-                .addGap(115, 115, 115)
+                .addGap(114, 114, 114)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel2)))
-                .addGap(37, 37, 37)
+                        .addComponent(schoolLbl)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoRequest1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel5)))
-                .addGap(49, 49, 49)
+                        .addGap(37, 37, 37)
+                        .addComponent(logoRequest1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(studentLbl)
+                        .addGap(68, 68, 68)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1)))
+                        .addGap(27, 27, 27)
+                        .addComponent(reqLbl)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -187,17 +195,21 @@ public class PrincipalAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_logoRequest1MouseClicked
 
+    private void schoolLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schoolLblMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_schoolLblMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblCountry;
     private javax.swing.JLabel logoAnalyze;
     private javax.swing.JLabel logoRequest;
     private javax.swing.JLabel logoRequest1;
+    private javax.swing.JLabel reqLbl;
+    private javax.swing.JLabel schoolLbl;
+    private javax.swing.JLabel studentLbl;
     // End of variables declaration//GEN-END:variables
 }
