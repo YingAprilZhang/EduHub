@@ -318,6 +318,7 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
         }
         
         MacroData md = country.addMacroData(year);
+        md.setYear(year);
         md.setMaleOutSchool(maleOutSchool) ;
         md.setFemaleOutSchool(femaleOutSchool);
         md.setMaleMeanYears(maleMeanYears);
