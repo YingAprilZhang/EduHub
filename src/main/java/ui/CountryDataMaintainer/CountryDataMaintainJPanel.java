@@ -6,6 +6,7 @@
 package ui.CountryDataMaintainer;
 
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -72,13 +73,13 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         bg = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         logoAdd = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblAdd = new javax.swing.JLabel();
         lblCountry = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblYear = new javax.swing.JTable();
         logoView = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblView = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -94,8 +95,19 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Add New Annual Data");
+        lblAdd.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblAdd.setText("Add New Annual Data");
+        lblAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAddMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblAddMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblAddMouseExited(evt);
+            }
+        });
 
         lblCountry.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblCountry.setText("<Country Label>");
@@ -121,8 +133,19 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel2.setText("View Annual Data");
+        lblView.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblView.setText("View Annual Data");
+        lblView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblViewMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblViewMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblViewMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -135,11 +158,11 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
+                        .addComponent(lblAdd)
                         .addGap(169, 169, 169)
                         .addComponent(logoView, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
+                        .addComponent(lblView))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -169,13 +192,42 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))))
+                            .addComponent(lblAdd)
+                            .addComponent(lblView))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoAddMouseClicked
+        // TODO add your handling code here:
+//        if(country == null){
+//            JOptionPane.showMessageDialog(this, "Plese select a country first.");
+//            return;
+//        }
+//        MaintainRegionalDataJPanel mrdj = (MaintainRegionalDataJPanel) new MaintainRegionalDataJPanel(userProcessContainer, country);
+//        userProcessContainer.add("MaintainRegionalDataJPanel", mrdj);
+//        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+//        crdLyt.next(userProcessContainer);                  
+
+    }//GEN-LAST:event_logoAddMouseClicked
+
+    private void logoViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoViewMouseClicked
+        // TODO add your handling code here:
+//        int selectedRow = tblYear.getSelectedRow();        
+//        if (selectedRow < 0){
+//            JOptionPane.showMessageDialog(this, "Please select a year.");
+//            return;
+//        }
+//        
+//        MacroData md = (MacroData) tblYear.getValueAt(selectedRow, 0);
+//        ViewRegionalDataJPanel vrdj = (ViewRegionalDataJPanel) new ViewRegionalDataJPanel(userProcessContainer, md, country);
+//        userProcessContainer.add("ViewRegionalDataJPanel", vrdj);
+//        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+//        crdLyt.next(userProcessContainer);                          
+
+    }//GEN-LAST:event_logoViewMouseClicked
+
+    private void lblAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddMouseClicked
         // TODO add your handling code here:
         if(country == null){
             JOptionPane.showMessageDialog(this, "Plese select a country first.");
@@ -185,10 +237,20 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         userProcessContainer.add("MaintainRegionalDataJPanel", mrdj);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);                  
+        
+    }//GEN-LAST:event_lblAddMouseClicked
 
-    }//GEN-LAST:event_logoAddMouseClicked
+    private void lblAddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddMouseEntered
+        // TODO add your handling code here:
+        lblAdd.setFont(new Font("Lucida",  Font.BOLD, 18));
+    }//GEN-LAST:event_lblAddMouseEntered
 
-    private void logoViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoViewMouseClicked
+    private void lblAddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAddMouseExited
+        // TODO add your handling code here:
+        lblAdd.setFont(new Font("Lucida",  Font.PLAIN, 18));
+    }//GEN-LAST:event_lblAddMouseExited
+
+    private void lblViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblViewMouseClicked
         // TODO add your handling code here:
         int selectedRow = tblYear.getSelectedRow();        
         if (selectedRow < 0){
@@ -201,18 +263,28 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         userProcessContainer.add("ViewRegionalDataJPanel", vrdj);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);                          
+        
+    }//GEN-LAST:event_lblViewMouseClicked
 
-    }//GEN-LAST:event_logoViewMouseClicked
+    private void lblViewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblViewMouseEntered
+        // TODO add your handling code here:
+        lblView.setFont(new Font("Lucida",  Font.BOLD, 18));
+    }//GEN-LAST:event_lblViewMouseEntered
+
+    private void lblViewMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblViewMouseExited
+        // TODO add your handling code here:
+        lblView.setFont(new Font("Lucida",  Font.PLAIN, 18));
+    }//GEN-LAST:event_lblViewMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAdd;
     private javax.swing.JLabel lblCountry;
+    private javax.swing.JLabel lblView;
     private javax.swing.JLabel logoAdd;
     private javax.swing.JLabel logoView;
     private javax.swing.JTable tblYear;

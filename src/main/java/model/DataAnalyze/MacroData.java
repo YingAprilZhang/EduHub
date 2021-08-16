@@ -5,12 +5,15 @@
  */
 package model.DataAnalyze;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author changxu
  */
 public class MacroData {
-    String year;
+    Integer year;
     
     double maleOutSchool;
     double femaleOutSchool;
@@ -25,14 +28,36 @@ public class MacroData {
     double eduExp;
     double pupilTeacher;
     double gdp;
+    
+    List<Double> macroEduList;
+    List<Double> macroEcoList;
+    
+    public MacroData(){
+        macroEduList = new ArrayList<Double>();
+        macroEduList.add(maleOutSchool);
+        macroEduList.add(femaleOutSchool);
+        macroEduList.add(maleMeanYears);
+        macroEduList.add(femaleMeanYears);
+        macroEduList.add(maleEnroll);
+        macroEduList.add(femaleEnroll);
+        macroEduList.add(maleProgress);
+        macroEduList.add(femaleProgress);
+        
+        macroEcoList = new ArrayList<Double>();
+        macroEcoList.add(unemploy);
+        macroEcoList.add(eduExp);
+        macroEcoList.add(pupilTeacher);
+        macroEcoList.add(gdp);
+    }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
+    
 
     public double getMaleOutSchool() {
         return maleOutSchool;
@@ -129,10 +154,18 @@ public class MacroData {
     public void setGdp(double gdp) {
         this.gdp = gdp;
     }
+
+    public List<Double> getMacroEduList() {
+        return macroEduList;
+    }
+
+    public List<Double> getMacroEcoList() {
+        return macroEcoList;
+    }
     
     
     @Override
     public String toString(){
-        return year;
+        return String.valueOf(year);
     }
 }

@@ -44,7 +44,7 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         txtMaleProgression.setText(String.valueOf(md.getMaleProgress()));
         txtPupilTeacher.setText(String.valueOf(md.getPupilTeacher()));
         txtUnemployment.setText(String.valueOf(md.getUnemploy()));
-        txtYear.setText(md.getYear());
+        txtYear.setText(String.valueOf(md.getYear()));
     }
 
     /**
