@@ -5,9 +5,24 @@
  */
 package ui.CountryManager;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.swing.JPanel;
 import model.Country.Country;
+import model.DataAnalyze.EduDataAnalyze;
+import model.DataAnalyze.MacroData;
+import model.DataAnalyze.MacroDataAnalyze;
 import model.UserAccount.UserAccount;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -27,10 +42,77 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.country = country;
+        
     }
-
-    // 按照data类型populate不同的data, education data应该如何获取？
     
+    public void refreshChart(){
+        String indicatorName = "";
+        TreeMap<Integer, Double> maleDataMap = new TreeMap<Integer, Double>();
+        TreeMap<Integer, Double> femaleDataMap = new TreeMap<Integer, Double>();
+        
+        String selectedItem = (String) comboBox.getSelectedItem();
+        switch(selectedItem){
+            case "Out of school" :
+                indicatorName = "Out of School";
+                maleDataMap = MacroDataAnalyze.getOutSchoolMale(country);
+                femaleDataMap = MacroDataAnalyze.getOutSchoolFemale(country);
+                break;
+            case "Mean years of education" :
+                indicatorName = "Mean Years of Education";
+                maleDataMap = MacroDataAnalyze.getMeanYearsMale(country);
+                femaleDataMap = MacroDataAnalyze.getMeanYearsFemale(country);
+                break;
+            case "School enrollment" :
+                indicatorName = "School Enrollment";
+                maleDataMap = MacroDataAnalyze.getEnrollMale(country);
+                femaleDataMap = MacroDataAnalyze.getEnrollFemale(country);
+                break;
+            case "Progression to higher education" :
+                indicatorName = "Progression to Higher Education";
+                maleDataMap = MacroDataAnalyze.getProgressMale(country);
+                femaleDataMap = MacroDataAnalyze.getProgressFemale(country);
+                break;
+            case "Math Score" :
+                indicatorName = "Math Score";
+                maleDataMap = EduDataAnalyze.getAvgMathScoreMale(country);
+                femaleDataMap = EduDataAnalyze.getAvgMathScoreFemale(country);
+                break;
+            case "Literacy Score" :
+                indicatorName = "Literacy Score";
+                maleDataMap = EduDataAnalyze.getAvgLiteracyScoreMale(country);
+                femaleDataMap = EduDataAnalyze.getAvgLiteracyScoreFemale(country);
+                break;
+            case "Science Score" :
+                indicatorName = "Science Score";
+                maleDataMap = EduDataAnalyze.getAvgScienceScoreMale(country);
+                femaleDataMap = EduDataAnalyze.getAvgScienceScoreFemale(country);
+                break;                                
+            
+        }
+                
+        XYSeriesCollection collection = new XYSeriesCollection();
+        
+        XYSeries maleSeries = new XYSeries("MaleEducationEquality");
+        for(Integer year: maleDataMap.keySet()){
+            maleSeries.add(year, maleDataMap.get(year));
+        }
+        collection.addSeries(maleSeries);
+        
+        XYSeries femaleSeries = new XYSeries("femaleEducationEquality");
+        for(Integer year: femaleDataMap.keySet()){
+            maleSeries.add(year, femaleDataMap.get(year));
+        }
+        collection.addSeries(femaleSeries);
+        
+        JFreeChart lineChart = ChartFactory.createXYLineChart(indicatorName + "Development", "Year", "Value",
+                collection, PlotOrientation.VERTICAL, true, true, false);
+        
+        ChartPanel lineChartPanel = new ChartPanel(lineChart);
+        chartPanel.removeAll();
+        chartPanel.add(lineChartPanel, BorderLayout.CENTER);
+        chartPanel.validate();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +125,9 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         chartPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBox = new javax.swing.JComboBox<>();
+        btnBack = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(250, 250, 250));
 
@@ -56,46 +140,81 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setText("Select an Education Equality Indicator:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Out of school", "Mean years of education", "School enrollment", "Progression to higher education", "Literacy Score", "Math Score", "Science Score", " " }));
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnRefresh.setText("Refresh Chart");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1345, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1345, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRefresh))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(42, 42, 42)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                    .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRefresh)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(138, 138, 138))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        back();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        refreshChart();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    public void back(){
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.last(userProcessContainer);                
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JPanel chartPanel;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboBox;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables

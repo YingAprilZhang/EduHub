@@ -6,6 +6,7 @@
 package ui.CountryManager;
 
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JPanel;
 import model.Country.Country;
 import model.UserAccount.UserAccount;
@@ -42,9 +43,10 @@ public class ManagerAnalyzeWorkAreaJPanel extends javax.swing.JPanel {
         bg = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         logoEquality = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblEquality = new javax.swing.JLabel();
         logoDevelopment = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblDevelopment = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(250, 250, 250));
 
@@ -60,8 +62,19 @@ public class ManagerAnalyzeWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Education Equality Data");
+        lblEquality.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblEquality.setText("Education Equality Data");
+        lblEquality.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEqualityMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblEqualityMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblEqualityMouseExited(evt);
+            }
+        });
 
         logoDevelopment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-combo-chart-64.png"))); // NOI18N
         logoDevelopment.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -70,8 +83,26 @@ public class ManagerAnalyzeWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel2.setText("Education Development Data");
+        lblDevelopment.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblDevelopment.setText("Education Development Data");
+        lblDevelopment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDevelopmentMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDevelopmentMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDevelopmentMouseExited(evt);
+            }
+        });
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -84,11 +115,12 @@ public class ManagerAnalyzeWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoEquality, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
+                        .addComponent(lblEquality))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoDevelopment, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
+                        .addComponent(lblDevelopment))
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 575, Short.MAX_VALUE)
                 .addComponent(bg))
         );
@@ -98,46 +130,95 @@ public class ManagerAnalyzeWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(bg)
                 .addGap(0, 25, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(19, 19, 19)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(111, 111, 111)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoEquality, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblEquality)))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoDevelopment, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel2)))
+                        .addComponent(lblDevelopment)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoEqualityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoEqualityMouseClicked
         // TODO add your handling code here:
-        ManagerEducationEqualityJPanel meejp = (ManagerEducationEqualityJPanel) new ManagerEducationEqualityJPanel(userProcessContainer, account, country);
-        userProcessContainer.add("ManagerEducationEqualityJPanel", meejp);
-        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
-        crdLyt.next(userProcessContainer);
+//        ManagerEducationEqualityJPanel meejp = (ManagerEducationEqualityJPanel) new ManagerEducationEqualityJPanel(userProcessContainer, account, country);
+//        userProcessContainer.add("ManagerEducationEqualityJPanel", meejp);
+//        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+//        crdLyt.next(userProcessContainer);
     }//GEN-LAST:event_logoEqualityMouseClicked
 
     private void logoDevelopmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoDevelopmentMouseClicked
         // TODO add your handling code here:
+//        ManagerEducationDevelopmentJPanel medjp = (ManagerEducationDevelopmentJPanel) new ManagerEducationDevelopmentJPanel(userProcessContainer, account, country);
+//        userProcessContainer.add("ManagerEducationDevelopmentJPanel", medjp);
+//        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+//        crdLyt.next(userProcessContainer);
+    }//GEN-LAST:event_logoDevelopmentMouseClicked
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        back();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void lblDevelopmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDevelopmentMouseClicked
+        // TODO add your handling code here:
         ManagerEducationDevelopmentJPanel medjp = (ManagerEducationDevelopmentJPanel) new ManagerEducationDevelopmentJPanel(userProcessContainer, account, country);
         userProcessContainer.add("ManagerEducationDevelopmentJPanel", medjp);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+        crdLyt.next(userProcessContainer);        
+    }//GEN-LAST:event_lblDevelopmentMouseClicked
+
+    private void lblDevelopmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDevelopmentMouseEntered
+        // TODO add your handling code here:
+        lblDevelopment.setFont(new Font("Lucida", Font.BOLD, 18));        
+    }//GEN-LAST:event_lblDevelopmentMouseEntered
+
+    private void lblDevelopmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDevelopmentMouseExited
+        // TODO add your handling code here:
+        lblDevelopment.setFont(new Font("Lucida", Font.PLAIN, 18));
+    }//GEN-LAST:event_lblDevelopmentMouseExited
+
+    private void lblEqualityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEqualityMouseClicked
+        // TODO add your handling code here:
+        ManagerEducationEqualityJPanel meejp = (ManagerEducationEqualityJPanel) new ManagerEducationEqualityJPanel(userProcessContainer, account, country);
+        userProcessContainer.add("ManagerEducationEqualityJPanel", meejp);
+        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
-    }//GEN-LAST:event_logoDevelopmentMouseClicked
+        
+    }//GEN-LAST:event_lblEqualityMouseClicked
 
+    private void lblEqualityMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEqualityMouseEntered
+        // TODO add your handling code here:
+        lblEquality.setFont(new Font("Lucida", Font.BOLD, 18));
+    }//GEN-LAST:event_lblEqualityMouseEntered
 
+    private void lblEqualityMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEqualityMouseExited
+        // TODO add your handling code here:
+        lblEquality.setFont(new Font("Lucida", Font.PLAIN, 18));
+    }//GEN-LAST:event_lblEqualityMouseExited
+
+    public void back(){
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.last(userProcessContainer);                
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblDevelopment;
+    private javax.swing.JLabel lblEquality;
     private javax.swing.JLabel logoDevelopment;
     private javax.swing.JLabel logoEquality;
     // End of variables declaration//GEN-END:variables
