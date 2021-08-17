@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import javax.swing.JPanel;
 import model.Country.Country;
+import model.DataAnalyze.EduDataAnalyze;
 import model.DataAnalyze.MacroData;
 import model.DataAnalyze.MacroDataAnalyze;
 import model.UserAccount.UserAccount;
@@ -71,12 +72,21 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
                 maleDataMap = MacroDataAnalyze.getProgressMale(country);
                 femaleDataMap = MacroDataAnalyze.getProgressFemale(country);
                 break;
-//            case "Literacy Score" :
-//                maleDataMap = EduDataAnalyze.getAvgMathScoreMale(country);
-//                femaleDataMap = EduDataAnalyze.getAvgMathScoreFemale(country);
-//                break;
-                
-                
+            case "Math Score" :
+                indicatorName = "Math Score";
+                maleDataMap = EduDataAnalyze.getAvgMathScoreMale(country);
+                femaleDataMap = EduDataAnalyze.getAvgMathScoreFemale(country);
+                break;
+            case "Literacy Score" :
+                indicatorName = "Literacy Score";
+                maleDataMap = EduDataAnalyze.getAvgLiteracyScoreMale(country);
+                femaleDataMap = EduDataAnalyze.getAvgLiteracyScoreFemale(country);
+                break;
+            case "Science Score" :
+                indicatorName = "Science Score";
+                maleDataMap = EduDataAnalyze.getAvgScienceScoreMale(country);
+                femaleDataMap = EduDataAnalyze.getAvgScienceScoreFemale(country);
+                break;                                
             
         }
                 

@@ -5,6 +5,7 @@
  */
 package model.DataAnalyze;
 
+import java.util.TreeMap;
 import model.Country.Country;
 
 /**
@@ -13,8 +14,47 @@ import model.Country.Country;
  */
 public class EduDataAnalyze {
     
-    public static double getAvgMathScoreMale (Country country) {
-        return 0.0;
+    public static TreeMap<Integer,Double> getAvgMathScoreMale (Country country) {
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        return result;
+
     }
     
+    public static TreeMap<Integer,Double> getAvgMathScoreFemale (Country country) {
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        return result;
+
+    }
+    
+    public static TreeMap<Integer,Double> getAvgLiteracyScoreMale (Country country) {
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        return result;
+
+    }
+
+    public static TreeMap<Integer,Double> getAvgLiteracyScoreFemale (Country country) {
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        return result;
+
+    }
+
+    public static TreeMap<Integer,Double> getAvgScienceScoreMale (Country country) {
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        return result;
+
+    }
+
+    public static TreeMap<Integer,Double> getAvgScienceScoreFemale (Country country) {
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        return result;
+
+    }
+    
+
 }
