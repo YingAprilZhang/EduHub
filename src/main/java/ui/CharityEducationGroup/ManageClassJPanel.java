@@ -25,16 +25,17 @@ public class ManageClassJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Business business;
-    UserAccount account;
+    //UserAccount account;
     CharityEduGroup eduGroup;
-    
-    public ManageClassJPanel(JPanel userProcessContainer,UserAccount account, Business business) {
+
+    public ManageClassJPanel(JPanel userProcessContainer, Business business, CharityEduGroup eduGroup) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
-        
-        //lblName.setText(TOOL_TIP_TEXT_KEY);
-        
+        this.eduGroup = eduGroup;
+
+        lblName.setText(eduGroup.getCharityEduAccount().getUsername());
+
         populateClass();
     }
 
@@ -56,7 +57,8 @@ public class ManageClassJPanel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
+        backLbl = new javax.swing.JLabel();
+        buttonBack = new javax.swing.JButton();
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
@@ -119,10 +121,17 @@ public class ManageClassJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnBack.setText("<<back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
+        backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
+        backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backLblMouseClicked(evt);
+            }
+        });
+
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
+                buttonBackActionPerformed(evt);
             }
         });
 
@@ -151,7 +160,8 @@ public class ManageClassJPanel extends javax.swing.JPanel {
                                     .addGap(251, 251, 251)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(backLbl)
+                            .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)))
                 .addComponent(bg))
         );
@@ -161,7 +171,9 @@ public class ManageClassJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(bg))
             .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addGap(49, 49, 49)
+                .addComponent(backLbl)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,29 +187,29 @@ public class ManageClassJPanel extends javax.swing.JPanel {
                     .addComponent(btnDelete)
                     .addComponent(btnEdit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addGap(38, 38, 38))
+                .addComponent(buttonBack)
+                .addGap(59, 59, 59))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         AddClassJPanel acjp = new AddClassJPanel(userProcessContainer, eduGroup);
-        userProcessContainer.add("AddClassJPanel",acjp);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        userProcessContainer.add("AddClassJPanel", acjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = tblClass.getSelectedRow();
-        if ( selectedRowIndex < 0){
+        if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select the class first.");
             return;
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) tblClass.getModel();
-        
+
         int id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
         eduGroup.getEduClass().removeClassByID(id);
         populateClass();
@@ -206,50 +218,67 @@ public class ManageClassJPanel extends javax.swing.JPanel {
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = tblClass.getSelectedRow();
-        if ( selectedRowIndex < 0){
+        if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select the class first.");
             return;
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) tblClass.getModel();
-        
+
         int id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
         SingleClass singleClass = eduGroup.getEduClass().findClassByID(id);
-        EditClassJPanel  editClassJPanel1 = new EditClassJPanel(userProcessContainer, eduGroup, singleClass);
-        userProcessContainer.add("EditMenuFoodJPanel1",editClassJPanel1);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        EditClassJPanel editClassJPanel1 = new EditClassJPanel(userProcessContainer, eduGroup, singleClass);
+        userProcessContainer.add("EditMenuFoodJPanel1", editClassJPanel1);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnEditActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
         // TODO add your handling code here:
-        //backAction();
-    }//GEN-LAST:event_btnBackActionPerformed
+        back();
+    }//GEN-LAST:event_backLblMouseClicked
+
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        // TODO add your handling code here:
+        backAction();
+    }//GEN-LAST:event_buttonBackActionPerformed
 
     public void populateClass() {
         DefaultTableModel model = (DefaultTableModel) tblClass.getModel();
         model.setRowCount(0);
-        for (SingleClass singleClass: eduGroup.getEduClass().getClassList()) {
+        for (SingleClass singleClass : eduGroup.getEduClass().getClassList()) {
             Object row[] = new Object[2];
             row[0] = singleClass.getClassID();
             row[1] = singleClass.getName();
-            
+
             model.addRow(row);
         }
     }
 
+    private void back() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
+    
+    private void backAction(){
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton buttonBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblName;
     private javax.swing.JTable tblClass;
     // End of variables declaration//GEN-END:variables
-
 
 }

@@ -5,6 +5,10 @@
  */
 package ui.Company;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Request.Request;
+
 /**
  *
  * @author kkkkayla
@@ -14,6 +18,8 @@ public class ViewStudentJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewStudentJPanel
      */
+    
+    
     public ViewStudentJPanel() {
         initComponents();
     }
@@ -31,7 +37,7 @@ public class ViewStudentJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblStudent = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         btnSend = new javax.swing.JButton();
@@ -45,7 +51,7 @@ public class ViewStudentJPanel extends javax.swing.JPanel {
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -56,7 +62,7 @@ public class ViewStudentJPanel extends javax.swing.JPanel {
                 "Name", "Gender", "Grade"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblStudent);
 
         jLabel2.setText("School:");
 
@@ -133,6 +139,16 @@ public class ViewStudentJPanel extends javax.swing.JPanel {
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
+        int selectedRowIndex = tblStudent.getSelectedRow();
+        if ( selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select an order first.");
+            return;
+        } 
+        
+        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        Request selectedRequest = (Request)model.getValueAt(selectedRowIndex, 0);
+        
+        
     }//GEN-LAST:event_btnSendActionPerformed
 
 
@@ -145,6 +161,6 @@ public class ViewStudentJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblStudent;
     // End of variables declaration//GEN-END:variables
 }
