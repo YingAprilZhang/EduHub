@@ -50,12 +50,11 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
-        btnManageReq = new javax.swing.JButton();
-        btnManageClass1 = new javax.swing.JButton();
-        logoFunding = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblfund = new javax.swing.JLabel();
         logoRequest1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblReq = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        backLbl = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
@@ -65,6 +64,7 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         bg.setBounds(1060, 0, 383, 900);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Charity Funding Group Work Area");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel1);
@@ -80,37 +80,15 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.add(enterpriseLabel);
         enterpriseLabel.setBounds(70, 280, 210, 22);
 
-        btnManageReq.setText("Manage Request");
-        btnManageReq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageReqActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnManageReq);
-        btnManageReq.setBounds(430, 780, 400, 29);
-
-        btnManageClass1.setText("Manage Funding ");
-        btnManageClass1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageClass1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnManageClass1);
-        btnManageClass1.setBounds(440, 700, 400, 29);
-
-        logoFunding.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-exchange-40.png"))); // NOI18N
-        logoFunding.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblfund.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblfund.setText("Manage Funding");
+        lblfund.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoFundingMouseClicked(evt);
+                lblfundMouseClicked(evt);
             }
         });
-        jPanel1.add(logoFunding);
-        logoFunding.setBounds(80, 380, 60, 60);
-
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel2.setText("Manage Funding");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(150, 400, 300, 22);
+        jPanel1.add(lblfund);
+        lblfund.setBounds(150, 400, 300, 22);
 
         logoRequest1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
         logoRequest1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,74 +99,86 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.add(logoRequest1);
         logoRequest1.setBounds(80, 480, 50, 50);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel3.setText("Manage Request");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(150, 500, 143, 22);
+        lblReq.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblReq.setText("Manage Request");
+        lblReq.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblReqMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblReq);
+        lblReq.setBounds(150, 500, 143, 22);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-student-40.png"))); // NOI18N
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(80, 380, 60, 80);
+
+        backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
+        backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backLblMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backLbl);
+        backLbl.setBounds(60, 60, 52, 52);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1437, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnManageReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageReqActionPerformed
+    private void logoRequest1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoRequest1MouseClicked
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_btnManageReqActionPerformed
+        
+    }//GEN-LAST:event_logoRequest1MouseClicked
 
-    private void btnManageClass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageClass1ActionPerformed
+    private void lblfundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfundMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnManageClass1ActionPerformed
-
-    private void logoFundingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoFundingMouseClicked
-        // TODO add your handling code here:
-        //        if(country == null){
-            //            JOptionPane.showMessageDialog(this, "Plese select a country first.");
-            //            return;
-            //        }
         ManageFundingJPanel mfjp = new ManageFundingJPanel(userProcessContainer, account, business);
         userProcessContainer.add(mfjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(mfjp);
-    }//GEN-LAST:event_logoFundingMouseClicked
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_lblfundMouseClicked
 
-    private void logoRequest1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoRequest1MouseClicked
+    private void lblReqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReqMouseClicked
         // TODO add your handling code here:
-        //        if(country == null){
-            //            JOptionPane.showMessageDialog(this, "Plese select a country first.");
-            //            return;
-            //        }
         CharityFundGroupReqJPanel cfgrjp = new CharityFundGroupReqJPanel(userProcessContainer, account, business);
         userProcessContainer.add(cfgrjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(cfgrjp);
-    }//GEN-LAST:event_logoRequest1MouseClicked
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_lblReqMouseClicked
 
+    private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
+        // TODO add your handling code here:
+        back();
+    }//GEN-LAST:event_backLblMouseClicked
+
+    
+    private void back() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
-    private javax.swing.JButton btnManageClass1;
-    private javax.swing.JButton btnManageReq;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelName;
-    private javax.swing.JLabel logoFunding;
+    private javax.swing.JLabel lblReq;
+    private javax.swing.JLabel lblfund;
     private javax.swing.JLabel logoRequest1;
     // End of variables declaration//GEN-END:variables
 }

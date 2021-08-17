@@ -5,6 +5,7 @@
  */
 package ui.CharityFundingGroup;
 
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.Business;
 import model.UserAccount.UserAccount;
@@ -18,14 +19,13 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CharityFundGroupJPanel
      */
-    private JPanel container;
+    private JPanel userProcessContainer;
 
     private UserAccount userAccount;
-    
+
     private Business system;
-    
-    
-    public CharityFundGroupReqJPanel(JPanel container, UserAccount account, Business system) {
+
+    public CharityFundGroupReqJPanel(JPanel userProcessContainer, UserAccount account, Business system) {
         initComponents();
     }
 
@@ -47,6 +47,8 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         bg = new javax.swing.JLabel();
         btnDeny = new javax.swing.JButton();
         btnAccept1 = new javax.swing.JButton();
+        buttonBack = new javax.swing.JButton();
+        backLbl = new javax.swing.JLabel();
 
         jPanel1.setLayout(null);
 
@@ -99,6 +101,24 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         jPanel1.add(btnAccept1);
         btnAccept1.setBounds(530, 590, 170, 29);
 
+        buttonBack.setText("Back");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonBack);
+        buttonBack.setBounds(40, 760, 150, 29);
+
+        backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
+        backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backLblMouseClicked(evt);
+            }
+        });
+        jPanel1.add(backLbl);
+        backLbl.setBounds(50, 40, 52, 52);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,11 +145,34 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAccept1ActionPerformed
 
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        // TODO add your handling code here:
+        backAction();
+    }//GEN-LAST:event_buttonBackActionPerformed
+
+    private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
+        // TODO add your handling code here:
+        back();
+    }//GEN-LAST:event_backLblMouseClicked
+
+    private void back() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
+
+    private void backAction() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAccept1;
     private javax.swing.JButton btnDeny;
+    private javax.swing.JButton buttonBack;
     private javax.swing.JComboBox<String> cmbSchool;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
