@@ -88,7 +88,7 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
                 femaleDataMap = EduDataAnalyze.getAvgScienceScoreFemale(country);
                 break;                                
             
-        }
+        };
                 
         XYSeriesCollection collection = new XYSeriesCollection();
         
@@ -104,7 +104,7 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
         }
         collection.addSeries(femaleSeries);
         
-        JFreeChart lineChart = ChartFactory.createXYLineChart(indicatorName + "Development", "Year", "Value",
+        JFreeChart lineChart = ChartFactory.createXYLineChart(indicatorName + "Fluctuation", "Year", "Value",
                 collection, PlotOrientation.VERTICAL, true, true, false);
         
         ChartPanel lineChartPanel = new ChartPanel(lineChart);
