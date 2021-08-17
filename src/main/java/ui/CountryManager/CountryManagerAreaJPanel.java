@@ -6,6 +6,7 @@
 package ui.CountryManager;
 
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Business;
@@ -57,11 +58,11 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         bg = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         logoRequest = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblRequest = new javax.swing.JLabel();
         lblCountry = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         logoAnalyze = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblAnalyze = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(250, 250, 250));
 
@@ -77,8 +78,19 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("View My Requests");
+        lblRequest.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblRequest.setText("View My Requests");
+        lblRequest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRequestMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblRequestMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblRequestMouseExited(evt);
+            }
+        });
 
         lblCountry.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblCountry.setText("<Country Label>");
@@ -93,8 +105,19 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel2.setText("Analyze Education Data");
+        lblAnalyze.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblAnalyze.setText("Analyze Education Data");
+        lblAnalyze.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAnalyzeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblAnalyzeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblAnalyzeMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,11 +134,11 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
+                        .addComponent(lblRequest))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
+                        .addComponent(lblAnalyze)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 494, Short.MAX_VALUE)
                 .addComponent(bg))
         );
@@ -136,18 +159,42 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
                     .addComponent(logoRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblRequest)))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel2)))
+                        .addComponent(lblAnalyze)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoRequestMouseClicked
+        // TODO add your handling code here:
+//        if(country == null){
+//            JOptionPane.showMessageDialog(this, "Plese select a country first.");
+//            return;
+//        }
+//        CountryManagerRequestJPanel cmrj = (CountryManagerRequestJPanel) new CountryManagerRequestJPanel(userProcessContainer, account, countryManager);
+//        userProcessContainer.add("CountryManagerRequestJPanel", cmrj);
+//        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+//        crdLyt.next(userProcessContainer);
+    }//GEN-LAST:event_logoRequestMouseClicked
+
+    private void logoAnalyzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoAnalyzeMouseClicked
+        // TODO add your handling code here:
+//        if(country == null){
+//            JOptionPane.showMessageDialog(this, "Plese select a country first.");
+//            return;
+//        }
+//        ManagerAnalyzeWorkAreaJPanel mawajp = (ManagerAnalyzeWorkAreaJPanel) new ManagerAnalyzeWorkAreaJPanel(userProcessContainer, account, country);
+//        userProcessContainer.add("ManagerAnalyzeWorkAreaJPanel", mawajp);
+//        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+//        crdLyt.next(userProcessContainer);
+    }//GEN-LAST:event_logoAnalyzeMouseClicked
+
+    private void lblRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRequestMouseClicked
         // TODO add your handling code here:
         if(country == null){
             JOptionPane.showMessageDialog(this, "Plese select a country first.");
@@ -157,9 +204,20 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.add("CountryManagerRequestJPanel", cmrj);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
-    }//GEN-LAST:event_logoRequestMouseClicked
+        
+    }//GEN-LAST:event_lblRequestMouseClicked
 
-    private void logoAnalyzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoAnalyzeMouseClicked
+    private void lblRequestMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRequestMouseEntered
+        // TODO add your handling code here:
+        lblRequest.setFont(new Font("Lucida", Font.BOLD, 18));
+    }//GEN-LAST:event_lblRequestMouseEntered
+
+    private void lblRequestMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRequestMouseExited
+        // TODO add your handling code here:
+        lblRequest.setFont(new Font("Lucida", Font.PLAIN, 18));
+    }//GEN-LAST:event_lblRequestMouseExited
+
+    private void lblAnalyzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnalyzeMouseClicked
         // TODO add your handling code here:
         if(country == null){
             JOptionPane.showMessageDialog(this, "Plese select a country first.");
@@ -169,16 +227,27 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.add("ManagerAnalyzeWorkAreaJPanel", mawajp);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
-    }//GEN-LAST:event_logoAnalyzeMouseClicked
+        
+    }//GEN-LAST:event_lblAnalyzeMouseClicked
+
+    private void lblAnalyzeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnalyzeMouseEntered
+        // TODO add your handling code here:
+        lblAnalyze.setFont(new Font("Lucida", Font.BOLD, 18));
+    }//GEN-LAST:event_lblAnalyzeMouseEntered
+
+    private void lblAnalyzeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnalyzeMouseExited
+        // TODO add your handling code here:
+        lblAnalyze.setFont(new Font("Lucida", Font.PLAIN, 18));
+    }//GEN-LAST:event_lblAnalyzeMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblAnalyze;
     private javax.swing.JLabel lblCountry;
+    private javax.swing.JLabel lblRequest;
     private javax.swing.JLabel logoAnalyze;
     private javax.swing.JLabel logoRequest;
     // End of variables declaration//GEN-END:variables

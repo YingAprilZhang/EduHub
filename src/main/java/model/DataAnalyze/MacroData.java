@@ -6,7 +6,9 @@
 package model.DataAnalyze;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -32,7 +34,13 @@ public class MacroData {
     List<Double> macroEduList;
     List<Double> macroEcoList;
     
+    MacroEduType macroEduType;
+    MacroEcoType macroEcoType;
+    
     public MacroData(){
+        
+        this.macroEduType = macroEduType;
+        
         macroEduList = new ArrayList<Double>();
         macroEduList.add(maleOutSchool);
         macroEduList.add(femaleOutSchool);
@@ -50,6 +58,97 @@ public class MacroData {
         macroEcoList.add(gdp);
     }
 
+    public enum MacroEduType{
+        maleOutSchool("Out of school male"),
+        femaleOutSchool("Out of school female"),
+        maleMeanYears("Mean years of education male"),
+        femaleMeanYears("Mean years of education female"),
+        maleEnroll("School enrollment male"),
+        femaleEnroll("School enrollment female"),
+        maleProgress("Progression to higher education male"),
+        femaleProgress("Progression to higher education female"),
+        totalEnroll("School enrollment");
+       
+                
+        private String value;
+        private MacroEduType(String value){
+            this.value = value;
+        }
+        
+        public String getValue(){
+            return value;
+        }
+        
+        @Override
+        public String toString(){
+            return value;
+        }
+    }        
+    
+    public Map<MacroEduType, Double> MacroEduType2MacroEduMapping = new HashMap<MacroEduType, Double>() {{            
+        put(MacroEduType.femaleEnroll, femaleEnroll);
+        put(MacroEduType.femaleMeanYears, femaleMeanYears);
+        put(MacroEduType.femaleOutSchool, femaleOutSchool);
+        put(MacroEduType.femaleProgress, femaleProgress);
+        put(MacroEduType.maleEnroll, maleEnroll);
+        put(MacroEduType.maleMeanYears, maleMeanYears);
+        put(MacroEduType.maleOutSchool, maleOutSchool);
+        put(MacroEduType.maleProgress, maleProgress);
+        put(MacroEduType.totalEnroll, 0.0);
+    }};
+    
+    public MacroEduType getMacroEduTypebyValue(String value) {
+        MacroEduType result = null;
+        for(MacroEduType m: MacroEduType.values()){
+            result = value.equals(m.getValue()) ? m : null;
+            if (value.equals(m.getValue())) {
+                result = m;
+                break;
+            }            
+        }
+        return result;
+    }
+        
+    public enum MacroEcoType{
+        unemploy("Unemployement rate"),
+        eduExp("Government expenditure on education(% of government expenditure)"),
+        pupilTeacher("Pupil-teacher ratio"),
+        gdp("GDP");
+        
+        private String value;
+        private MacroEcoType(String value){
+            this.value = value;
+        }
+        
+        public String getValue(){
+            return value;
+        }
+        
+        @Override
+        public String toString(){
+            return value;
+        }
+    }
+    
+    public Map<MacroEcoType, Double> MacroEcoType2MacroEcoMapping = new HashMap<MacroEcoType, Double>() {{            
+        put(MacroEcoType.unemploy, unemploy);
+        put(MacroEcoType.eduExp, eduExp);
+        put(MacroEcoType.pupilTeacher, pupilTeacher);
+        put(MacroEcoType.gdp, gdp);
+    }};
+    
+    public MacroEcoType getMacroEcoTypebyValue(String value) {
+        MacroEcoType result = null;
+        for(MacroEcoType m: MacroEcoType.values()){
+            result = value.equals(m.getValue()) ? m : null;
+            if (value.equals(m.getValue())) {
+                result = m;
+                break;
+            }            
+        }
+        return result;
+    }
+    
     public Integer getYear() {
         return year;
     }
