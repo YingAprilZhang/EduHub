@@ -99,5 +99,45 @@ public class MacroDataAnalyze {
         }        
         return result;
     }
+
+    public static TreeMap<Integer,Double> getUnemployment(Country country){
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        TreeMap<Integer, MacroData> macroDataMap =(TreeMap) country.getMacroDataMap();
+        for(Integer year:macroDataMap.keySet()){
+            result.put(year, macroDataMap.get(year).getUnemploy());
+        }        
+        return result;
+    }
+    
+    public static TreeMap<Integer,Double> getEduExp(Country country){
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        TreeMap<Integer, MacroData> macroDataMap =(TreeMap) country.getMacroDataMap();
+        for(Integer year:macroDataMap.keySet()){
+            result.put(year, macroDataMap.get(year).getEduExp());
+        }        
+        return result;
+    }
+    
+    public static TreeMap<Integer,Double> getPupilTeacher(Country country){
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        TreeMap<Integer, MacroData> macroDataMap =(TreeMap) country.getMacroDataMap();
+        for(Integer year:macroDataMap.keySet()){
+            result.put(year, macroDataMap.get(year).getPupilTeacher());
+        }        
+        return result;
+    }
+    
+    public static TreeMap<Integer,Double> getGdp(Country country){
+        TreeMap<Integer, Double> result = new TreeMap<Integer, Double>();
+        
+        TreeMap<Integer, MacroData> macroDataMap =(TreeMap) country.getMacroDataMap();
+        for(Integer year:macroDataMap.keySet()){
+            result.put(year, macroDataMap.get(year).getGdp());
+        }        
+        return result;
+    }
     
 }
