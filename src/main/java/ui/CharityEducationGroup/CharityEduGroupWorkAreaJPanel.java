@@ -54,6 +54,7 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
         lblManageClass = new javax.swing.JLabel();
         logoRequest1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        backLbl = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -133,8 +134,22 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setText("Manage Request");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         add(jLabel3);
         jLabel3.setBounds(150, 510, 143, 22);
+
+        backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
+        backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backLblMouseClicked(evt);
+            }
+        });
+        add(backLbl);
+        backLbl.setBounds(60, 60, 52, 52);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageReqActionPerformed
@@ -147,35 +162,29 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageClass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageClass1ActionPerformed
         // TODO add your handling code here:
+        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, business, eduGroup);
+        userProcessContainer.add("mcjp",mcjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageClass1ActionPerformed
 
     private void logoClassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoClassMouseClicked
         // TODO add your handling code here:
-//        if(country == null){
-//            JOptionPane.showMessageDialog(this, "Plese select a country first.");
-//            return;
-//        }
-        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, account, business);
-        userProcessContainer.add(mcjp);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(mcjp);
+
+//        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, account, business);
+//        userProcessContainer.add(mcjp);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.next(mcjp);
     }//GEN-LAST:event_logoClassMouseClicked
 
     private void logoRequest1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoRequest1MouseClicked
         // TODO add your handling code here:
-//        if(country == null){
-//            JOptionPane.showMessageDialog(this, "Plese select a country first.");
-//            return;
-//        }
-        CharityEduGroupReqJPanel cegrjp = new CharityEduGroupReqJPanel(userProcessContainer, account, business);
-        userProcessContainer.add(cegrjp);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(cegrjp);
+        
     }//GEN-LAST:event_logoRequest1MouseClicked
 
     private void lblManageClassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageClassMouseClicked
         // TODO add your handling code here:
-        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, account, business);
+        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, business,eduGroup);
         userProcessContainer.add(mcjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -191,8 +200,27 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
         lblManageClass.setFont(new Font("Lucida",  Font.PLAIN, 18));
     }//GEN-LAST:event_lblManageClassMouseExited
 
+    private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
+        // TODO add your handling code here:
+        back();
+    }//GEN-LAST:event_backLblMouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        CharityEduGroupReqJPanel cegrjp = new CharityEduGroupReqJPanel(userProcessContainer, account, business);
+        userProcessContainer.add(cegrjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void back() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnManageClass1;
     private javax.swing.JButton btnManageReq;
