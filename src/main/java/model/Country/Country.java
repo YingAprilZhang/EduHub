@@ -13,6 +13,7 @@ import model.Accountant.Accountant;
 import model.CountryManager.CountryManager;
 import model.DataAnalyze.EduDataAnalyze;
 import model.DataAnalyze.MacroData;
+import model.Request.Request;
 import model.School.School;
 import model.School.EduData;
 
@@ -27,11 +28,14 @@ public class Country {
     Map<Integer, MacroData> macroDataMap;
     Accountant accountant;
     Double accountBalance;
+    List<Request> requestList;
     
     public Country(String name){
         this.name = name;
         this.schoolList = new ArrayList<>();
-        this.macroDataMap = new TreeMap<Integer, MacroData>();        
+        this.macroDataMap = new TreeMap<Integer, MacroData>();
+        this.eduDataMap = new TreeMap<Integer, EduData>();
+        this.requestList = new ArrayList<Request>();
     }
 
     public String getName() {
@@ -82,6 +86,10 @@ public class Country {
 
     public void setAccountBalance(Double accountBalance) {
         this.accountBalance = accountBalance;
+    }
+
+    public List<Request> getRequestList() {
+        return requestList;
     }
     
     
