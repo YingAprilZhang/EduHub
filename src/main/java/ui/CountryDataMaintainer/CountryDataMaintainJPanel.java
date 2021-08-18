@@ -39,7 +39,7 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         this.account = account;
         this.business = Business.getInstance();
         this.role = (DataMaintainerRole) account.getRole();
-        this.country = account.getCountry();
+        this.country = account.getOrganization().getCountry();
         
         if(country != null){           
             lblCountry.setText(country.toString());
