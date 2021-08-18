@@ -5,10 +5,12 @@
  */
 package model.WorldManager;
 
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author changxu
  */
-public class WorldManager {
+public class WorldManager extends UserAccount{
     
 }

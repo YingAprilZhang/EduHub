@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.Student;
+package model.School;
+
+import model.UserAccount.UserAccount;
 
 /**
  *
  * @author aprilyz
  */
-public class EduData {
-    public String year;
-    
-    public Student student;
-    double literacyScore;
-    double mathScore;
-    double scienceScore;
-    double totalScore;
+public class Principal extends UserAccount{
     
 }

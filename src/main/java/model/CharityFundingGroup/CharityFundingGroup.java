@@ -11,33 +11,10 @@ import model.UserAccount.UserAccount;
  *
  * @author kkkkayla
  */
-public class CharityFundingGroup {
+public class CharityFundingGroup extends UserAccount{
     
-    private String name;
-    private UserAccount charityFundAccount;
     private int fund;
 
-    public CharityFundingGroup(UserAccount charityFundAccount) {
-        this.charityFundAccount = charityFundAccount;
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public UserAccount getCharityFundAccount() {
-        return charityFundAccount;
-    }
-
-    public void setCharityFundAccount(UserAccount charityFundAccount) {
-        this.charityFundAccount = charityFundAccount;
-    }
 
     public int getFund() {
         return fund;
@@ -50,7 +27,7 @@ public class CharityFundingGroup {
     
     @Override 
     public String toString(){
-        return this.getName();
+        return this.getUsername();
     }
     
 }

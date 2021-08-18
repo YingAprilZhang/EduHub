@@ -6,19 +6,32 @@
 package model.School;
 
 import java.util.List;
-import model.Country.Country;
-import model.Principal.Principal;
-import model.Student.Student;
+import model.Org.Organization;
 
 /**
  *
  * @author aprilyz
  */
-public class School {
-    public String name;
-    public Country country;
+public class School extends Organization {
     public Principal principal;
-    
     public List<Student> studentList;
+
+    public Principal getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
+    }
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+    
+    
     
 }

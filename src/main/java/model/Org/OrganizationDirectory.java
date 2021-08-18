@@ -6,7 +6,12 @@
 package model.Org;
 
 import java.util.ArrayList;
+import model.CharityEducationGroup.CharityEduGroup;
 import model.Country.Country;
+import model.CountryEdu.CountryEdu;
+import model.School.School;
+import model.SysAdmin.SysAdmin;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -28,7 +33,29 @@ public class OrganizationDirectory {
     }
     
     public Organization createOrganization(String name, Country country, Organization.OrgType type) {
-        Organization o = new Organization(name, country, type);
+        Organization o;
+          switch (type) {
+            case School:
+                o = new School();
+                break;
+            /*
+            case CharityEdu:
+                // o = ;
+                break;
+            case CharityFunding:
+                 // o = ;
+                break;   
+            */
+            case CountryEdu:
+                o = new CountryEdu();
+                break;
+            default:
+                o = new Organization();
+                break;
+          }
+        o.setName(name);
+        o.setCountry(country);
+        o.setOrgType(type);
         organizationList.add(o);
         return o;
     }

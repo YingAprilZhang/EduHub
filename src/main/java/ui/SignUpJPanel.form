@@ -38,7 +38,6 @@
                                           <Component id="lblUsername" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
                                           <Component id="lblPassword" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
                                           <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblCountry" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblTemperature1" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblTemperature2" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -47,7 +46,6 @@
                                           <Component id="userNameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                           <Component id="passWordField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                           <Component id="nameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                          <Component id="countryField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                           <Component id="roleBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                           <Component id="organizationBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                       </Group>
@@ -95,11 +93,6 @@
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="countryField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="lblCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="roleBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="lblTemperature1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -108,7 +101,7 @@
                   <Component id="lblTemperature2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="organizationBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Component id="submitBtn" min="-2" pref="49" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -157,14 +150,6 @@
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCountry">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Country"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblUsername">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -196,11 +181,6 @@
     <Component class="javax.swing.JTextField" name="nameField">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="countryField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countryFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="roleBox">

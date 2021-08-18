@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.Principal;
+package model.CountryEdu;
 
-import model.UserAccount.UserAccount;
+import model.Org.Organization;
 
 /**
  *
  * @author aprilyz
  */
-public class Principal extends UserAccount{
+public class CountryEdu extends Organization{
     
 }

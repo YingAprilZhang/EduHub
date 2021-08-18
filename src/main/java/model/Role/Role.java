@@ -18,7 +18,7 @@ import model.UserAccount.UserAccount;
  */
 public abstract class Role {
     
-    RoleType roleType;
+    public RoleType roleType;
 
     public Role(RoleType roleType) {
         this.roleType = roleType;
@@ -97,7 +97,7 @@ public abstract class Role {
     }
     
     public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account);
-
+    
     @Override
     public String toString() {
         return this.getClass().getName();

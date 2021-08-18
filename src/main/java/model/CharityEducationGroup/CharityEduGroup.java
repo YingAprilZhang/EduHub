@@ -11,31 +11,9 @@ import model.UserAccount.UserAccount;
  *
  * @author kkkkayla
  */
-public class CharityEduGroup {
+public class CharityEduGroup extends UserAccount{
     
-    private String name;
-    private UserAccount charityEduAccount;
     private EduClass eduClass;
-
-    public CharityEduGroup(UserAccount charityEduAccount) {
-        this.charityEduAccount = charityEduAccount;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public UserAccount getCharityEduAccount() {
-        return charityEduAccount;
-    }
-
-    public void setCharityEduAccount(UserAccount charityEduAccount) {
-        this.charityEduAccount = charityEduAccount;
-    }
 
     public EduClass getEduClass() {
         return eduClass;
@@ -44,7 +22,6 @@ public class CharityEduGroup {
     public void setEduClass(EduClass eduClass) {
         this.eduClass = eduClass;
     }
-    
     
     
     @Override 

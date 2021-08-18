@@ -11,30 +11,8 @@ import model.UserAccount.UserAccount;
  *
  * @author kkkkayla
  */
-public class Company {
-    private String name;
-    private UserAccount companyAccount;
+public class Company extends UserAccount{
     private Job Job;
-
-    public Company(UserAccount companyAccount) {
-        this.companyAccount = companyAccount;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public UserAccount getCompanyAccount() {
-        return companyAccount;
-    }
-
-    public void setCompanyAccount(UserAccount companyAccount) {
-        this.companyAccount = companyAccount;
-    }
 
     public Job getJob() {
         return Job;

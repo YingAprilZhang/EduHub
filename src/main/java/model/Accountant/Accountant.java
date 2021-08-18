@@ -7,13 +7,12 @@ package model.Accountant;
 
 import model.Country.Country;
 import model.Role.Role;
+import model.UserAccount.UserAccount;
 
 /**
  *
  * @author changxu
  */
-public class Accountant {
-    String Name;
-    Country country;
-    Role role;
+public class Accountant extends UserAccount{
+
 }

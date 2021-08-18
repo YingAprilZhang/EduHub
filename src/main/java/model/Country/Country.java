@@ -11,9 +11,10 @@ import java.util.Map;
 import java.util.TreeMap;
 import model.Accountant.Accountant;
 import model.CountryManager.CountryManager;
+import model.DataAnalyze.EduDataAnalyze;
 import model.DataAnalyze.MacroData;
 import model.School.School;
-import model.Student.EduData;
+import model.School.EduData;
 
 /**
  *

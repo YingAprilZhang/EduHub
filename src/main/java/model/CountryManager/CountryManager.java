@@ -8,12 +8,13 @@ package model.CountryManager;
 import java.util.ArrayList;
 import java.util.List;
 import model.Request.Request;
+import model.UserAccount.UserAccount;
 
 /**
  *
  * @author changxu
  */
-public class CountryManager {    
+public class CountryManager extends UserAccount{    
     List<Request> requestQueue;
     
     public CountryManager(){
