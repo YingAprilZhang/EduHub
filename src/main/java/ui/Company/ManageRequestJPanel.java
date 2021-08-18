@@ -5,6 +5,12 @@
  */
 package ui.Company;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import model.Business;
+import model.Company.Company;
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author kkkkayla
@@ -14,8 +20,20 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageRequestJPanel
      */
-    public ManageRequestJPanel() {
+    JPanel container;
+
+    UserAccount userAccount;
+
+    Business system;
+
+    Company company;
+
+    public ManageRequestJPanel(JPanel container, UserAccount account, Business system) {
         initComponents();
+        this.container = container;
+        this.userAccount = account;
+        this.company = (Company) account;
+
     }
 
     /**
@@ -35,6 +53,7 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
         bg = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
         btnAccept1 = new javax.swing.JButton();
+        backLbl = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -67,11 +86,21 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
 
         btnAccept1.setText("Accept");
 
+        backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
+        backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backLblMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1433, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(backLbl)
+                .addContainerGap(1301, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -97,7 +126,10 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(backLbl)
+                .addContainerGap(809, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -120,8 +152,19 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
+        // TODO add your handling code here:
+        back();
+    }//GEN-LAST:event_backLblMouseClicked
+
+    private void back() {
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAccept1;
     private javax.swing.JButton btnCancel;

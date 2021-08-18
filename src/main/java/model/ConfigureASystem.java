@@ -25,7 +25,7 @@ public class ConfigureASystem {
 
         
        UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", Role.RoleType.SysAdmin);
-       UserAccount ua1 = business.getUserAccountDirectory().createUserAccount("charityedu", "charityedu", Role.RoleType.CharityEdu);
+       UserAccount ua1 = business.getUserAccountDirectory().createUserAccount("edu", "edu", Role.RoleType.CharityEdu);
        UserAccount ua2 = business.getUserAccountDirectory().createUserAccount("fund", "fund", CharityFundingRole.RoleType.CharityFunding);
         
        return business;

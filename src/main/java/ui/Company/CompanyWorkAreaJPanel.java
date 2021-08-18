@@ -5,8 +5,10 @@
  */
 package ui.Company;
 
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.Business;
+import model.Company.Company;
 import model.UserAccount.UserAccount;
 
 /**
@@ -18,17 +20,20 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CompanyJPanel
      */
-    
-     
     JPanel userProcessContainer;
     Business business;
-    
-    
-    public CompanyWorkAreaJPanel(JPanel userProcessContainer,UserAccount account) {
+    Company company;
+    UserAccount account;
+
+    public CompanyWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
-        
+        this.account = account;
+        this.company = (Company) account;
+
+        lblCompany.setText(company.getUsername());
+
     }
 
     /**
@@ -41,11 +46,11 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblReq = new javax.swing.JLabel();
         logoRequest = new javax.swing.JLabel();
         lblCompany = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblViewData = new javax.swing.JLabel();
         logoStudent = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
@@ -55,8 +60,13 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Company Work Area");
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Manage My Requests");
+        lblReq.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblReq.setText("Manage My Requests");
+        lblReq.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblReqMouseClicked(evt);
+            }
+        });
 
         logoRequest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
         logoRequest.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -71,8 +81,13 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setText("Company:");
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel5.setText("View Student Data");
+        lblViewData.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblViewData.setText("View Student Data");
+        lblViewData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblViewDataMouseClicked(evt);
+            }
+        });
 
         logoStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-student-40.png"))); // NOI18N
         logoStudent.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,11 +114,11 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(logoRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1))
+                                .addComponent(lblReq))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(logoStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblViewData, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
@@ -128,13 +143,13 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(logoStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel5)))
+                        .addComponent(lblViewData)))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblReq)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -150,21 +165,34 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.add("CountryManagerRequestJPanel", cmrj);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
-        */
+         */
     }//GEN-LAST:event_logoRequestMouseClicked
 
     private void logoStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoStudentMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_logoStudentMouseClicked
 
+    private void lblViewDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblViewDataMouseClicked
+        // TODO add your handling code here:
+        ViewStudentJPanel vsjp = new ViewStudentJPanel(userProcessContainer, account, business);
+        userProcessContainer.add(vsjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_lblViewDataMouseClicked
+
+    private void lblReqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReqMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_lblReqMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblCompany;
+    private javax.swing.JLabel lblReq;
+    private javax.swing.JLabel lblViewData;
     private javax.swing.JLabel logoRequest;
     private javax.swing.JLabel logoStudent;
     // End of variables declaration//GEN-END:variables

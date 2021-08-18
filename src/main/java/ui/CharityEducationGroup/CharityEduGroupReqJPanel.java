@@ -8,6 +8,7 @@ package ui.CharityEducationGroup;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.Business;
+import model.CharityEducationGroup.CharityEduGroup;
 import model.UserAccount.UserAccount;
 
 /**
@@ -16,13 +17,13 @@ import model.UserAccount.UserAccount;
  */
 public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 
-    private JPanel container;
+    JPanel container;
 
-    private UserAccount userAccount;
+    UserAccount userAccount;
 
-    private Business system;
+    Business system;
 
-    JPanel userProcessContainer;
+    CharityEduGroup eduGroup;
 
     /**
      * Creates new form ChrityEduGroupJPanel
@@ -31,7 +32,9 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         initComponents();
         this.container = container;
         this.userAccount = account;
+        this.eduGroup = (CharityEduGroup) account;
 
+        //populateComboSchools();
     }
 
     /**
@@ -52,7 +55,6 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         btnCancel = new javax.swing.JButton();
         btnAccept1 = new javax.swing.JButton();
         backLbl = new javax.swing.JLabel();
-        buttonBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -87,7 +89,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("School:");
         add(jLabel1);
-        jLabel1.setBounds(130, 220, 100, 30);
+        jLabel1.setBounds(120, 220, 100, 30);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
         add(bg);
@@ -109,15 +111,6 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         });
         add(backLbl);
         backLbl.setBounds(60, 50, 52, 52);
-
-        buttonBack.setText("Back");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
-            }
-        });
-        add(buttonBack);
-        buttonBack.setBounds(50, 800, 150, 29);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
@@ -125,29 +118,23 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         back();
     }//GEN-LAST:event_backLblMouseClicked
 
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        // TODO add your handling code here:
-        backAction();
-    }//GEN-LAST:event_buttonBackActionPerformed
-
     private void back() {
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
     }
-    
-    private void backAction(){
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }
+
+//    public void populateComboSchools(){
+//        for(School s: ){
+//            cmbSchool
+//        }
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAccept1;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton buttonBack;
     private javax.swing.JComboBox<String> cmbSchool;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
