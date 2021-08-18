@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.Student;
+package model.School;
+
+import model.UserAccount.UserAccount;
 
 /**
  *
  * @author aprilyz
  */
-public class Student {
-    public String name;
-    public int id;
-    public String gender;
+public class Teacher extends UserAccount {
     
 }

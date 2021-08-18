@@ -66,13 +66,11 @@ public class SignUpJPanel extends javax.swing.JPanel {
         backLbl = new javax.swing.JLabel();
         lblTemperature1 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
-        lblCountry = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
         userNameField = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
         passWordField = new javax.swing.JTextField();
         nameField = new javax.swing.JTextField();
-        countryField = new javax.swing.JTextField();
         roleBox = new javax.swing.JComboBox<>();
         lblTemperature2 = new javax.swing.JLabel();
         organizationBox = new javax.swing.JComboBox<>();
@@ -98,9 +96,6 @@ public class SignUpJPanel extends javax.swing.JPanel {
         lblName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblName.setText("Name");
 
-        lblCountry.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        lblCountry.setText("Country");
-
         lblUsername.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUsername.setText("Username");
@@ -124,12 +119,6 @@ public class SignUpJPanel extends javax.swing.JPanel {
         nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameFieldActionPerformed(evt);
-            }
-        });
-
-        countryField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                countryFieldActionPerformed(evt);
             }
         });
 
@@ -179,7 +168,6 @@ public class SignUpJPanel extends javax.swing.JPanel {
                                             .addComponent(lblUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblName, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblCountry, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lblTemperature1, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lblTemperature2, javax.swing.GroupLayout.Alignment.TRAILING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -187,7 +175,6 @@ public class SignUpJPanel extends javax.swing.JPanel {
                                             .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(passWordField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(organizationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(submitBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,17 +208,13 @@ public class SignUpJPanel extends javax.swing.JPanel {
                     .addComponent(lblName))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(countryField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCountry))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTemperature1))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTemperature2)
                     .addComponent(organizationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                .addGap(60, 60, 60)
                 .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -254,19 +237,12 @@ public class SignUpJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
 
-    private void countryFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_countryFieldActionPerformed
-
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here
-        Country country = business.getCountryDirectory().getCountryByName(countryField.getText());
-        Role.RoleType type = Role.getRoleTypeByValue(roleBox.getSelectedItem().toString());
-
-        Role role = Role.RoleTypeToRoleMapping.get(type);
+        Role.RoleType roleType = Role.getRoleTypeByValue(roleBox.getSelectedItem().toString());
         Organization org = business.getOrganizationDirectory().getOrgByName(organizationBox.getSelectedItem().toString()); 
         business.getUserAccountDirectory().createUserAccount(userNameField.getText(), 
-                passWordField.getText(), nameField.getText(), country, role, org);
+                passWordField.getText(), nameField.getText(), roleType, org);
         JOptionPane.showMessageDialog(null, "User successfully signed up!", "Info", JOptionPane.INFORMATION_MESSAGE);
         back();
     }//GEN-LAST:event_submitBtnActionPerformed
@@ -288,9 +264,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
-    private javax.swing.JTextField countryField;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel lblCountry;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTemperature1;

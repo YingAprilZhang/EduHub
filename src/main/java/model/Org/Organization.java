@@ -19,21 +19,12 @@ public class Organization {
      private Country country;
      private OrgType orgType;
 
-    Organization(String name, Country country, OrgType orgType) {
-        this.name = name;
-        this.country = country;
-        this.orgType = orgType;
-    }
      
      public enum OrgType{
         School,
         CharityEdu,
-        CharityFunding;
-    }
-
-     
-    public Organization(String name) {
-        this.name = name;
+        CharityFunding,
+        CountryEdu;
     }
 
     public String getName() {

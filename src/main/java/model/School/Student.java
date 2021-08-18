@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.DataMaintainer;
+package model.School;
 
 import model.UserAccount.UserAccount;
 
 /**
  *
- * @author changxu
+ * @author aprilyz
  */
-public class DataMaintainer extends UserAccount{
+public class Student extends UserAccount{
+    public int id;
+    public String gender;
     
 }

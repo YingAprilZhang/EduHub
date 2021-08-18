@@ -24,11 +24,11 @@ public class ConfigureASystem {
         //create user account
 
         
-       UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", SysAdminRole.getInstance());
-       UserAccount ua1 = business.getUserAccountDirectory().createUserAccount("charityedu", "charityedu", CharityEducationRole.getInstance());
-       UserAccount ua2 = business.getUserAccountDirectory().createUserAccount("fund", "fund", CharityFundingRole.getInstance());
-
-        return business;
+       UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", Role.RoleType.SysAdmin);
+       UserAccount ua1 = business.getUserAccountDirectory().createUserAccount("charityedu", "charityedu", Role.RoleType.CharityEdu);
+       UserAccount ua2 = business.getUserAccountDirectory().createUserAccount("fund", "fund", CharityFundingRole.RoleType.CharityFunding);
+        
+       return business;
     }
     
 }

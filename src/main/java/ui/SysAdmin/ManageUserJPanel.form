@@ -21,56 +21,61 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblTitle" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" alignment="0" pref="744" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnUpdate" min="-2" pref="154" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnSave" min="-2" pref="106" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnDelete" min="-2" pref="93" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblTitle" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="744" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnUpdate" min="-2" pref="154" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnSave" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnDelete" min="-2" pref="93" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblPassword" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblUsername" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="userNameField" min="-2" pref="210" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblPassword" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                                          <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="passWordField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                          <Component id="nameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="passWordField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                  <Component id="nameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblTemperature1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTemperature2" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="roleBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                  <Component id="organizationBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblTemperature2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="organizationBox" min="-2" pref="210" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblTemperature1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="roleBox" min="-2" pref="210" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
                               <Component id="btnAdd" min="-2" pref="217" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblUsername" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="userNameField" min="-2" pref="210" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                              <Component id="lblCountry" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="countryField" min="-2" pref="210" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -85,53 +90,40 @@
               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="243" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnUpdate" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="btnSave" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="btnDelete" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="lblUsername" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="userNameField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="countryField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="lblCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <Component id="jScrollPane1" min="-2" pref="243" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnUpdate" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="btnSave" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="btnDelete" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="lblUsername" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="userNameField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="roleBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="lblTemperature1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="passWordField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="lblPassword" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="lblTemperature2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="organizationBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="nameField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="passWordField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="lblPassword" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="lblTemperature2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="organizationBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="nameField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="btnAdd" min="-2" pref="44" max="-2" attributes="0"/>
-              <EmptySpace pref="86" max="32767" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -199,22 +191,16 @@
         <Component class="javax.swing.JTable" name="tblInfo">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="4">
+              <Table columnCount="5" rowCount="4">
                 <Column editable="true" title="User Name" type="java.lang.Object"/>
                 <Column editable="true" title="Password" type="java.lang.Object"/>
                 <Column editable="true" title="Name" type="java.lang.Object"/>
-                <Column editable="true" title="Country" type="java.lang.Object"/>
                 <Column editable="true" title="Role" type="java.lang.Object"/>
                 <Column editable="true" title="Organization" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -266,14 +252,6 @@
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCountry">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Country"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblUsername">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -305,11 +283,6 @@
     <Component class="javax.swing.JTextField" name="nameField">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="countryField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countryFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="roleBox">
