@@ -38,36 +38,36 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
     }
 
     public void refreshReceivedTable(){
-        DefaultTableModel model = (DefaultTableModel) tblReceived.getModel();
-        model.setRowCount(0);
-
-        for(Request r: countryManager.getRequestQueue()){
-            if(r.getReceiver() == account){
-                Object[] row = new Object[3];
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                row[0] = df.format(r.getRequestDate());
-                row[1] = r.getSender();
-                row[2] = r;
-                model.addRow(row);
-            }
-        }
+//        DefaultTableModel model = (DefaultTableModel) tblReceived.getModel();
+//        model.setRowCount(0);
+//
+//        for(Request r: countryManager.getRequestQueue()){
+//            if(r.getReceiver() == account){
+//                Object[] row = new Object[3];
+//                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                row[0] = df.format(r.getRequestDate());
+//                row[1] = r.getSender();
+//                row[2] = r;
+//                model.addRow(row);
+//            }
+//        }
     }
     
     public void refreshSentTable(){
-        DefaultTableModel model = (DefaultTableModel) tblReceived.getModel();
-        model.setRowCount(0);
-
-        for(Request r: countryManager.getRequestQueue()){
-            if(r.getSender() == account){
-                Object[] row = new Object[3];
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                row[0] = df.format(r.getRequestDate());
-                row[1] = r.getReceiver();
-                row[2] = r;
-                model.addRow(row);
-            }
-        }
-
+//        DefaultTableModel model = (DefaultTableModel) tblReceived.getModel();
+//        model.setRowCount(0);
+//
+//        for(Request r: countryManager.getRequestQueue()){
+//            if(r.getSender() == account){
+//                Object[] row = new Object[3];
+//                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                row[0] = df.format(r.getRequestDate());
+//                row[1] = r.getReceiver();
+//                row[2] = r;
+//                model.addRow(row);
+//            }
+//        }
+//
     }
     /**
      * This method is called from within the constructor to initialize the form.
