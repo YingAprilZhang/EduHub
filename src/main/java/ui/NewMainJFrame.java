@@ -281,7 +281,6 @@ public class NewMainJFrame extends javax.swing.JFrame {
     private void signOutLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signOutLblMouseClicked
         // TODO add your handling code here:
         mainPanel.removeAll();
-        JPanel blankJP = new JPanel();
         mainPanel.add("subMainPanel", subMainPanel);
         CardLayout crdLyt = (CardLayout) mainPanel.getLayout();
         crdLyt.next(mainPanel);

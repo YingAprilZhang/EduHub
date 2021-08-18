@@ -25,7 +25,6 @@ public class Country {
     CountryManager countryManager;
     List<School> schoolList;
     Map<Integer, MacroData> macroDataMap;
-    Map<Integer, EduData> eduDataMap;
     Accountant accountant;
     Double accountBalance;
     

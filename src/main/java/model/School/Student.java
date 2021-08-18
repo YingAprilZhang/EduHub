@@ -12,7 +12,15 @@ import model.UserAccount.UserAccount;
  * @author aprilyz
  */
 public class Student extends UserAccount{
-    public int id;
     public String gender;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
     
 }

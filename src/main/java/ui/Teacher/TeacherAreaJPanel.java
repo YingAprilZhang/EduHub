@@ -5,7 +5,14 @@
  */
 package ui.Teacher;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Business;
+import model.Country.Country;
+import model.School.EduData;
+import model.School.School;
+import model.School.Student;
 import model.UserAccount.UserAccount;
 
 /**
@@ -16,6 +23,7 @@ public class TeacherAreaJPanel extends javax.swing.JPanel {
 
     JPanel workArea;
     UserAccount account;
+    Business business = Business.getInstance();
     
     /**
      * Creates new form TeacherAreaJPanel
@@ -36,19 +44,381 @@ public class TeacherAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblInfo = new javax.swing.JTable();
+        btnAdd = new javax.swing.JButton();
+        lblTemperature1 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        yearField = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        studentField = new javax.swing.JTextField();
+        literacyField = new javax.swing.JTextField();
+        lblTemperature2 = new javax.swing.JLabel();
+        mathField = new javax.swing.JTextField();
+        scienceField = new javax.swing.JTextField();
+        btnUpdate = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        lblPassword1 = new javax.swing.JLabel();
+        genderField = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel3.setText("Manage Education Records");
+
+        tblInfo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Year", "Student", "Gender", "Literacy Score", "Math Score", "Science Score", "Total Score"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblInfo.setEnabled(false);
+        jScrollPane1.setViewportView(tblInfo);
+
+        btnAdd.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(132, 178, 205), 2, true));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        lblTemperature1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblTemperature1.setText("Math Score");
+
+        lblName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblName.setText("Literacy Score");
+
+        lblUsername.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUsername.setText("Year");
+
+        yearField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearFieldActionPerformed(evt);
+            }
+        });
+
+        lblPassword.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPassword.setText("Student Name");
+
+        studentField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentFieldActionPerformed(evt);
+            }
+        });
+
+        literacyField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                literacyFieldActionPerformed(evt);
+            }
+        });
+
+        lblTemperature2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblTemperature2.setText("Science Score");
+
+        mathField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mathFieldActionPerformed(evt);
+            }
+        });
+
+        scienceField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scienceFieldActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setText("Unlock/Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnSave.setText("Save");
+        btnSave.setEnabled(false);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        lblPassword1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblPassword1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPassword1.setText("Student Gender");
+
+        genderField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(yearField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(studentField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblPassword1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTemperature1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblName, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTemperature2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(mathField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(scienceField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(literacyField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(233, 233, 233)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(bg))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel3)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblUsername))
+                            .addComponent(yearField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(studentField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(literacyField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(mathField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTemperature1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(scienceField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTemperature2))))
+                .addGap(53, 53, 53)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        School school = (School)account.getOrganization();
+         
+        Student student = new Student();
+        student.setUsername(studentField.getText());
+        student.setPassword(studentField.getText());
+        student.setName(studentField.getText());
+        student.setGender(studentField.getText());
+        
+        school.name2student.put(student.getUsername(), student);
+        
+        EduData data = new EduData(Integer.valueOf(yearField.getText()), student
+                , Double.valueOf(literacyField.getText())
+                , Double.valueOf(mathField.getText())
+                , Double.valueOf(scienceField.getText()));
+       
+        school.eduDataMap.put(data.year, data);
+        JOptionPane.showMessageDialog(null, "Edu record added successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
+        refreshTable();
+        yearField.setText("");
+        literacyField.setText("");
+        mathField.setText("");
+        scienceField.setText("");
+        studentField.setText("");
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void yearFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearFieldActionPerformed
+
+    private void studentFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_studentFieldActionPerformed
+
+    private void literacyFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_literacyFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_literacyFieldActionPerformed
+
+    private void mathFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mathFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mathFieldActionPerformed
+
+    private void scienceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scienceFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scienceFieldActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        tblInfo.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnDelete.setEnabled(true);
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        saveInfo();
+
+        tblInfo.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnDelete.setEnabled(false);
+
+        JOptionPane.showMessageDialog(this, "Information saved.", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+        refreshTable();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int row = tblInfo.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE );
+            return;
+        }
+        UserAccount selectedRec = (UserAccount) tblInfo.getValueAt(row, 0);
+        business.getUserAccountDirectory().getUserAccountList().remove(selectedRec);
+        refreshTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void genderFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genderFieldActionPerformed
+
+     private void refreshTable(){
+         /*
+        DefaultTableModel model = (DefaultTableModel) tblInfo.getModel();
+        model.setRowCount(0);
+
+        for (UserAccount ua : business.getUserAccountDirectory().getUserAccountList()) {
+            Object row[] = new Object[5];
+            row[0] = ua;
+            row[1] = ua.getPassword();
+            row[2] = ua.getName();
+            row[3] = ua.getRole().getRoleType().getValue();
+            row[4] = ua.getOrganization() == null ? "" : ua.getOrganization().getName();
+            model.addRow(row);
+        }
+*/
+     }
+     
+     private void saveInfo() {
+         /*
+       DefaultTableModel model = (DefaultTableModel) tblInfo.getModel();
+       
+       for (int i = 0; i < model.getRowCount(); i++) {
+           UserAccount ua = business.getUserAccountDirectory().getUserAccountList().get(i);
+           ua.setUsername(tblInfo.getValueAt(i, 0).toString());
+           ua.setPassword(tblInfo.getValueAt(i, 1).toString());
+           ua.setName(tblInfo.getValueAt(i, 2).toString());
+           RoleType roleType = Role.getRoleTypeByValue(tblInfo.getValueAt(i, 3).toString());
+           Role role = Role.RoleTypeToRoleMapping.get(roleType);
+           ua.setRole(role);
+           ua.setOrganization(business.getOrganizationDirectory().getOrgByName(tblInfo.getValueAt(i, 4).toString()));
+       }
+*/
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bg;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JTextField genderField;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPassword1;
+    private javax.swing.JLabel lblTemperature1;
+    private javax.swing.JLabel lblTemperature2;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JTextField literacyField;
+    private javax.swing.JTextField mathField;
+    private javax.swing.JTextField scienceField;
+    private javax.swing.JTextField studentField;
+    private javax.swing.JTable tblInfo;
+    private javax.swing.JTextField yearField;
     // End of variables declaration//GEN-END:variables
 }
