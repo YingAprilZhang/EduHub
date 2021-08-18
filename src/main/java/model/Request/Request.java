@@ -8,6 +8,7 @@ package model.Request;
 import java.util.Date;
 import model.CharityEducationGroup.CharityEduGroup;
 import model.Company.Company;
+import model.Org.Organization;
 import model.Student.Student;
 import model.UserAccount.UserAccount;
 
@@ -16,15 +17,35 @@ import model.UserAccount.UserAccount;
  * @author changxu
  */
 public abstract class Request {
+    
+    public enum RequestType {
+        FundRequest("Funding Request"),
+        CompanyRequest("Employement Opportunity Request"),
+        EduRequest("Class and Teacher Request");
+        
+        private String value;
+
+        private RequestType(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+        
+    }
 
     public enum RequestStatusType {
-        SendingToCharityEduGroup("Sending to Charity Education"),
-        SendingToCharityFundGroup("Sending to Charity Funding"),
-        SendingToAccountant("sending to Accountant"),
-        Accept("Accept"),
-        Denied("Denied"),
-        SendingInterview("Sending Interview "),
-        AskForInterview("Ask for Interview");
+        Sent("Sent"),
+        AcceptCountryManager("Accepted by Country Manager"),
+        RejectCountryManager("Rejected by Country Manager"),
+        AcceptResourceProvider("Accepted by Resource Provider"),
+        RejectResourceProvider("Rejected by Resource Provider");
 
         private String value;
 
@@ -43,68 +64,37 @@ public abstract class Request {
 
     }
     
-        private Company company;
-    private Student student;
-    //private InterviewList interviewList;
-    private CharityEduGroup eduGroup;
-
-
     private String title;
     private String message;
-    private UserAccount sender;
-    private UserAccount receiver;
-    private String status;
+    private Organization principle;
+    private Organization countryManager;
+    private Organization resourceProvider;
+    private Organization worldManager;    
     private Date requestDate;
     private Date resolveDate;
-    
+    private RequestType requestType;
+    private RequestStatusType requestStatusType;
     
     public Request() {
         requestDate = new Date();
     }
+
+    public RequestType getRequestType() {
+        return requestType;
+    }
+
+    public RequestStatusType getRequestStatusType() {
+        return requestStatusType;
+    }
     
-    public Request(String message, Company company, Student student){
-        
-        this.message = message;
-        this.company = company;
-        this.student = student;
-        //this.interviewList = interviewList;
-        
+    public String getTitle() {
+        return title;
     }
 
-    public Company getCompany() {
-        return company;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-//    public InterviewList getInterviewList() {
-//        return interviewList;
-//    }
-//
-//    public void setInterviewList(InterviewList interviewList) {
-//        this.interviewList = interviewList;
-//   }
-
-    public CharityEduGroup getEduGroup() {
-        return eduGroup;
-    }
-
-    public void setEduGroup(CharityEduGroup eduGroup) {
-        this.eduGroup = eduGroup;
-    }
-
-    
-    
     public String getMessage() {
         return message;
     }
@@ -113,28 +103,36 @@ public abstract class Request {
         this.message = message;
     }
 
-    public UserAccount getSender() {
-        return sender;
+    public Organization getPrinciple() {
+        return principle;
     }
 
-    public void setSender(UserAccount sender) {
-        this.sender = sender;
+    public void setPrinciple(Organization principle) {
+        this.principle = principle;
     }
 
-    public UserAccount getReceiver() {
-        return receiver;
+    public Organization getCountryManager() {
+        return countryManager;
     }
 
-    public void setReceiver(UserAccount receiver) {
-        this.receiver = receiver;
+    public void setCountryManager(Organization countryManager) {
+        this.countryManager = countryManager;
     }
 
-    public String getStatus() {
-        return status;
+    public Organization getResourceProvider() {
+        return resourceProvider;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setResourceProvider(Organization resourceProvider) {
+        this.resourceProvider = resourceProvider;
+    }
+
+    public Organization getWorldManager() {
+        return worldManager;
+    }
+
+    public void setWorldManager(Organization worldManager) {
+        this.worldManager = worldManager;
     }
 
     public Date getRequestDate() {
@@ -152,15 +150,9 @@ public abstract class Request {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+        
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    
     @Override
 
     public String toString() {
