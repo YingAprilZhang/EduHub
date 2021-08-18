@@ -6,6 +6,8 @@
 package model.School;
 
 import java.util.List;
+import java.util.Map;
+import model.Country.Country;
 import model.Org.Organization;
 
 /**
@@ -14,24 +16,17 @@ import model.Org.Organization;
  */
 public class School extends Organization {
     public Principal principal;
-    public List<Student> studentList;
+    public Map<String, Student> name2student;
+    public Map<Integer, EduData> eduDataMap;
 
-    public Principal getPrincipal() {
-        return principal;
+    public Student getStudentByName(String name) {
+        Student c = name2student.get(name);
+        if (c == null) {
+            c = new Student();
+            c.setName(name);
+            
+            name2student.put(name, c);
+        }
+        return c;
     }
-
-    public void setPrincipal(Principal principal) {
-        this.principal = principal;
-    }
-
-    public List<Student> getStudentList() {
-        return studentList;
-    }
-
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
-    }
-    
-    
-    
 }

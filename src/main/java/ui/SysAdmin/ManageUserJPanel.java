@@ -27,7 +27,7 @@ public class ManageUserJPanel extends javax.swing.JPanel {
      * Creates new form ManageUserJPanel
      */
     public ManageUserJPanel(JPanel workArea) {
-         this.workArea = workArea;
+        this.workArea = workArea;
         initComponents();
         populateComboRole(); 
         populateComboOrganization(); 

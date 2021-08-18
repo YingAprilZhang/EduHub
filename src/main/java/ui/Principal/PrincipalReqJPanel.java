@@ -38,7 +38,7 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel3.setText("My Request Work Area");
+        jLabel3.setText("My Requests");
 
         tblSent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

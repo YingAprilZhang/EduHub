@@ -9,7 +9,6 @@ import java.util.Date;
 import model.CharityEducationGroup.CharityEduGroup;
 import model.Company.Company;
 import model.Org.Organization;
-import model.Student.Student;
 import model.UserAccount.UserAccount;
 
 /**
