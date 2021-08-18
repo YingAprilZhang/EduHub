@@ -23,18 +23,18 @@ public class ManageClassJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageClassJPanel
      */
-    JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     Business business;
-    //UserAccount account;
+    UserAccount account;
     CharityEduGroup eduGroup;
 
-    public ManageClassJPanel(JPanel userProcessContainer, Business business, CharityEduGroup eduGroup) {
+    public ManageClassJPanel(JPanel userProcessContainer, CharityEduGroup eduGroup) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.business = business;
+//        this.business = business;
         this.eduGroup = eduGroup;
 
-        lblName.setText(eduGroup.getCharityEduAccount().getUsername());
+        lblName.setText(eduGroup.getUsername());
 
         populateClass();
     }

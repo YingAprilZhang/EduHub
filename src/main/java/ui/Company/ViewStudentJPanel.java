@@ -6,8 +6,11 @@
 package ui.Company;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Business;
 import model.Request.Request;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -18,10 +21,14 @@ public class ViewStudentJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewStudentJPanel
      */
-    
-    
-    public ViewStudentJPanel() {
+    JPanel container;
+    UserAccount userAccount;
+    Business system;
+
+    public ViewStudentJPanel(JPanel container, UserAccount account, Business system) {
         initComponents();
+        this.container = container;
+        this.userAccount = account;
     }
 
     /**
@@ -140,15 +147,15 @@ public class ViewStudentJPanel extends javax.swing.JPanel {
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = tblStudent.getSelectedRow();
-        if ( selectedRowIndex < 0){
+        if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select an order first.");
             return;
-        } 
-        
+        }
+
         DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
-        Request selectedRequest = (Request)model.getValueAt(selectedRowIndex, 0);
-        
-        
+        Request selectedRequest = (Request) model.getValueAt(selectedRowIndex, 0);
+
+
     }//GEN-LAST:event_btnSendActionPerformed
 
 

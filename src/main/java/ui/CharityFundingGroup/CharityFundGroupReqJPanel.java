@@ -24,9 +24,14 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
 
     private Business system;
+    
+    
 
     public CharityFundGroupReqJPanel(JPanel userProcessContainer, UserAccount account, Business system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        
     }
 
     /**

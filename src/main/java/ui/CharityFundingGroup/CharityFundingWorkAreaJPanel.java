@@ -32,8 +32,9 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
-        this.account = account;
+        this.fundGroup = (CharityFundingGroup)account;
         
+        labelName.setText(fundGroup.getUsername());
     }
 
     /**
@@ -54,7 +55,6 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         logoRequest1 = new javax.swing.JLabel();
         lblReq = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        backLbl = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
@@ -73,7 +73,7 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         labelName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelName.setText("<value>");
         jPanel1.add(labelName);
-        labelName.setBounds(330, 270, 79, 40);
+        labelName.setBounds(299, 270, 150, 40);
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("Charity Funding Group:");
@@ -113,15 +113,6 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(80, 380, 60, 80);
 
-        backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
-        backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backLblMouseClicked(evt);
-            }
-        });
-        jPanel1.add(backLbl);
-        backLbl.setBounds(60, 60, 52, 52);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,11 +148,6 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_lblReqMouseClicked
 
-    private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
-        // TODO add your handling code here:
-        back();
-    }//GEN-LAST:event_backLblMouseClicked
-
     
     private void back() {
         userProcessContainer.remove(this);
@@ -170,7 +156,6 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
