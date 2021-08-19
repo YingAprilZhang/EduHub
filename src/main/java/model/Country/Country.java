@@ -33,8 +33,7 @@ public class Country {
     public Country(String name){
         this.name = name;
         this.schoolList = new ArrayList<>();
-        this.macroDataMap = new TreeMap<Integer, MacroData>();
-        this.eduDataMap = new TreeMap<Integer, EduData>();
+        this.macroDataMap = new TreeMap<Integer, MacroData>();        
         this.requestList = new ArrayList<Request>();
     }
 

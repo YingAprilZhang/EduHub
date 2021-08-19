@@ -214,7 +214,7 @@ public class MaintainRegionalDataJPanel extends javax.swing.JPanel {
 
         name10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        name10.setText("GDP");
+        name10.setText("GDP per capita");
         jLayeredPane1.add(name10);
         name10.setBounds(860, 510, 230, 17);
 
