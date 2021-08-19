@@ -8,7 +8,7 @@ package ui.Company;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.Business;
-import model.Company.Company;
+import model.Company.CompanyManager;
 import model.UserAccount.UserAccount;
 
 /**
@@ -26,13 +26,13 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
 
     Business system;
 
-    Company company;
+    CompanyManager company;
 
     public ManageRequestJPanel(JPanel container, UserAccount account, Business system) {
         initComponents();
         this.container = container;
         this.userAccount = account;
-        this.company = (Company) account;
+        this.company = (CompanyManager) account;
 
     }
 

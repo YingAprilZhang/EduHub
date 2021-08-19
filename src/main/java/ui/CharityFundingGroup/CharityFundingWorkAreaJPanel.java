@@ -8,7 +8,7 @@ package ui.CharityFundingGroup;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.Business;
-import model.CharityFundingGroup.CharityFundingGroup;
+import model.CharityFundingGroup.CharityFundingManager;
 import model.UserAccount.UserAccount;
 
 /**
@@ -24,7 +24,7 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Business business;
-    CharityFundingGroup fundGroup;
+    CharityFundingManager fundGroup;
     UserAccount account;
     
     
@@ -32,7 +32,7 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
-        this.fundGroup = (CharityFundingGroup)account;
+        this.fundGroup = (CharityFundingManager)account;
         
         labelName.setText(fundGroup.getUsername());
     }
@@ -133,7 +133,7 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
 
     private void lblfundMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfundMouseClicked
         // TODO add your handling code here:
-        ManageFundingJPanel mfjp = new ManageFundingJPanel(userProcessContainer, account, business);
+        ManageFundingJPanel mfjp = new ManageFundingJPanel(userProcessContainer, account, fundGroup);
         userProcessContainer.add(mfjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -8,7 +8,7 @@ package ui.CharityFundingGroup;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.Business;
-import model.CharityFundingGroup.CharityFundingGroup;
+import model.CharityFundingGroup.CharityFundingManager;
 import model.UserAccount.UserAccount;
 
 /**
@@ -21,14 +21,20 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
      * Creates new form ManageFundingJPanel
      */
     JPanel userProcessContainer;
-    Business business;
+    Business business = Business.getInstance();
     UserAccount account;
-    CharityFundingGroup fundGroup;
+    CharityFundingManager fundGroup;
     
-    public ManageFundingJPanel(JPanel userProcessContainer,UserAccount account, Business business) {
+    public ManageFundingJPanel(JPanel userProcessContainer,UserAccount account, CharityFundingManager fundGroup) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.business = business;
+        
+//        this.account = account;
+        this.fundGroup = (CharityFundingManager)account;
+        
+        
+       lblName.setText(String.valueOf(fundGroup.getFund()));
+        
         
     }
 
@@ -49,8 +55,10 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFund = new javax.swing.JTextField();
         backLbl = new javax.swing.JLabel();
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
@@ -58,12 +66,12 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
         jLabel1.setText("Manage Charity Funding");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Charity Funding Group: ");
+        jLabel2.setText("Charity Funding: ");
 
         lblName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblName.setText("<Value>");
 
-        btnAdd.setText("Add Fund");
+        btnAdd.setText("Update");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -77,11 +85,11 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Funding Value:");
+        jLabel3.setText("New Funding Value:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtFund.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtFundActionPerformed(evt);
             }
         });
 
@@ -99,31 +107,34 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(272, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(244, 244, 244))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(219, 219, 219)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtFund, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
                                         .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(18, 18, 18)
                                         .addComponent(lblName))
                                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(275, 275, 275)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
                                 .addComponent(backLbl)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(272, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(244, 244, 244))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(368, 368, 368)))))
                 .addComponent(bg))
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,11 +151,11 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lblName))
-                .addGap(96, 96, 96)
+                .addGap(101, 101, 101)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(139, 139, 139)
+                    .addComponent(txtFund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(138, 138, 138)
                 .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack)
@@ -175,10 +186,10 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-//        AddClassJPanel acjp = new AddClassJPanel(userProcessContainer, eduGroup);
-//        userProcessContainer.add("AddClassJPanel",acjp);
-//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        int newFund = Integer.valueOf(txtFund.getText());
+        
+        fundGroup.addNewFund(newFund);
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -186,9 +197,9 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
         backAction();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtFundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFundActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtFundActionPerformed
 
     private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
         // TODO add your handling code here:
@@ -217,7 +228,7 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblName;
+    private javax.swing.JTextField txtFund;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,9 +7,9 @@ package model.UserAccount;
 
 import java.util.ArrayList;
 import model.Accountant.Accountant;
-import model.CharityEducationGroup.CharityEduGroup;
-import model.CharityFundingGroup.CharityFundingGroup;
-import model.Company.Company;
+import model.CharityEducationGroup.CharityEduManager;
+import model.CharityFundingGroup.CharityFundingManager;
+import model.Company.CompanyManager;
 import model.Country.Country;
 import model.CountryManager.CountryManager;
 import model.DataMaintainer.DataMaintainer;
@@ -69,13 +69,13 @@ public class UserAccountDirectory {
                 userAccount = new DataMaintainer();
                 break;
             case CharityEdu:
-                userAccount = new CharityEduGroup();
+                userAccount = new CharityEduManager();
                 break;
             case CharityFunding:
-                userAccount = new CharityFundingGroup();
+                userAccount = new CharityFundingManager();
                 break;    
             case CompanyRole:
-                userAccount = new Company();
+                userAccount = new CompanyManager();
                 break;
             case Student:
                 userAccount = new Student();

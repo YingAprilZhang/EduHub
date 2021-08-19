@@ -8,7 +8,7 @@ package ui.CharityEducationGroup;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.Business;
-import model.CharityEducationGroup.CharityEduGroup;
+import model.CharityEducationGroup.CharityEduManager;
 import model.UserAccount.UserAccount;
 
 /**
@@ -23,7 +23,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 
     Business system;
 
-    CharityEduGroup eduGroup;
+    CharityEduManager eduGroup;
 
     /**
      * Creates new form ChrityEduGroupJPanel
@@ -32,7 +32,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         initComponents();
         this.container = container;
         this.userAccount = account;
-        this.eduGroup = (CharityEduGroup) account;
+        this.eduGroup = (CharityEduManager) account;
 
         //populateComboSchools();
     }

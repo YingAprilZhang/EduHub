@@ -6,7 +6,7 @@
 package model.Org;
 
 import java.util.ArrayList;
-import model.CharityEducationGroup.CharityEduGroup;
+import model.CharityEducationGroup.CharityEduManager;
 import model.Country.Country;
 import model.CountryEdu.CountryEdu;
 import model.School.School;
