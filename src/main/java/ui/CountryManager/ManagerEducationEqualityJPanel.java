@@ -20,7 +20,14 @@ import model.UserAccount.UserAccount;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
+import org.jfree.chart.labels.StandardXYItemLabelGenerator;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
+import org.jfree.data.RangeType;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -89,24 +96,71 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
                 break;                                
             
         };
-                
+        
+        Integer lowerX = 0;
+        Integer upperX = 0;
+        Double lowerY = 0.0D;
+        Double upperY = 0.0D;
+        Integer count = 0;
+        
         XYSeriesCollection collection = new XYSeriesCollection();
         
         XYSeries maleSeries = new XYSeries("MaleEducationEquality");
         for(Integer year: maleDataMap.keySet()){
             maleSeries.add(year, maleDataMap.get(year));
+            if(count == 0){
+                lowerX = year;
+                upperX = year;
+                lowerY = maleDataMap.get(year);
+                upperY = maleDataMap.get(year);
+            }            
+            if(year < lowerX){
+                lowerX = year;
+            }else if(year > upperX){
+                upperX = year;
+            }
+            if(maleDataMap.get(year) < lowerY){
+                lowerY = maleDataMap.get(year);
+            }else if(maleDataMap.get(year) > upperY){
+                upperY = maleDataMap.get(year);
+            }
+            count ++;
         }
-        collection.addSeries(maleSeries);
+        count = 0;
+        collection.addSeries(maleSeries);        
         
         XYSeries femaleSeries = new XYSeries("femaleEducationEquality");
         for(Integer year: femaleDataMap.keySet()){
-            maleSeries.add(year, femaleDataMap.get(year));
+            femaleSeries.add(year, femaleDataMap.get(year));
+            if(year < lowerX){
+                lowerX = year;
+            }else if(year > upperX){
+                upperX = year;
+            }
+            if(femaleDataMap.get(year) < lowerY){
+                lowerY = femaleDataMap.get(year);
+            }else if(femaleDataMap.get(year) > upperY){
+                upperY = femaleDataMap.get(year);
+            }            
         }
         collection.addSeries(femaleSeries);
         
-        JFreeChart lineChart = ChartFactory.createXYLineChart(indicatorName + "Fluctuation", "Year", "Value",
+        JFreeChart lineChart = ChartFactory.createXYLineChart(indicatorName + " Fluctuation", "Year", "Value",
                 collection, PlotOrientation.VERTICAL, true, true, false);
         
+        XYPlot plot = (XYPlot) lineChart.getPlot();
+        
+        NumberAxis xAxis = (NumberAxis) plot.getDomainAxis();
+        xAxis.setTickUnit(new NumberTickUnit(1));
+        xAxis.setRange(lowerX-1,upperX+1);
+        
+        NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
+        yAxis.setRange(lowerY - (upperY-lowerY)/2,upperY + (upperY-lowerY)/2);
+        
+        XYItemRenderer renderer = (XYItemRenderer) plot.getRenderer();
+        renderer.setBaseItemLabelGenerator(new StandardXYItemLabelGenerator());
+        renderer.setBaseItemLabelsVisible(Boolean.TRUE);
+                        
         ChartPanel lineChartPanel = new ChartPanel(lineChart);
         chartPanel.removeAll();
         chartPanel.add(lineChartPanel, BorderLayout.CENTER);
@@ -161,18 +215,22 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1345, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRefresh))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRefresh)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1368, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,9 +245,9 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
                     .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRefresh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138))
+                .addGap(35, 35, 35)
+                .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(146, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
