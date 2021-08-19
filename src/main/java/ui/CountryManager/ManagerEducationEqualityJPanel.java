@@ -82,18 +82,18 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
                 break;
             case "Math Score" :
                 indicatorName = "Math Score";
-                maleDataMap = EduDataAnalyze.getAvgMathScoreMale(country);
-                femaleDataMap = EduDataAnalyze.getAvgMathScoreFemale(country);
+                maleDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "math", "Male");
+                femaleDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "math", "Female");
                 break;
             case "Literacy Score" :
                 indicatorName = "Literacy Score";
-                maleDataMap = EduDataAnalyze.getAvgLiteracyScoreMale(country);
-                femaleDataMap = EduDataAnalyze.getAvgLiteracyScoreFemale(country);
+                maleDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "reading", "Male");
+                femaleDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "reading", "Female");
                 break;
             case "Science Score" :
                 indicatorName = "Science Score";
-                maleDataMap = EduDataAnalyze.getAvgScienceScoreMale(country);
-                femaleDataMap = EduDataAnalyze.getAvgScienceScoreFemale(country);
+                maleDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "science", "Male");
+                femaleDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "science", "Female");
                 break;                                
             
         };
