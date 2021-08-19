@@ -11,7 +11,7 @@ import model.UserAccount.UserAccount;
  *
  * @author kkkkayla
  */
-public class Company extends UserAccount{
+public class CompanyManager extends UserAccount{
     private Job Job;
 
     public Job getJob() {

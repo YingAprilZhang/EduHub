@@ -12,5 +12,5 @@ import model.Org.Organization;
  * @author kkkkayla
  */
 public class CharityFundingOrganization extends Organization{
-    private CharityFundingGroup charityFund;
+    private CharityFundingManager charityFund;
 }

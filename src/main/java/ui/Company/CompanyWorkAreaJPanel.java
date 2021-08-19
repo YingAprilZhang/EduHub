@@ -8,7 +8,7 @@ package ui.Company;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.Business;
-import model.Company.Company;
+import model.Company.CompanyManager;
 import model.UserAccount.UserAccount;
 
 /**
@@ -22,7 +22,7 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Business business;
-    Company company;
+    CompanyManager company;
     UserAccount account;
 
     public CompanyWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
@@ -30,7 +30,7 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.account = account;
-        this.company = (Company) account;
+        this.company = (CompanyManager) account;
 
         lblCompany.setText(company.getUsername());
 
@@ -82,7 +82,7 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setText("Company:");
 
         lblViewData.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        lblViewData.setText("View Student Data");
+        lblViewData.setText("View School Data");
         lblViewData.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblViewDataMouseClicked(evt);
@@ -182,7 +182,10 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
 
     private void lblReqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReqMouseClicked
         // TODO add your handling code here:
-
+        ManageRequestJPanel cegrjp = new ManageRequestJPanel(userProcessContainer, account, business);
+        userProcessContainer.add(cegrjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_lblReqMouseClicked
 
 

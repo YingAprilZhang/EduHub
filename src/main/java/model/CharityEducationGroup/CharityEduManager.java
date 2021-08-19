@@ -11,7 +11,7 @@ import model.UserAccount.UserAccount;
  *
  * @author kkkkayla
  */
-public class CharityEduGroup extends UserAccount{
+public class CharityEduManager extends UserAccount{
     
     private EduClass eduClass;
 

@@ -12,5 +12,5 @@ import model.Org.Organization;
  * @author kkkkayla
  */
 public class BusinessOrganization extends Organization {
-    private Company company;
+    private CompanyManager company;
 }

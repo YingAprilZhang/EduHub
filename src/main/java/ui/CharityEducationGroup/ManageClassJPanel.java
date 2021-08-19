@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Business;
-import model.CharityEducationGroup.CharityEduGroup;
+import model.CharityEducationGroup.CharityEduManager;
 import model.CharityEducationGroup.SingleClass;
 import model.UserAccount.UserAccount;
 
@@ -23,20 +23,22 @@ public class ManageClassJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageClassJPanel
      */
-    private JPanel userProcessContainer;
-    Business business;
+    JPanel userProcessContainer;
     UserAccount account;
-    CharityEduGroup eduGroup;
+    CharityEduManager eduGroup;
+    Business business = Business.getInstance();
 
-    public ManageClassJPanel(JPanel userProcessContainer, CharityEduGroup eduGroup) {
+    public ManageClassJPanel(JPanel userProcessContainer, UserAccount account, CharityEduManager eduGroup) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-//        this.business = business;
-        this.eduGroup = eduGroup;
+        Business business = Business.getInstance();
+        
+        this.eduGroup = (CharityEduManager) account;
 
+        System.out.println(">>>>>>>>>>" + eduGroup.getUsername());
         lblName.setText(eduGroup.getUsername());
 
-        populateClass();
+        //populateClass();
     }
 
     /**
@@ -58,7 +60,6 @@ public class ManageClassJPanel extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         backLbl = new javax.swing.JLabel();
-        buttonBack = new javax.swing.JButton();
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
@@ -128,13 +129,6 @@ public class ManageClassJPanel extends javax.swing.JPanel {
             }
         });
 
-        buttonBack.setText("Back");
-        buttonBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBackActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,8 +154,7 @@ public class ManageClassJPanel extends javax.swing.JPanel {
                                     .addGap(251, 251, 251)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(backLbl)
-                            .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(backLbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)))
                 .addComponent(bg))
         );
@@ -186,15 +179,13 @@ public class ManageClassJPanel extends javax.swing.JPanel {
                     .addComponent(btnAdd)
                     .addComponent(btnDelete)
                     .addComponent(btnEdit))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonBack)
-                .addGap(59, 59, 59))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        AddClassJPanel acjp = new AddClassJPanel(userProcessContainer, eduGroup);
+        AddClassJPanel acjp = new AddClassJPanel(userProcessContainer,account, eduGroup);
         userProcessContainer.add("AddClassJPanel", acjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -238,11 +229,6 @@ public class ManageClassJPanel extends javax.swing.JPanel {
         back();
     }//GEN-LAST:event_backLblMouseClicked
 
-    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        // TODO add your handling code here:
-        backAction();
-    }//GEN-LAST:event_buttonBackActionPerformed
-
     public void populateClass() {
         DefaultTableModel model = (DefaultTableModel) tblClass.getModel();
         model.setRowCount(0);
@@ -260,12 +246,7 @@ public class ManageClassJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }
-    
-    private void backAction(){
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLbl;
@@ -273,7 +254,6 @@ public class ManageClassJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton buttonBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

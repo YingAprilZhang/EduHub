@@ -6,8 +6,8 @@
 package model.Request;
 
 import java.util.Date;
-import model.CharityEducationGroup.CharityEduGroup;
-import model.Company.Company;
+import model.CharityEducationGroup.CharityEduManager;
+import model.Company.CompanyManager;
 import model.Org.Organization;
 import model.UserAccount.UserAccount;
 

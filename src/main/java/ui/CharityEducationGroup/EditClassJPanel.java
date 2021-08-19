@@ -9,7 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.CharityEducationGroup.CharityEduGroup;
+import model.CharityEducationGroup.CharityEduManager;
 import model.CharityEducationGroup.SingleClass;
 
 /**
@@ -22,10 +22,10 @@ public class EditClassJPanel extends javax.swing.JPanel {
      * Creates new form EditClassJPanel
      */
     JPanel userProcessContainer;
-    CharityEduGroup eduGroup;
+    CharityEduManager eduGroup;
     SingleClass singleClass;
     
-    public EditClassJPanel(JPanel userProcessContainer,CharityEduGroup eduGroup, SingleClass singleClass ) {
+    public EditClassJPanel(JPanel userProcessContainer,CharityEduManager eduGroup, SingleClass singleClass ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.eduGroup = eduGroup;

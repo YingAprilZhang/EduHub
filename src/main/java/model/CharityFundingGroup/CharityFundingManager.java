@@ -11,19 +11,23 @@ import model.UserAccount.UserAccount;
  *
  * @author kkkkayla
  */
-public class CharityFundingGroup extends UserAccount{
+public class CharityFundingManager extends UserAccount{
     
-    private int fund;
+    private int fund = 10000000;
 
 
     public int getFund() {
         return fund;
     }
 
-    public void setFund(int fund) {
-        this.fund = fund;
-    }
+   
     
+    
+    public int addNewFund(int newFund){
+        this.fund = fund + newFund;
+        return fund;
+        
+    }
     
     @Override 
     public String toString(){
