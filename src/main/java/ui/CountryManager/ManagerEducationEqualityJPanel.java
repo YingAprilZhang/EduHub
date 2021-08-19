@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Country.Country;
 import model.DataAnalyze.EduDataAnalyze;
@@ -97,6 +98,11 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
             
         };
         
+        if(maleDataMap.size() == 0 || femaleDataMap.size() == 0){
+            JOptionPane.showMessageDialog(this, "No data yet.");
+            return;
+        }
+        
         Integer lowerX = 0;
         Integer upperX = 0;
         Double lowerY = 0.0D;
@@ -105,7 +111,7 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
         
         XYSeriesCollection collection = new XYSeriesCollection();
         
-        XYSeries maleSeries = new XYSeries("MaleEducationEquality");
+        XYSeries maleSeries = new XYSeries("Male");
         for(Integer year: maleDataMap.keySet()){
             maleSeries.add(year, maleDataMap.get(year));
             if(count == 0){
@@ -129,7 +135,7 @@ public class ManagerEducationEqualityJPanel extends javax.swing.JPanel {
         count = 0;
         collection.addSeries(maleSeries);        
         
-        XYSeries femaleSeries = new XYSeries("femaleEducationEquality");
+        XYSeries femaleSeries = new XYSeries("Female");
         for(Integer year: femaleDataMap.keySet()){
             femaleSeries.add(year, femaleDataMap.get(year));
             if(year < lowerX){
