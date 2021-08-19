@@ -36,7 +36,8 @@ public class OrganizationDirectory {
         Organization o;
           switch (type) {
             case School:
-                o = new School();
+                o = new School(country);
+                country.getSchoolList().add((School) o);
                 break;
             /*
             case CharityEdu:

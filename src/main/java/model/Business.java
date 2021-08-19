@@ -29,6 +29,7 @@ public class Business {
     }
 
     public Business() {
+        FAKER = new Faker(); 
         this.userAccountDirectory =  new UserAccountDirectory();
         this.countryDirectory =  new CountryDirectory();
         this.organizationDirectory =  new OrganizationDirectory();
