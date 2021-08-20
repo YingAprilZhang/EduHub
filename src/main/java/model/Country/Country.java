@@ -352,7 +352,14 @@ public class Country {
         return requestList;
     }
     
-    
+    public School getSchoolByName(String name){
+        for(School s:schoolList){
+            if(s.getName().equals(name)){
+                return s;
+            }
+        }
+        return null;
+    }
     
     @Override
     public String toString(){

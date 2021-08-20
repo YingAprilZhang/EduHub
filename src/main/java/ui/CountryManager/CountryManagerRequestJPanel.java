@@ -44,17 +44,14 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(Request r: country.getRequestList()){
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             row[0] = df.format(r.getRequestDate());
             row[1] = r.getRequestType().toString();
-            if(r.getWorldManager() != null){
-                row[2] = r.getWorldManager();
-            }else{
-                row[2] = r.getSchool();
-            }
-            row[3] = r.getTitle()==null?"":r.getResourceProvider().getName();
-            row[4] = r.getRequestStatusType().toString();
+            row[2] = r.getSchool()==null?"":r.getSchool();
+            row[3] = r.getResourceProvider()==null?"":r.getResourceProvider().getName();
+            row[4] = r.getTitle()==null?"":r.getTitle();
+            row[5] = r.getRequestStatusType().toString();
             model.addRow(row);
         }
         
@@ -89,7 +86,7 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Request Date", "Request Type", "Sender", "Title", "Status"
+                "Request Date", "Request Type", "School", "Provider", "Title", "Status"
             }
         ));
         jScrollPane2.setViewportView(tblRequest);
@@ -172,6 +169,10 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
+        CountryManagerCreateReqJPanel cmcrj = (CountryManagerCreateReqJPanel) new CountryManagerCreateReqJPanel(userProcessContainer, account);
+        userProcessContainer.add("CountryManagerCreateReqJPanel", cmcrj);
+        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+        crdLyt.next(userProcessContainer);        
         
     }//GEN-LAST:event_btnCreateActionPerformed
 

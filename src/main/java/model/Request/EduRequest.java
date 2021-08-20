@@ -10,5 +10,15 @@ package model.Request;
  * @author changxu
  */
 public class EduRequest extends Request{
+    String ClassName;
+
+    public String getClassName() {
+        return ClassName;
+    }
+
+    public void setClassName(String ClassName) {
+        this.ClassName = ClassName;
+    }
+    
     
 }

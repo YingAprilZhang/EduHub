@@ -10,5 +10,24 @@ package model.Request;
  * @author changxu
  */
 public class CompanyRequest extends Request{
+    String jobName;
+    int chance;
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
+
+    public int getChance() {
+        return chance;
+    }
+
+    public void setChance(int chance) {
+        this.chance = chance;
+    }
+    
     
 }
