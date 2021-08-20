@@ -51,7 +51,7 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
             if(r.getWorldManager() != null){
                 row[2] = r.getWorldManager();
             }else{
-                row[2] = r.getPrinciple();
+                row[2] = r.getSchool();
             }
             row[3] = r.getTitle();
             row[4] = r.getRequestStatusType().toString();

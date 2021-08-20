@@ -5,10 +5,15 @@
  */
 package ui.Principal;
 
+import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Country.Country;
+import model.Request.CompanyRequest;
+import model.Request.EduRequest;
+import model.Request.FundRequest;
 import model.Request.Request;
 import model.UserAccount.UserAccount;
 
@@ -25,12 +30,15 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PrincipalRequestJPanel
      */
-    public PrincipalReqJPanel(UserAccount account ,JPanel workArea) {
+    public PrincipalReqJPanel(JPanel workArea, UserAccount account) {
         initComponents();
         
         this.account = account;
         this.workArea = workArea;
         this.country = account.getOrganization().getCountry();
+        
+        refreshRequestTable();
+        populateTypeCombo();
     }
 
     /**
@@ -49,13 +57,15 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
         tblSent = new javax.swing.JTable();
         btnViewSent = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        titleField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        typeBox = new javax.swing.JComboBox<>();
+        amountField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -69,7 +79,7 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Title", "Req Type", "Status", "Req Date", "Resolve Date"
+                "Title", "Req Type", "Status", "Provider", "Req Date", "Resolve Date"
             }
         ));
         jScrollPane2.setViewportView(tblSent);
@@ -100,11 +110,14 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel4.setText("Message");
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        typeBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                typeBoxActionPerformed(evt);
             }
         });
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel5.setText("Amount");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,37 +128,43 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(61, 61, 61)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(33, 33, 33)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(btnViewSent)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(217, 217, 217)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(104, 104, 104)
-                                .addComponent(jLabel2)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(347, 347, 347)
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(55, 55, 55)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(201, 201, 201)
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(bg))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(bg)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addGap(0, 37, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(jLabel3)
@@ -153,18 +172,23 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnViewSent, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(30, 30, 30)
-                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(30, 30, 30)
+                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -172,68 +196,110 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewSentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSentActionPerformed
         // TODO add your handling code here:
+        PrincipalViewReqJPanel prvjp = new PrincipalViewReqJPanel(workArea, account);
+        workArea.add("PrincipalViewReqJPanel",prvjp);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
     }//GEN-LAST:event_btnViewSentActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        
+        Request.RequestType type = Request.getReqTypeByName(typeBox.getSelectedItem().toString());
+        if (null != type) {
+            switch (type) {
+                case CompanyRequest:
+                    CompanyRequest cr = new CompanyRequest();
+                    cr.setTitle(titleField.getText());
+                    cr.setMessage(jTextPane1.getText());
+                    cr.setSchool(account.getOrganization());
+                    cr.setRequestType(type);
+                    cr.setRequestStatusType(Request.RequestStatusType.Sent);
+                    country.getRequestList().add(cr);
+                    break;
+                case EduRequest:
+                    EduRequest er = new EduRequest();
+                    er.setTitle(titleField.getText());
+                    er.setMessage(jTextPane1.getText());
+                    er.setSchool(account.getOrganization());
+                    er.setRequestType(type);
+                    er.setRequestStatusType(Request.RequestStatusType.Sent);
+                    country.getRequestList().add(er);
+                    break;
+                case FundRequest:
+                    FundRequest fr = new FundRequest();
+                    fr.setTitle(titleField.getText());
+                    fr.setMessage(jTextPane1.getText());
+                    fr.setSchool(account.getOrganization());
+                    fr.setRequestType(type);
+                    fr.setRequestStatusType(Request.RequestStatusType.Sent);
+                    fr.setFundingAmount(Double.valueOf(amountField.getText()));
+                    country.getRequestList().add(fr);
+                    break;
+                default:
+                    break;
+            }
+        }  
+        refreshRequestTable();
+        JOptionPane.showMessageDialog(this, "Request added!", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void typeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_typeBoxActionPerformed
 
+     public void populateTypeCombo(){
+        typeBox.removeAllItems();
+        for (Request.RequestType type : Request.RequestType.values()) {
+            typeBox.addItem(type.name());
+        }
+     }
+     
     public void refreshRequestTable(){
         DefaultTableModel model = (DefaultTableModel) tblSent.getModel();
         model.setRowCount(0);
         
         for(Request r: country.getRequestList()){
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Object[] row = new Object[5];
-            row[0] = r.getTitle();
-            row[1] = r.getRequestType().toString();
-            row[2] = r.getRequestStatusType().toString();
-            row[3] = df.format(r.getRequestDate());
-            
-            if(r.getWorldManager() != null){
-                row[2] = r.getWorldManager();
-            }else{
-                row[2] = r.getPrinciple();
+            if (r.getSchool().getName().equals(account.getOrganization().getName())) {
+                Object[] row = new Object[6];
+                row[0] = r.getTitle()==null?"":r.getTitle();
+                row[1] = r.getRequestType().toString();
+                row[2] = r.getRequestStatusType().toString();
+                row[3] = r.getResourceProvider()==null?"":r.getResourceProvider().getName();
+                row[4] = df.format(r.getRequestDate());
+                row[5] = r.getResolveDate()==null?"":df.format(r.getResolveDate());
+
+                model.addRow(row);
             }
-           
-            
-            model.addRow(row);
         }
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField amountField;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnViewSent;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTable tblSent;
+    private javax.swing.JTextField titleField;
+    private javax.swing.JComboBox<String> typeBox;
     // End of variables declaration//GEN-END:variables
 }
