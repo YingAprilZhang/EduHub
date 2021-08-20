@@ -35,9 +35,11 @@ public class EduClass {
     }
 
     public SingleClass addNewClass(String name) {
+        System.out.println(">>> xxx in");
         SingleClass newClass = new SingleClass(name, classCount);
         classList.add(newClass);
         classCount++;
+        System.out.println(">>> xxx nc: " + newClass);
         return newClass;
     }
 

@@ -14,6 +14,11 @@ import model.UserAccount.UserAccount;
 public class CharityEduManager extends UserAccount{
     
     private EduClass eduClass;
+    
+    public CharityEduManager(){
+        
+        this.eduClass = new EduClass();
+    }
 
     public EduClass getEduClass() {
         return eduClass;
