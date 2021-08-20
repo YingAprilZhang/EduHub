@@ -30,7 +30,7 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         
 //        this.account = account;
-        this.fundGroup = (CharityFundingManager)account;
+        this.fundGroup = fundGroup;
         
         
        lblName.setText(String.valueOf(fundGroup.getFund()));

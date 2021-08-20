@@ -31,8 +31,8 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
         this.account = account;
         this.userProcessContainer = userProcessContainer;
         this.eduGroup = new CharityEduManager();
-        //this.eduGroup.setUsername(account.getUsername());
-        this.eduGroup= (CharityEduManager)account;
+        this.eduGroup.setUsername(account.getUsername());
+        ///this.eduGroup= (CharityEduManager)account;
         //System.out.println("xoxo>>>>>>>>>"+ this.eduGroup.getUsername());
         //System.out.println(">>>>>>>>>> wajpxoxo: " + this.eduGroup.getEduClass());
         labelName.setText(this.eduGroup.getUsername());
