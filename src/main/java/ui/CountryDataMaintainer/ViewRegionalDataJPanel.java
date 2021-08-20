@@ -351,7 +351,7 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
             return;
         }
 
-        if(txtYear.getText().isBlank()){
+        if(txtYear.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Please make sure to enter all data.");
             return;
         }

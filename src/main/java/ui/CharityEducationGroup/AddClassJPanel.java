@@ -25,17 +25,14 @@ public class AddClassJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Business business = Business.getInstance();
-    UserAccount account;
     CharityEduManager eduGroup;
 
-    public AddClassJPanel(JPanel userProcessContainer, UserAccount account, CharityEduManager eduGroup) {
+    public AddClassJPanel(JPanel userProcessContainer, CharityEduManager eduGroup) {
         initComponents();
 
         this.userProcessContainer = userProcessContainer;
         
-        this.account = account;
-
-        this.eduGroup = (CharityEduManager) account;
+        this.eduGroup = eduGroup;
 
        // System.out.println(">>>>>>>>>>" + eduGroup.getUsername());
 

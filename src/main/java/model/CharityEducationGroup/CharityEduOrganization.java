@@ -14,4 +14,11 @@ import model.Org.Organization;
  */
 public class CharityEduOrganization extends Organization{
     private CharityEduManager charityEdu;
+
+    public CharityEduOrganization() {
+        
+        
+    }
+    
+    
 }

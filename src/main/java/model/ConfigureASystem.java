@@ -1,5 +1,6 @@
 package model;
 
+import model.Org.Organization;
 import model.Role.CharityEducationRole;
 import model.Role.CharityFundingRole;
 import model.UserAccount.UserAccount;
@@ -21,11 +22,7 @@ public class ConfigureASystem {
         //initialize some organizations
         //have some employees 
         //create user account
-        UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", Role.RoleType.SysAdmin);
-        UserAccount ua1 = business.getUserAccountDirectory().createUserAccount("edu", "edu", Role.RoleType.CharityEdu);
-        UserAccount ua2 = business.getUserAccountDirectory().createUserAccount("fund", "fund", CharityFundingRole.RoleType.CharityFunding);
-        UserAccount ua3 = business.getUserAccountDirectory().createUserAccount("com", "com", Role.RoleType.CompanyRole);
-
+        UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", "", Role.RoleType.SysAdmin, new Organization());
         return business;
     }
 

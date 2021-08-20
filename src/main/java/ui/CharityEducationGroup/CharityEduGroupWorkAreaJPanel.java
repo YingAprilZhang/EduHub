@@ -17,20 +17,18 @@ import model.UserAccount.UserAccount;
  * @author kkkkayla
  */
 public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form CharityGroupLoginJPanel
      */
     JPanel userProcessContainer;
-    Business business;
+    Business business = Business.getInstance();
     CharityEduManager eduGroup;
-    UserAccount account;
 
     public CharityEduGroupWorkAreaJPanel(JPanel userProcessContainer,UserAccount account) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.business = business;
         this.eduGroup= (CharityEduManager)account;
         labelName.setText(eduGroup.getUsername());
         
@@ -135,7 +133,7 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageClass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageClass1ActionPerformed
         // TODO add your handling code here:
-        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, account, eduGroup);
+        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, eduGroup);
         userProcessContainer.add(mcjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -157,7 +155,7 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
 
     private void lblManageClassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageClassMouseClicked
         // TODO add your handling code here:
-        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer,account, eduGroup);
+        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, eduGroup);
         userProcessContainer.add(mcjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -175,7 +173,7 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        CharityEduGroupReqJPanel cegrjp = new CharityEduGroupReqJPanel(userProcessContainer, account, business);
+        CharityEduGroupReqJPanel cegrjp = new CharityEduGroupReqJPanel(userProcessContainer, eduGroup);
         userProcessContainer.add(cegrjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
