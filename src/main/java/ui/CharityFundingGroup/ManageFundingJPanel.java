@@ -190,6 +190,8 @@ public class ManageFundingJPanel extends javax.swing.JPanel {
         
         fundGroup.addNewFund(newFund);
         
+        lblName.setText(String.valueOf(fundGroup.getFund()));
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
