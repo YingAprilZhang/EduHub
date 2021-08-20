@@ -23,7 +23,7 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
     
     
     JPanel userProcessContainer;
-    Business business;
+    Business business = Business.getInstance();
     CharityFundingManager fundGroup;
     UserAccount account;
     
@@ -31,8 +31,9 @@ public class CharityFundingWorkAreaJPanel extends javax.swing.JPanel {
     public CharityFundingWorkAreaJPanel(JPanel userProcessContainer,UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.business = business;
-        this.fundGroup = (CharityFundingManager)account;
+        this.fundGroup = new CharityFundingManager();
+        this.fundGroup.setUsername(account.getUsername());
+        //this.fundGroup = (CharityFundingManager)account;
         
         labelName.setText(fundGroup.getUsername());
     }

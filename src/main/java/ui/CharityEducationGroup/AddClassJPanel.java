@@ -24,17 +24,19 @@ public class AddClassJPanel extends javax.swing.JPanel {
      * Creates new form AddClassJPanel
      */
     JPanel userProcessContainer;
-    Business business = Business.getInstance();
+    //Business business = Business.getInstance();
     CharityEduManager eduGroup;
+    UserAccount account;
 
-    public AddClassJPanel(JPanel userProcessContainer, CharityEduManager eduGroup) {
+    public AddClassJPanel(JPanel userProcessContainer, UserAccount account, CharityEduManager eduGroup) {
         initComponents();
 
         this.userProcessContainer = userProcessContainer;
         
+        this.account = account;
         this.eduGroup = eduGroup;
 
-       // System.out.println(">>>>>>>>>>" + eduGroup.getUsername());
+       System.out.println(">>>>>>>>>> addcjp: " + this.eduGroup.getUsername());
 
     }
 
@@ -139,7 +141,8 @@ public class AddClassJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String name = textName.getText();
 
-        //System.out.println(">>>>>>>>>>"+ eduGroup.getUsername());
+        System.out.println(">Add>>>>>>>>>"+ eduGroup.getUsername());
+        System.out.println(">Add>>>>>>>>>"+ eduGroup.getEduClass());
         eduGroup.getEduClass().addNewClass(name);
         JOptionPane.showMessageDialog(this, "Complete!");
 
