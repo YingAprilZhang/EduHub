@@ -18,21 +18,15 @@ import model.UserAccount.UserAccount;
 public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 
     JPanel container;
-
-    UserAccount userAccount;
-
-    Business system;
-
     CharityEduManager eduGroup;
 
     /**
      * Creates new form ChrityEduGroupJPanel
      */
-    public CharityEduGroupReqJPanel(JPanel container, UserAccount account, Business system) {
+    public CharityEduGroupReqJPanel(JPanel container, CharityEduManager eduGroup) {
         initComponents();
         this.container = container;
-        this.userAccount = account;
-        this.eduGroup = (CharityEduManager) account;
+        this.eduGroup = eduGroup;
 
         //populateComboSchools();
     }

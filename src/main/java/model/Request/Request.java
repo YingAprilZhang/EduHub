@@ -153,7 +153,6 @@ public abstract class Request {
 
     
     @Override
-
     public String toString() {
         return this.title;
     }

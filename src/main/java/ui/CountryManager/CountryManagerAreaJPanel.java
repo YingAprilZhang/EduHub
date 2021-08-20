@@ -38,7 +38,7 @@ public class CountryManagerAreaJPanel extends javax.swing.JPanel {
         this.business = Business.getInstance();
         this.role = (CountryManagerRole) account.getRole();
         this.country = account.getOrganization().getCountry();
-        this.countryManager = country.getCountryManager();
+        this.countryManager = (CountryManager) account;
         
         if(country != null){           
             lblCountry.setText(country.toString());            
