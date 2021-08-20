@@ -53,7 +53,7 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
             }else{
                 row[2] = r.getSchool();
             }
-            row[3] = r.getTitle();
+            row[3] = r.getTitle()==null?"":r.getResourceProvider().getName();
             row[4] = r.getRequestStatusType().toString();
             model.addRow(row);
         }
@@ -172,6 +172,7 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
