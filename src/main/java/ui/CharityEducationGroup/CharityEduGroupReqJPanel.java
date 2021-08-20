@@ -29,16 +29,19 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
     JPanel container;
     CharityEduManager eduGroup;
     Business business = Business.getInstance();
-
+    UserAccount account;
     /**
      * Creates new form ChrityEduGroupJPanel
      */
     public CharityEduGroupReqJPanel(JPanel container, CharityEduManager eduGroup) {
         initComponents();
         this.container = container;
+        
         this.eduGroup = eduGroup;
 
-        //populateComboSchools();
+        //populateComboCountry();
+        populateRequestTable();
+
     }
 
     /**
@@ -53,31 +56,30 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblReq = new javax.swing.JTable();
         lblWelcome = new javax.swing.JLabel();
-        cmbCountry = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
         btnAccept1 = new javax.swing.JButton();
         backLbl = new javax.swing.JLabel();
+        btnViewSent = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
         tblReq.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Request Date", "Title", "Status"
+                "Name", "Request Date", "Title", "Status", "Resolve Date"
             }
         ));
         jScrollPane1.setViewportView(tblReq);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(120, 290, 800, 250);
+        jScrollPane1.setBounds(100, 220, 820, 320);
 
         lblWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -86,19 +88,6 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         lblWelcome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         add(lblWelcome);
         lblWelcome.setBounds(10, 110, 1050, 40);
-
-        cmbCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbCountry.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCountryActionPerformed(evt);
-            }
-        });
-        add(cmbCountry);
-        cmbCountry.setBounds(180, 220, 130, 30);
-
-        jLabel1.setText("Country:");
-        add(jLabel1);
-        jLabel1.setBounds(120, 220, 100, 30);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
         add(bg);
@@ -111,7 +100,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCancel);
-        btnCancel.setBounds(740, 590, 170, 29);
+        btnCancel.setBounds(750, 590, 170, 29);
 
         btnAccept1.setText("Accept");
         btnAccept1.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +109,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAccept1);
-        btnAccept1.setBounds(520, 590, 170, 29);
+        btnAccept1.setBounds(410, 590, 170, 29);
 
         backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
         backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,13 +119,31 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         });
         add(backLbl);
         backLbl.setBounds(60, 50, 52, 52);
+
+        btnViewSent.setText("View  ");
+        btnViewSent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewSentActionPerformed(evt);
+            }
+        });
+        add(btnViewSent);
+        btnViewSent.setBounds(100, 590, 150, 29);
     }// </editor-fold>//GEN-END:initComponents
 
+//    public void populateComboCountry() {
+//
+//        cmbCountry.removeAllItems();
+//        for (Country c : business.getCountryDirectory().getName2Country().values()) {
+//            cmbCountry.addItem(c.toString());
+//        }
+//
+//    }
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
         model.setRowCount(0);
-        Country c = business.getCountryDirectory().getCountryByName(cmbCountry.getSelectedItem().toString());
 
+        //Country c = business.getCountryDirectory().getCountryByName(cmbCountry.getSelectedItem().toString());
+        //System.out.println(">>>>" + c.getRequestList().size());
 //        // <<< for debug
 //        EduRequest dummyr = new EduRequest();
 //        dummyr.setTitle("this is title");
@@ -154,31 +161,33 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 //        //>>>
 //
 //        System.out.println("list size: " + c.getRequestList().size());
-        for (Request r : c.getRequestList()) {
- //       for (EduRequest r : ls) {
-            System.out.println(r);
+        for (Country c : business.getCountryDirectory().getName2Country().values()) {
+            for (Request r : c.getRequestList()) {
+                //       for (EduRequest r : ls) {
+                System.out.println(r);
 
-            Object[] row = new Object[3];
-            if (r.getRequestType() == Request.RequestType.EduRequest) {
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                row[0] = df.format(r.getRequestDate());
-                row[1] = r.getTitle();
-                row[2] = r.getRequestStatusType().toString();
-                //row[2] = r.getRequestType().toString();
-                model.addRow(row);
+                Object[] row = new Object[5];
+                //if(r.getResourceProvider().getName()== eduGroup.getOrganization().getName()){
+                if (r.getRequestType() == Request.RequestType.EduRequest) {
+                    //if(r.getResourceProvider().getName()== eduGroup.getOrganization().getName()){
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    row[0] = r.getSchool().getName();
+                    row[1] = df.format(r.getRequestDate());
+                    row[2] = r.getTitle();
+                    row[3] = r.getRequestStatusType().toString();
+                    row[4] = r.getResolveDate()==null?"":df.format(r.getResolveDate());
+                    model.addRow(row);
+                    }
+                //}
             }
         }
+
     }
 
   private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
       // TODO add your handling code here:
       back();
   }//GEN-LAST:event_backLblMouseClicked
-
-  private void cmbCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCountryActionPerformed
-      // TODO add your handling code here:
-
-  }//GEN-LAST:event_cmbCountryActionPerformed
 
     private void btnAccept1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccept1ActionPerformed
         // TODO add your handling code here:
@@ -189,7 +198,8 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         }
 
         DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
-        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 2);
         selectedReq.setResolveDate(new Date());
 
         selectedReq.setRequestStatusType(Request.RequestStatusType.AcceptResourceProvider);
@@ -206,6 +216,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         }
 
         DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
+        
         Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
         selectedReq.setResolveDate(new Date());
 
@@ -213,6 +224,20 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 
         populateRequestTable();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnViewSentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSentActionPerformed
+        // TODO add your handling code here:
+         int indexRow = tblReq.getSelectedRow();
+        if(indexRow < 0){
+            JOptionPane.showMessageDialog(this, "Please select a request to view.");
+            return;
+        }
+        Request r = (Request) tblReq.getValueAt(indexRow, 2);
+        ViewRequestJPanel vrjp = (ViewRequestJPanel) new ViewRequestJPanel(container, account, r);
+        container.add("ViewRequestJPanel", vrjp);
+        CardLayout crdLyt = (CardLayout) container.getLayout();
+        crdLyt.next(container);
+    }//GEN-LAST:event_btnViewSentActionPerformed
 
     private void back() {
         container.remove(this);
@@ -231,8 +256,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAccept1;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JComboBox<String> cmbCountry;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnViewSent;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JTable tblReq;

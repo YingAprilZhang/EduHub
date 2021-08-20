@@ -26,20 +26,19 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CharityFundGroupJPanel
      */
-    private JPanel userProcessContainer;
+    JPanel userProcessContainer;
 
-    private UserAccount userAccount;
+    UserAccount userAccount;
 
-    private Business business;
+    Business business;
 
     CharityFundingManager fundGroup;
 
     public CharityFundGroupReqJPanel(JPanel userProcessContainer, UserAccount account, Business system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.userAccount = account;
         this.business = Business.getInstance();
-        this.fundGroup = (CharityFundingManager) account;
+        this.fundGroup = fundGroup;
         populateRequestTable();
 
     }
@@ -57,30 +56,30 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFund = new javax.swing.JTable();
         lblWelcome = new javax.swing.JLabel();
-        cmbCountry = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
         btnDeny = new javax.swing.JButton();
         btnAccept1 = new javax.swing.JButton();
         backLbl = new javax.swing.JLabel();
+        btnViewSent = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
 
         tblFund.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Request Date", "Title", "Request Fund", "Status "
+                "Name", "Request Date", "Title", "Request Fund", "Status ", "Resolve Date"
             }
         ));
         jScrollPane1.setViewportView(tblFund);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(120, 290, 800, 250);
+        jScrollPane1.setBounds(100, 240, 820, 300);
 
         lblWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -89,14 +88,6 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         lblWelcome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(lblWelcome);
         lblWelcome.setBounds(10, 110, 1050, 40);
-
-        cmbCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbCountry);
-        cmbCountry.setBounds(210, 220, 130, 40);
-
-        jLabel1.setText("Country:");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(130, 220, 100, 30);
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
         jPanel1.add(bg);
@@ -109,7 +100,7 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnDeny);
-        btnDeny.setBounds(750, 590, 170, 29);
+        btnDeny.setBounds(740, 590, 170, 29);
 
         btnAccept1.setText("Accept");
         btnAccept1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +109,7 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnAccept1);
-        btnAccept1.setBounds(530, 590, 170, 29);
+        btnAccept1.setBounds(410, 590, 170, 29);
 
         backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
         backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,6 +119,15 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         });
         jPanel1.add(backLbl);
         backLbl.setBounds(50, 40, 52, 52);
+
+        btnViewSent.setText("View  ");
+        btnViewSent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewSentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnViewSent);
+        btnViewSent.setBounds(90, 590, 150, 29);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -154,22 +154,26 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) tblFund.getModel();
         model.setRowCount(0);
-        Country c = business.getCountryDirectory().getCountryByName(cmbCountry.getSelectedItem().toString());
 
-        for (Request r : c.getRequestList()) {
+        for (Country c : business.getCountryDirectory().getName2Country().values()) {
+            for (Request r : c.getRequestList()) {
 
-            Object[] row = new Object[3];
-            if (r.getRequestType() == Request.RequestType.FundRequest) {
+                Object[] row = new Object[6];
+                //if(r.getResourceProvider().getName()== fundGroup.getOrganization().getName()){
+                if (r.getRequestType() == Request.RequestType.FundRequest) {
 
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                row[0] = df.format(r.getRequestDate());
-                row[1] = r.getTitle();
-                //row[2] = 
-                row[3] = r.getRequestStatusType().toString();
-
-                model.addRow(row);
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    row[0] = r.getSchool().getName();
+                    row[1] = df.format(r.getRequestDate());
+                    row[2] = r.getTitle();
+                    //row[3] = r
+                    row[4] = r.getRequestStatusType().toString();
+                    row[5] = r.getResolveDate() == null ? "" : df.format(r.getResolveDate());
+                    model.addRow(row);
+                }
             }
         }
+        //}
     }
 
 
@@ -212,6 +216,20 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         populateRequestTable();
     }//GEN-LAST:event_btnDenyActionPerformed
 
+    private void btnViewSentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSentActionPerformed
+        // TODO add your handling code here:
+        int indexRow = tblFund.getSelectedRow();
+        if (indexRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a request to view.");
+            return;
+        }
+        Request r = (Request) tblFund.getValueAt(indexRow, 2);
+        ViewRequestJPanel vrjp = (ViewRequestJPanel) new ViewRequestJPanel(userProcessContainer, userAccount, r);
+        userProcessContainer.add("ViewRequestJPanel", vrjp);
+        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+        crdLyt.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewSentActionPerformed
+
     private void back() {
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -224,8 +242,7 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAccept1;
     private javax.swing.JButton btnDeny;
-    private javax.swing.JComboBox<String> cmbCountry;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnViewSent;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblWelcome;
