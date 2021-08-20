@@ -28,11 +28,11 @@ public class ManageClassJPanel extends javax.swing.JPanel {
     CharityEduManager eduGroup;
     Business business = Business.getInstance();
 
-    public ManageClassJPanel(JPanel userProcessContainer, CharityEduManager eduGroup) {
+    public ManageClassJPanel(JPanel userProcessContainer,UserAccount account, CharityEduManager eduGroup) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        
-        this.eduGroup = (CharityEduManager) account;
+        this.account = account;
+        this.eduGroup = eduGroup;
 
         System.out.println("after >>>>>>>>>>" + eduGroup.getUsername());
         lblName.setText(eduGroup.getUsername());
@@ -184,7 +184,7 @@ public class ManageClassJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        AddClassJPanel acjp = new AddClassJPanel(userProcessContainer, eduGroup);
+        AddClassJPanel acjp = new AddClassJPanel(userProcessContainer, account, eduGroup);
         userProcessContainer.add("AddClassJPanel", acjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
