@@ -6,9 +6,15 @@
 package ui.Company;
 
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import model.Business;
 import model.Company.CompanyManager;
+import model.Country.Country;
+import model.Request.Request;
 import model.UserAccount.UserAccount;
 
 /**
@@ -33,7 +39,7 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
         this.container = container;
         this.userAccount = account;
         this.company = (CompanyManager) account;
-
+        populateRequestTable();
     }
 
     /**
@@ -46,9 +52,9 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblReq = new javax.swing.JTable();
         lblWelcome = new javax.swing.JLabel();
-        cmbSchool = new javax.swing.JComboBox<>();
+        cmbCountry = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
@@ -57,18 +63,18 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblReq.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Student Name", "Status "
+                "Request Date", "Job", "Title", "Status "
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblReq);
 
         lblWelcome.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -76,15 +82,25 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
         lblWelcome.setToolTipText("");
         lblWelcome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        cmbSchool.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel1.setText("School:");
+        jLabel1.setText("Country：");
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
         btnCancel.setText("Pass");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         btnAccept1.setText("Accept");
+        btnAccept1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccept1ActionPerformed(evt);
+            }
+        });
 
         backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
         backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,20 +123,18 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 1050, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(120, 120, 120)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(50, 50, 50)
-                                    .addComponent(cmbSchool, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(110, 110, 110)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(170, 170, 170)
+                            .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(520, 520, 520)
                             .addComponent(btnAccept1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(50, 50, 50)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(110, 110, 110)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(bg)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
@@ -139,7 +153,7 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
                             .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(70, 70, 70)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmbSchool, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(40, 40, 40)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,10 +166,67 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void populateRequestTable() {
+        DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
+        model.setRowCount(0);
+        Country c = system.getCountryDirectory().getCountryByName(cmbCountry.getSelectedItem().toString());
+
+
+        for (Request r : c.getRequestList()) {
+ 
+
+            Object[] row = new Object[4];
+            if (r.getRequestType() == Request.RequestType.EduRequest) {
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                row[0] = df.format(r.getRequestDate());
+                //row[1] = 
+                row[2] = r.getTitle();
+                row[3] = r.getRequestStatusType().toString();
+                model.addRow(row);
+            }
+        }
+    }
+
+
     private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
         // TODO add your handling code here:
         back();
     }//GEN-LAST:event_backLblMouseClicked
+
+    private void btnAccept1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccept1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblReq.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a request first.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        selectedReq.setResolveDate(new Date());
+
+        selectedReq.setRequestStatusType(Request.RequestStatusType.AcceptResourceProvider);
+
+        populateRequestTable();
+    }//GEN-LAST:event_btnAccept1ActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblReq.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a request first.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        selectedReq.setResolveDate(new Date());
+
+        selectedReq.setRequestStatusType(Request.RequestStatusType.RejectResourceProvider);
+
+        populateRequestTable();
+        
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     private void back() {
         container.remove(this);
@@ -168,10 +239,10 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAccept1;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JComboBox<String> cmbSchool;
+    private javax.swing.JComboBox<String> cmbCountry;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblWelcome;
+    private javax.swing.JTable tblReq;
     // End of variables declaration//GEN-END:variables
 }

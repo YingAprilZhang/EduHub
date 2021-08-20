@@ -34,7 +34,7 @@ public class ManageClassJPanel extends javax.swing.JPanel {
         
         this.eduGroup = (CharityEduManager) account;
 
-        System.out.println(">>>>>>>>>>" + eduGroup.getUsername());
+        System.out.println("after >>>>>>>>>>" + eduGroup.getUsername());
         lblName.setText(eduGroup.getUsername());
 
         //populateClass();

@@ -6,9 +6,18 @@
 package ui.CharityEducationGroup;
 
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import model.Business;
 import model.CharityEducationGroup.CharityEduManager;
+import model.Country.Country;
+import model.Request.EduRequest;
+import model.Request.Request;
+import model.Request.Request.RequestType;
 import model.UserAccount.UserAccount;
 
 /**
@@ -41,9 +50,9 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblReq = new javax.swing.JTable();
         lblWelcome = new javax.swing.JLabel();
-        cmbSchool = new javax.swing.JComboBox<>();
+        cmbCountry = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
@@ -53,18 +62,18 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblReq.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Required Class", "Status "
+                "Request Date", "Title", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblReq);
 
         add(jScrollPane1);
         jScrollPane1.setBounds(120, 290, 800, 250);
@@ -77,11 +86,16 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         add(lblWelcome);
         lblWelcome.setBounds(10, 110, 1050, 40);
 
-        cmbSchool.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(cmbSchool);
-        cmbSchool.setBounds(180, 220, 130, 30);
+        cmbCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCountry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCountryActionPerformed(evt);
+            }
+        });
+        add(cmbCountry);
+        cmbCountry.setBounds(180, 220, 130, 30);
 
-        jLabel1.setText("School:");
+        jLabel1.setText("Country:");
         add(jLabel1);
         jLabel1.setBounds(120, 220, 100, 30);
 
@@ -90,10 +104,20 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         bg.setBounds(1060, 0, 383, 900);
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         add(btnCancel);
         btnCancel.setBounds(740, 590, 170, 29);
 
         btnAccept1.setText("Accept");
+        btnAccept1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccept1ActionPerformed(evt);
+            }
+        });
         add(btnAccept1);
         btnAccept1.setBounds(520, 590, 170, 29);
 
@@ -107,10 +131,87 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         backLbl.setBounds(60, 50, 52, 52);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
+    public void populateRequestTable() {
+        DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
+        model.setRowCount(0);
+        Country c = business.getCountryDirectory().getCountryByName(cmbCountry.getSelectedItem().toString());
+
+//        // <<< for debug
+//        EduRequest dummyr = new EduRequest();
+//        dummyr.setTitle("this is title");
+//        dummyr.setRequestType(RequestType.EduRequest);
+//        dummyr.setRequestStatusType(Request.RequestStatusType.Sent);
+//        ArrayList<EduRequest> ls = new ArrayList<EduRequest>();
+//        ls.add(dummyr);
+//
+//        EduRequest dummyr2 = new EduRequest();
+//        dummyr2.setTitle("this is title2");
+//        dummyr2.setRequestStatusType(Request.RequestStatusType.Sent);
+//        dummyr2.setRequestType(RequestType.FundRequest);
+//        ls.add(dummyr2);
+//        System.out.println("xxx dummy ls size: " + ls.size());
+//        //>>>
+//
+//        System.out.println("list size: " + c.getRequestList().size());
+        for (Request r : c.getRequestList()) {
+ //       for (EduRequest r : ls) {
+            System.out.println(r);
+
+            Object[] row = new Object[3];
+            if (r.getRequestType() == Request.RequestType.EduRequest) {
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                row[0] = df.format(r.getRequestDate());
+                row[1] = r.getTitle();
+                row[2] = r.getRequestStatusType().toString();
+                //row[2] = r.getRequestType().toString();
+                model.addRow(row);
+            }
+        }
+    }
+
+  private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
+      // TODO add your handling code here:
+      back();
+  }//GEN-LAST:event_backLblMouseClicked
+
+  private void cmbCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCountryActionPerformed
+      // TODO add your handling code here:
+
+  }//GEN-LAST:event_cmbCountryActionPerformed
+
+    private void btnAccept1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccept1ActionPerformed
         // TODO add your handling code here:
-        back();
-    }//GEN-LAST:event_backLblMouseClicked
+        int selectedRowIndex = tblReq.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a request first.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        selectedReq.setResolveDate(new Date());
+
+        selectedReq.setRequestStatusType(Request.RequestStatusType.AcceptResourceProvider);
+
+        populateRequestTable();
+    }//GEN-LAST:event_btnAccept1ActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblReq.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a request first.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        selectedReq.setResolveDate(new Date());
+
+        selectedReq.setRequestStatusType(Request.RequestStatusType.RejectResourceProvider);
+
+        populateRequestTable();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     private void back() {
         container.remove(this);
@@ -118,21 +219,21 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
         layout.previous(container);
     }
 
-//    public void populateComboSchools(){
-//        for(School s: ){
-//            cmbSchool
-//        }
-//    }
+    //    public void populateComboSchools(){
+    //        for(School s: ){
+    //            cmbSchool
+    //        }
+    //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAccept1;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JComboBox<String> cmbSchool;
+    private javax.swing.JComboBox<String> cmbCountry;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblWelcome;
+    private javax.swing.JTable tblReq;
     // End of variables declaration//GEN-END:variables
 }

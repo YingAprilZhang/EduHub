@@ -86,6 +86,10 @@ public abstract class Request {
         return requestType;
     }
 
+    public void setRequestType(RequestType r){
+        this.requestType = r;
+    }
+
     public RequestStatusType getRequestStatusType() {
         return requestStatusType;
     }
@@ -162,6 +166,7 @@ public abstract class Request {
         this.requestStatusType = requestStatusType;
     }
         
+    
 
     
     @Override
