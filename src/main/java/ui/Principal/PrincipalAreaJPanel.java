@@ -221,6 +221,10 @@ public class PrincipalAreaJPanel extends javax.swing.JPanel {
 
     private void reqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqBtnActionPerformed
         // TODO add your handling code here:
+        PrincipalReqJPanel prjp = new PrincipalReqJPanel(workArea, account);
+        workArea.add("PrincipalReqJPanel",prjp);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.next(workArea);
     }//GEN-LAST:event_reqBtnActionPerformed
 
 

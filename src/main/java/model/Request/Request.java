@@ -65,7 +65,7 @@ public abstract class Request {
     
     private String title;
     private String message;
-    private Organization principle;
+    private Organization School;
     private Organization countryManager;
     private Organization resourceProvider;
     private Organization worldManager;    
@@ -73,6 +73,10 @@ public abstract class Request {
     private Date resolveDate;
     private RequestType requestType;
     private RequestStatusType requestStatusType;
+    
+    public static RequestType getReqTypeByName(String name) {
+        return Enum.valueOf(RequestType.class, name);
+    }
     
     public Request() {
         requestDate = new Date();
@@ -102,12 +106,12 @@ public abstract class Request {
         this.message = message;
     }
 
-    public Organization getPrinciple() {
-        return principle;
+    public Organization getSchool() {
+        return School;
     }
 
-    public void setPrinciple(Organization principle) {
-        this.principle = principle;
+    public void setSchool(Organization School) {
+        this.School = School;
     }
 
     public Organization getCountryManager() {
@@ -148,6 +152,14 @@ public abstract class Request {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+
+    public void setRequestType(RequestType requestType) {
+        this.requestType = requestType;
+    }
+
+    public void setRequestStatusType(RequestStatusType requestStatusType) {
+        this.requestStatusType = requestStatusType;
     }
         
 
