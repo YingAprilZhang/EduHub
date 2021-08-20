@@ -28,6 +28,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 
     JPanel container;
     CharityEduManager eduGroup;
+    Business business = Business.getInstance();
 
     /**
      * Creates new form ChrityEduGroupJPanel

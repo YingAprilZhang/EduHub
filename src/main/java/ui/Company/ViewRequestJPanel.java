@@ -5,6 +5,11 @@
  */
 package ui.Company;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import model.Request.Request;
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author kkkkayla
@@ -14,8 +19,15 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewRequestJPanel
      */
-    public ViewRequestJPanel() {
+    JPanel userProcessContainer;
+    UserAccount account;
+    Request request;
+    
+    public ViewRequestJPanel(JPanel userProcessContainer, UserAccount account, Request request) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.request = request;
     }
 
     /**
@@ -203,6 +215,11 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
         back();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void back() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
