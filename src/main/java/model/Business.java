@@ -15,7 +15,7 @@ import model.UserAccount.UserAccountDirectory;
  * @author aprilyz
  */
 public class Business {
-     public static Faker FAKER;
+
      private static Business business;
      private UserAccountDirectory userAccountDirectory;
      private CountryDirectory countryDirectory;
@@ -29,7 +29,6 @@ public class Business {
     }
 
     public Business() {
-        FAKER = new Faker(); 
         this.userAccountDirectory =  new UserAccountDirectory();
         this.countryDirectory =  new CountryDirectory();
         this.organizationDirectory =  new OrganizationDirectory();
