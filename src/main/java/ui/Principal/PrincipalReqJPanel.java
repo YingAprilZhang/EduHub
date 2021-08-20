@@ -26,6 +26,7 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
     UserAccount account;
     Country country;
     JPanel workArea;
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     /**
      * Creates new form PrincipalRequestJPanel
@@ -206,7 +207,13 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
 
     private void btnViewSentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSentActionPerformed
         // TODO add your handling code here:
-        PrincipalViewReqJPanel prvjp = new PrincipalViewReqJPanel(workArea, account);
+        int selectedRowIndex = tblSent.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select the product first.");
+            return;
+        }
+        Request r = (Request)tblSent.getValueAt(selectedRowIndex, 0);
+        PrincipalViewReqJPanel prvjp = new PrincipalViewReqJPanel(workArea, account, r);
         workArea.add("PrincipalViewReqJPanel",prvjp);
         CardLayout layout = (CardLayout)workArea.getLayout();
         layout.next(workArea);
@@ -269,10 +276,9 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(Request r: country.getRequestList()){
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             if (r.getSchool().getName().equals(account.getOrganization().getName())) {
                 Object[] row = new Object[6];
-                row[0] = r.getTitle()==null?"":r.getTitle();
+                row[0] = r;
                 row[1] = r.getRequestType().toString();
                 row[2] = r.getRequestStatusType().toString();
                 row[3] = r.getResourceProvider()==null?"":r.getResourceProvider().getName();
