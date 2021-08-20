@@ -182,7 +182,7 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
 
     private void lblReqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReqMouseClicked
         // TODO add your handling code here:
-        ManageRequestJPanel cegrjp = new ManageRequestJPanel(userProcessContainer, account, business);
+        ManageRequestJPanel cegrjp = new ManageRequestJPanel(userProcessContainer, company);
         userProcessContainer.add(cegrjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -16,12 +16,12 @@ import model.UserAccount.UserAccount;
  * @author changxu
  */
 public abstract class Request {
-    
+
     public enum RequestType {
         FundRequest("Funding Request"),
         CompanyRequest("Employement Opportunity Request"),
         EduRequest("Class and Teacher Request");
-        
+
         private String value;
 
         private RequestType(String value) {
@@ -36,7 +36,7 @@ public abstract class Request {
         public String toString() {
             return value;
         }
-        
+
     }
 
     public enum RequestStatusType {
@@ -62,22 +62,22 @@ public abstract class Request {
         }
 
     }
-    
+
     private String title;
     private String message;
     private Organization School;
     private Organization countryManager;
     private Organization resourceProvider;
-    private Organization worldManager;    
+    private Organization worldManager;
     private Date requestDate;
     private Date resolveDate;
     private RequestType requestType;
     private RequestStatusType requestStatusType;
-    
+
     public static RequestType getReqTypeByName(String name) {
         return Enum.valueOf(RequestType.class, name);
     }
-    
+
     public Request() {
         requestDate = new Date();
     }
@@ -89,7 +89,7 @@ public abstract class Request {
     public RequestStatusType getRequestStatusType() {
         return requestStatusType;
     }
-    
+
     public String getTitle() {
         return title;
     }
@@ -161,9 +161,7 @@ public abstract class Request {
     public void setRequestStatusType(RequestStatusType requestStatusType) {
         this.requestStatusType = requestStatusType;
     }
-        
 
-    
     @Override
     public String toString() {
         return this.title;

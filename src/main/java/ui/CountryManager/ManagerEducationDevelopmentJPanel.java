@@ -300,6 +300,11 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
         jLabel4.setText("Select an Education Development Indicator:");
 
         comboDevelopment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unemployement rate", "Government expenditure on education(% of government expenditure)", "Pupil-teacher ratio", "GDP" }));
+        comboDevelopment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboDevelopmentActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -401,6 +406,10 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
         refreshFluc();
         refreshRelation();
     }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void comboDevelopmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDevelopmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboDevelopmentActionPerformed
 
     public void back(){
         userProcessContainer.remove(this);
