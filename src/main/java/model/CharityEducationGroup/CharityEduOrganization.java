@@ -16,10 +16,11 @@ public class CharityEduOrganization extends Organization{
     private CharityEduManager charityEdu;
 
     public CharityEduOrganization() {
-        
-        
     }
 
+    public  void setCharityEdu(CharityEduManager input) {
+        this.charityEdu = input;
+    }
     public CharityEduManager getCharityEdu() {
         return charityEdu;
     }

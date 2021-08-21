@@ -141,8 +141,8 @@ public class AddClassJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String name = textName.getText();
 
-        System.out.println(">Add>>>>>>>>>"+ eduGroup.getUsername());
-        System.out.println(">Add>>>>>>>>>"+ eduGroup.getEduClass());
+//        System.out.println(">Add>>>>>>>>>"+ eduGroup.getUsername());
+//        System.out.println(">Add>>>>>>>>>"+ eduGroup.getEduClass());
         eduGroup.getEduClass().addNewClass(name);
         JOptionPane.showMessageDialog(this, "Complete!");
 

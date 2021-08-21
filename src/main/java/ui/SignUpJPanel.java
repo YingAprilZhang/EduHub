@@ -10,6 +10,12 @@ import java.awt.Cursor;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Business;
+import model.CharityEducationGroup.CharityEduManager;
+import model.CharityEducationGroup.CharityEduOrganization;
+import model.CharityFundingGroup.CharityFundingManager;
+import model.CharityFundingGroup.CharityFundingOrganization;
+import model.Company.Company;
+import model.Company.CompanyManager;
 import model.Country.Country;
 import model.Org.Organization;
 import model.Role.Role;
@@ -20,7 +26,7 @@ import model.UserAccount.UserAccount;
  * @author aprilyz
  */
 public class SignUpJPanel extends javax.swing.JPanel {
-    
+
     Business business = Business.getInstance();
     JPanel workArea;
 
@@ -29,28 +35,28 @@ public class SignUpJPanel extends javax.swing.JPanel {
      */
     public SignUpJPanel(JPanel workArea) {
         this.workArea = workArea;
-        
+
         initComponents();
-        
-        populateComboRole(); 
-        populateComboOrganization(); 
-        
+
+        populateComboRole();
+        populateComboOrganization();
+
         backLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         submitBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        
+
     }
-    
-        private void populateComboRole(){
-            for (Role.RoleType type : Role.RoleType.values()) {
-                roleBox.addItem(type.getValue());
-            }
+
+    private void populateComboRole() {
+        for (Role.RoleType type : Role.RoleType.values()) {
+            roleBox.addItem(type.getValue());
         }
-        
-        private void populateComboOrganization() {
-            for (Organization organization : business.getOrganizationDirectory().getOrganizationList()) {
-                organizationBox.addItem(organization.getName());
-            }
+    }
+
+    private void populateComboOrganization() {
+        for (Organization organization : business.getOrganizationDirectory().getOrganizationList()) {
+            organizationBox.addItem(organization.getName());
         }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -240,9 +246,29 @@ public class SignUpJPanel extends javax.swing.JPanel {
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here
         Role.RoleType roleType = Role.getRoleTypeByValue(roleBox.getSelectedItem().toString());
-        Organization org = business.getOrganizationDirectory().getOrgByName(organizationBox.getSelectedItem().toString()); 
-        business.getUserAccountDirectory().createUserAccount(userNameField.getText(), 
+        Organization org = business.getOrganizationDirectory().getOrgByName(organizationBox.getSelectedItem().toString());
+
+        //ystem.out.println(">>> before bp");
+        UserAccount newAcc = business.getUserAccountDirectory().createUserAccount(userNameField.getText(),
                 passWordField.getText(), nameField.getText(), roleType, org);
+
+        if (org.getOrgType() == Organization.OrgType.CharityEdu) {
+            CharityEduOrganization ceo = (CharityEduOrganization) org;
+            ceo.setCharityEdu((CharityEduManager) newAcc);
+        }
+
+        if (org.getOrgType() == Organization.OrgType.CharityFunding) {
+            CharityFundingOrganization cfo = (CharityFundingOrganization) org;
+            cfo.setCharityFund((CharityFundingManager) newAcc);
+
+        }
+
+        if (org.getOrgType() == Organization.OrgType.Company) {
+            Company c = (Company) org;
+            c.setComManager((CompanyManager) newAcc);
+
+        }
+
         JOptionPane.showMessageDialog(null, "User successfully signed up!", "Info", JOptionPane.INFORMATION_MESSAGE);
         back();
     }//GEN-LAST:event_submitBtnActionPerformed

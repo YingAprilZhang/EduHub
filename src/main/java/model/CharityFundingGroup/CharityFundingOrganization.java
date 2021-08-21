@@ -13,4 +13,8 @@ import model.Org.Organization;
  */
 public class CharityFundingOrganization extends Organization{
     private CharityFundingManager charityFund;
+
+    public  void setCharityFund(CharityFundingManager input) {
+        this.charityFund = input;
+    }
 }
