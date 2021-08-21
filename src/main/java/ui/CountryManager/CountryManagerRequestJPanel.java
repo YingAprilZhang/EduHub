@@ -50,7 +50,7 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
             row[1] = r.getRequestType().toString();
             row[2] = r.getSchool()==null?"":r.getSchool();
             row[3] = r.getResourceProvider()==null?"":r.getResourceProvider().getName();
-            row[4] = r.getTitle()==null?"":r.getTitle();
+            row[4] = r;
             row[5] = r.getRequestStatusType().toString();
             model.addRow(row);
         }
@@ -159,7 +159,7 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a request to view.");
             return;
         }
-        Request r = (Request) tblRequest.getValueAt(indexRow, 2);
+        Request r = (Request) tblRequest.getValueAt(indexRow, 4);
         CountryViewRequestJPanel cvrjp = (CountryViewRequestJPanel) new CountryViewRequestJPanel(userProcessContainer, account, r);
         userProcessContainer.add("CountryViewRequestJPanel", cvrjp);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();

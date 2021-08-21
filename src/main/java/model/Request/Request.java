@@ -161,6 +161,17 @@ public abstract class Request {
     public void setRequestStatusType(RequestStatusType requestStatusType) {
         this.requestStatusType = requestStatusType;
     }
+    
+    public static RequestStatusType getStatusByName(String name){
+        RequestStatusType result = null;
+        for(RequestStatusType r: RequestStatusType.values()){
+            if(r.getValue().equals(name)){
+                result = r;
+                return result;
+            }
+        }
+        return null;
+    }
 
     @Override
     public String toString() {
