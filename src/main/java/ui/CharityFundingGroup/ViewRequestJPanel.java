@@ -7,10 +7,11 @@ package ui.CharityFundingGroup;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
+import model.Request.FundRequest;
 import model.Request.Request;
 import model.UserAccount.UserAccount;
-
 
 /**
  *
@@ -24,10 +25,26 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount account;
     Request request;
+    Request.RequestStatusType requestStatusType;
+
     public ViewRequestJPanel(JPanel userProcessContainer, UserAccount account, Request request) {
         initComponents();
         this.account = account;
         this.request = request;
+
+        this.requestStatusType = request.getRequestStatusType();
+
+        txtType.setText(request.getRequestType().getValue());
+        txtPrinciple.setText(request.getSchool() == null ? "" : request.getSchool().toString());
+        txtProvider.setText(request.getResourceProvider() == null ? "" : request.getResourceProvider().toString());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        txtRequestDate.setText(request.getRequestDate() == null ? "" : df.format(request.getRequestDate()));
+        txtStatus.setText(request.getRequestStatusType().toString());
+        txtResolveDate.setText(request.getResolveDate() == null ? "" : df.format(request.getResolveDate()));
+        txtTitle.setText(request.getTitle());
+        txtMessage.setText(request.getMessage());
+        FundRequest fr = (FundRequest)  request;
+        txtAmount.setText(String.valueOf(fr.getFundingAmount()));
     }
 
     /**
@@ -59,6 +76,10 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtAmount = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtResolveDate = new javax.swing.JTextField();
 
         txtMessage.setColumns(20);
         txtMessage.setRows(5);
@@ -123,6 +144,23 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel5.setText("Request Date:");
 
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel15.setText("Class:");
+
+        txtAmount.setEditable(false);
+        txtAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        txtAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAmountActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel10.setText("Resolve Date:");
+
+        txtResolveDate.setEditable(false);
+        txtResolveDate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,36 +168,42 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtType, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(txtPrinciple, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(txtWorldManager, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(txtRequestDate, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(txtProvider, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bg))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(name2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(482, Short.MAX_VALUE))))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtResolveDate, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtType)
+                                        .addComponent(txtPrinciple)
+                                        .addComponent(txtWorldManager)
+                                        .addComponent(txtRequestDate)
+                                        .addComponent(txtProvider)
+                                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(name2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addComponent(bg))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +211,7 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
                 .addComponent(bg)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(33, 33, 33)
                 .addComponent(name2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -189,11 +233,19 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRequestDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtResolveDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -206,7 +258,7 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -215,16 +267,22 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
         back();
     }//GEN-LAST:event_btnBackActionPerformed
 
-     public void back(){
+    private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAmountActionPerformed
+
+    public void back() {
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);      
+        layout.previous(userProcessContainer);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -234,10 +292,12 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel name2;
+    private javax.swing.JTextField txtAmount;
     private javax.swing.JTextArea txtMessage;
     private javax.swing.JTextField txtPrinciple;
     private javax.swing.JTextField txtProvider;
     private javax.swing.JTextField txtRequestDate;
+    private javax.swing.JTextField txtResolveDate;
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtTitle;
     private javax.swing.JTextField txtType;

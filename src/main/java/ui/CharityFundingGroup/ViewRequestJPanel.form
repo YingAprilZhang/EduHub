@@ -19,44 +19,52 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="46" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel4" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="610" max="-2" attributes="0"/>
+                          <Component id="btnBack" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtType" alignment="0" pref="210" max="32767" attributes="0"/>
-                          <Component id="txtPrinciple" alignment="0" pref="210" max="32767" attributes="0"/>
-                          <Component id="txtWorldManager" alignment="0" pref="210" max="32767" attributes="0"/>
-                          <Component id="txtRequestDate" alignment="0" pref="210" max="32767" attributes="0"/>
-                          <Component id="txtTitle" alignment="0" pref="210" max="32767" attributes="0"/>
-                          <Component id="txtStatus" alignment="0" pref="210" max="32767" attributes="0"/>
-                          <Component id="txtProvider" alignment="0" pref="210" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="bg" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="name2" alignment="0" min="-2" pref="320" max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="jLabel10" min="-2" pref="103" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane1" alignment="0" min="-2" pref="610" max="-2" attributes="0"/>
-                                  <Component id="btnBack" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel15" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtResolveDate" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtType" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtPrinciple" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtWorldManager" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtRequestDate" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtProvider" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtAmount" min="-2" pref="210" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtStatus" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="txtTitle" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="482" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="name2" min="-2" pref="320" max="-2" attributes="0"/>
+                          <EmptySpace pref="24" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace pref="109" max="32767" attributes="0"/>
+              <Component id="bg" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,7 +75,7 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="name2" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -94,12 +102,22 @@
                   <Component id="jLabel5" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="txtRequestDate" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel6" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="txtStatus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel15" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="txtAmount" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel10" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="txtResolveDate" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel6" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="txtStatus" min="-2" pref="30" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="txtTitle" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -116,7 +134,7 @@
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="btnBack" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -314,6 +332,49 @@
           <Font name="Lucida Grande" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Request Date:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel15">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Class:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtAmount">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder>
+              <Color PropertyName="color" blue="cf" green="b0" red="82" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAmountActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Resolve Date:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtResolveDate">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder>
+              <Color PropertyName="color" blue="cf" green="b0" red="82" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

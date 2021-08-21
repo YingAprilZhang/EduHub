@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Business;
 import model.CharityFundingGroup.CharityFundingManager;
 import model.Country.Country;
+import model.Request.FundRequest;
 import model.Request.Request;
 import model.UserAccount.UserAccount;
 
@@ -165,8 +166,9 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     row[0] = r.getSchool().getName();
                     row[1] = df.format(r.getRequestDate());
-                    row[2] = r.getTitle();
-                    //row[3] = r
+                    row[2] = r;
+                    FundRequest fr = (FundRequest)  r;
+                    row[3] = String.valueOf(fr.getFundingAmount());
                     row[4] = r.getRequestStatusType().toString();
                     row[5] = r.getResolveDate() == null ? "" : df.format(r.getResolveDate());
                     model.addRow(row);
@@ -186,7 +188,6 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         }
 
         DefaultTableModel model = (DefaultTableModel) tblFund.getModel();
-        System.out.println("asss????"+  model.getValueAt(selectedRowIndex, 2));
         Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 2);
         selectedReq.setResolveDate(new Date());
 

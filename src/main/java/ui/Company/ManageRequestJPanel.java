@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Business;
 import model.Company.CompanyManager;
 import model.Country.Country;
+import model.Request.CompanyRequest;
 import model.Request.Request;
 import model.UserAccount.UserAccount;
 
@@ -34,7 +35,7 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
 
     CompanyManager company;
 
-    public ManageRequestJPanel(JPanel container,  CompanyManager company) {
+    public ManageRequestJPanel(JPanel container, CompanyManager company) {
         initComponents();
         this.container = container;
         this.company = company;
@@ -63,13 +64,13 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
 
         tblReq.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Request Date", "Title", "Status ", "Resolve Date"
+                "Name", "Request Date", "Title", "Status ", "Resolve Date", "Job Name", "Interview Chance"
             }
         ));
         jScrollPane1.setViewportView(tblReq);
@@ -122,19 +123,21 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addComponent(btnViewSent, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150)
+                        .addGap(167, 167, 167)
                         .addComponent(btnAccept1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(155, 155, 155)
+                        .addGap(138, 138, 138)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(526, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(117, 117, 117)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 1050, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 1050, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(69, 69, 69)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(bg)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
@@ -170,15 +173,18 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
         for (Country c : business.getCountryDirectory().getName2Country().values()) {
             for (Request r : c.getRequestList()) {
 
-                Object[] row = new Object[5];
+                Object[] row = new Object[7];
                 //if(r.getResourceProvider().getName()== company.getOrganization().getName()){
                 if (r.getRequestType() == Request.RequestType.CompanyRequest) {
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     row[0] = r.getSchool().getName();
                     row[1] = df.format(r.getRequestDate());
-                    row[2] = r.getTitle();
+                    row[2] = r;
                     row[3] = r.getRequestStatusType().toString();
                     row[4] = r.getResolveDate() == null ? "" : df.format(r.getResolveDate());
+                    CompanyRequest cr = (CompanyRequest) r;
+                    row[5] = cr.getJobName();
+                    row[6] = String.valueOf(cr.getChance());
                     model.addRow(row);
                 }
                 //}
@@ -201,7 +207,7 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
         }
 
         DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
-        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 2);
         selectedReq.setResolveDate(new Date());
 
         selectedReq.setRequestStatusType(Request.RequestStatusType.AcceptResourceProvider);
@@ -218,7 +224,7 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
         }
 
         DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
-        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 2);
         selectedReq.setResolveDate(new Date());
 
         selectedReq.setRequestStatusType(Request.RequestStatusType.RejectResourceProvider);

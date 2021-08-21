@@ -173,7 +173,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     row[0] = r.getSchool().getName();
                     row[1] = df.format(r.getRequestDate());
-                    row[2] = r.getTitle();
+                    row[2] = r;
                     row[3] = r.getRequestStatusType().toString();
                     row[4] = r.getResolveDate()==null?"":df.format(r.getResolveDate());
                     model.addRow(row);
@@ -217,7 +217,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) tblReq.getModel();
         
-        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 2);
         selectedReq.setResolveDate(new Date());
 
         selectedReq.setRequestStatusType(Request.RequestStatusType.RejectResourceProvider);
