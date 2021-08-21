@@ -24,7 +24,7 @@ public class AddClassJPanel extends javax.swing.JPanel {
      * Creates new form AddClassJPanel
      */
     JPanel userProcessContainer;
-    //Business business = Business.getInstance();
+    Business business = Business.getInstance();
     CharityEduManager eduGroup;
     UserAccount account;
 

@@ -186,7 +186,8 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         }
 
         DefaultTableModel model = (DefaultTableModel) tblFund.getModel();
-        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        System.out.println("asss????"+  model.getValueAt(selectedRowIndex, 2));
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 2);
         selectedReq.setResolveDate(new Date());
 
         selectedReq.setRequestStatusType(Request.RequestStatusType.AcceptResourceProvider);
@@ -208,7 +209,7 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
         }
 
         DefaultTableModel model = (DefaultTableModel) tblFund.getModel();
-        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 0);
+        Request selectedReq = (Request) model.getValueAt(selectedRowIndex, 2);
         selectedReq.setResolveDate(new Date());
 
         selectedReq.setRequestStatusType(Request.RequestStatusType.RejectResourceProvider);
