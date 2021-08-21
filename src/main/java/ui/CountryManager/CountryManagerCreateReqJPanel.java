@@ -5,17 +5,28 @@
  */
 package ui.CountryManager;
 
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Business;
+import model.CharityEducationGroup.CharityEduManager;
+import model.CharityEducationGroup.CharityEduOrganization;
+import model.CharityEducationGroup.EduClass;
+import model.CharityEducationGroup.SingleClass;
+import model.Company.Company;
+import model.Company.SingleJob;
 import model.Country.Country;
 import model.Org.Organization;
+import model.Org.OrganizationDirectory;
 import model.Request.CompanyRequest;
 import model.Request.EduRequest;
 import model.Request.FundRequest;
 import model.Request.Request;
 import model.School.School;
 import model.UserAccount.UserAccount;
+import ui.CountryDataMaintainer.CountryDataMaintainJPanel;
 
 /**
  *
@@ -31,23 +42,27 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
     Country country;
     JPanel workArea;
     Business business;
+    OrganizationDirectory organizationDirectory;
+    Request.RequestType requestType;
+    Organization School;
+    Organization resourceProvider;
+    Organization worldManager;
     
     
-    public CountryManagerCreateReqJPanel() {
-//        initComponents();
-        
-        populateTypeCombo();
+    public CountryManagerCreateReqJPanel(JPanel workArea, UserAccount account) {
+        initComponents();
+        this.workArea = workArea;
+        this.account = account;
+        this.business = Business.getInstance();
+        this.country = account.getOrganization().getCountry();
+        this.organizationDirectory = business.getOrganizationDirectory();
+                
         populatePrincipleCombo();
 //        populateWorldCombo();
         populateProviderCombo();
+        
+        populateTypeCombo();
     }
-
-    public void populateTypeCombo(){
-        comboType.removeAllItems();
-        for (Request.RequestType type : Request.RequestType.values()) {
-            comboType.addItem(type.name());
-        }
-     }
      
     public void populatePrincipleCombo(){
         comboPrinciple.removeAllItems();
@@ -60,16 +75,22 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
     public void populateProviderCombo(){
         comboProvider.removeAllItems();
         comboProvider.addItem(null);
-        for(Organization o: business.getOrganizationDirectory().getOrganizationList()){
-            String orgType;
-//            if(o.getOrgType().toString())
-//        }
-//        CharityEdu,
-//        CharityFunding,
-//        Company,
-        
+        for(Organization o: business.getOrganizationDirectory().getOrganizationList()){            
+            if(o.getOrgType() == Organization.OrgType.CharityEdu ||
+                    o.getOrgType() == Organization.OrgType.CharityFunding ||
+                    o.getOrgType() == Organization.OrgType.Company){
+                comboProvider.addItem(o.toString());
+            }
+        }
     }
     
+    public void populateTypeCombo(){
+        comboType.removeAllItems();
+        for (Request.RequestType type : Request.RequestType.values()) {
+            comboType.addItem(type.name());
+        }
+     }
+
     
     
     /**
@@ -100,6 +121,18 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
         comboType = new javax.swing.JComboBox<>();
         comboPrinciple = new javax.swing.JComboBox<>();
         comboWorld = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        comboJob = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        comboClass = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        txtChance = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(250, 250, 250));
 
@@ -153,6 +186,50 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
             }
         });
 
+        comboType.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comboTypePopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        comboType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTypeActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
+        jLabel5.setText("Select request type and enter other related information if needed:");
+
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
+        jLabel6.setText("Select a receiver:");
+
+        jLabel10.setFont(new java.awt.Font("Lucida Grande", 2, 14)); // NOI18N
+        jLabel10.setText("CompanyRequest:");
+
+        jLabel11.setFont(new java.awt.Font("Lucida Grande", 2, 14)); // NOI18N
+        jLabel11.setText("EduRequest:");
+
+        jLabel12.setFont(new java.awt.Font("Lucida Grande", 2, 14)); // NOI18N
+        jLabel12.setText("FundRequest:");
+
+        jLabel13.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel13.setText("Job:");
+
+        jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel14.setText("Interview Chance:");
+
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel15.setText("Class:");
+
+        jLabel16.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
+        jLabel16.setText("Enter message:");
+
+        txtChance.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,41 +237,78 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                    .addComponent(comboProvider, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboPrinciple, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboWorld, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE))
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(comboType, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtChance)
+                                            .addComponent(comboPrinciple, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(comboJob, 0, 170, Short.MAX_VALUE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(31, 31, 31)
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(comboProvider, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(jLabel8)
+                                                .addGap(26, 26, 26)
+                                                .addComponent(comboWorld, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 28, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(20, 20, 20))))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(129, 129, 129)
+                                            .addComponent(btnCreate)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(39, 39, 39)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(bg))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(129, 129, 129)
-                                .addComponent(btnCreate))
                             .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(name2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(1062, Short.MAX_VALUE))))
+                            .addComponent(name2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(165, 165, 165)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(comboClass, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,28 +320,42 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(name2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboPrinciple, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboProvider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboPrinciple, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboProvider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboWorld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboJob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboClass, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtChance, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -239,7 +367,7 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCreate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(123, 123, 123))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -257,8 +385,15 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
                     CompanyRequest cr = new CompanyRequest();
                     cr.setTitle(txtTitle.getText());
                     cr.setMessage(txtMessage.getText());
-                    cr.setSchool(account.getOrganization());
+                    if(comboPrinciple.getSelectedItem() != null){
+                        School = country.getSchoolByName(comboPrinciple.getSelectedItem().toString());
+                    }                    
+                    cr.setSchool(School);
+                    cr.setCountryManager(account.getOrganization());  
+                    cr.setResourceProvider(resourceProvider);
                     cr.setRequestType(type);
+                    cr.setJobName(comboJob.getSelectedItem().toString());
+                    cr.setChance(Integer.parseInt(txtChance.getText()));                    
                     cr.setRequestStatusType(Request.RequestStatusType.Sent);
                     country.getRequestList().add(cr);
                     break;
@@ -266,19 +401,30 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
                     EduRequest er = new EduRequest();
                     er.setTitle(txtTitle.getText());
                     er.setMessage(txtMessage.getText());
-                    er.setSchool(account.getOrganization());
+                    if(comboPrinciple.getSelectedItem() != null){
+                        School = country.getSchoolByName(comboPrinciple.getSelectedItem().toString());
+                    }                                        
+                    er.setSchool(School);
+                    er.setCountryManager(account.getOrganization());
+                    er.setResourceProvider(resourceProvider);
                     er.setRequestType(type);
+                    er.setClassName(comboClass.getSelectedItem().toString());
                     er.setRequestStatusType(Request.RequestStatusType.Sent);
                     country.getRequestList().add(er);
                     break;
                 case FundRequest:
                     FundRequest fr = new FundRequest();
                     fr.setTitle(txtTitle.getText());
-                    fr.setMessage(txtMessage.getText());
-                    fr.setSchool(account.getOrganization());
+                    fr.setMessage(txtMessage.getText());                    
+                    if(comboPrinciple.getSelectedItem() != null){
+                        School = country.getSchoolByName(comboPrinciple.getSelectedItem().toString());
+                    }
+                    fr.setSchool(School);
+                    fr.setCountryManager(account.getOrganization());
+                    fr.setResourceProvider(resourceProvider);                    
                     fr.setRequestType(type);
+                    fr.setFundingAmount(Double.valueOf(txtAmount.getText()));                    
                     fr.setRequestStatusType(Request.RequestStatusType.Sent);
-                    fr.setFundingAmount(Double.valueOf(amountField.getText()));
                     country.getRequestList().add(fr);
                     break;
                 default:
@@ -291,25 +437,101 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnCreateActionPerformed
 
+    private void comboTypePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboTypePopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if(comboPrinciple.getSelectedItem() == null & comboProvider.getSelectedItem() == null & comboWorld.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Please select a receiver first!");
+            return;
+        }
+        
+        requestType = Request.getReqTypeByName(comboType.getSelectedItem().toString());
+        if(comboProvider.getSelectedItem() != null){
+            resourceProvider = organizationDirectory.getOrgByName(comboProvider.getSelectedItem().toString());
+        }        
+        
+        comboJob.removeAllItems();
+        txtAmount.setText("");
+        comboClass.removeAllItems();
+        txtAmount.setText("");
+        
+        if(null != requestType){
+            switch (requestType) {
+                case CompanyRequest:
+                    populatePositionCombo();
+                    break;
+                case EduRequest:
+                    populateClassCombo();
+                    break;                    
+            }
+        }
+    }//GEN-LAST:event_comboTypePopupMenuWillBecomeInvisible
+
+    private void comboTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTypeActionPerformed
+        // TODO add your handling code here:
+//        if(comboPrinciple.getSelectedItem() == null & comboProvider.getSelectedItem() == null & comboWorld.getSelectedItem() == null){
+//            JOptionPane.showMessageDialog(this, "Please select a receiver first!");
+//            return;
+//        }
+    }//GEN-LAST:event_comboTypeActionPerformed
+
+    public void populatePositionCombo(){
+       Company c = (Company) resourceProvider;
+       for(SingleJob sj:c.getCompanyManager().getJob().getJobList()){
+           comboJob.addItem(sj.getName());
+       }       
+    }
+    
+    public void populateClassCombo(){
+        CharityEduOrganization ceo = (CharityEduOrganization) resourceProvider;
+        
+        CharityEduManager cem = ceo.getCharityEdu();
+        EduClass ec = cem.getEduClass();
+        ArrayList<SingleClass> classList = ec.getClassList();
+        for(SingleClass sc:ceo.getCharityEdu().getEduClass().getClassList()){
+            comboClass.addItem(sc.getName());
+        }
+    }
+    
+    public void back(){
+        workArea.remove(this);
+        Component[] componentArray = workArea.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        CountryManagerRequestJPanel cmrjp = (CountryManagerRequestJPanel) component;
+        cmrjp.refreshRequestTable();
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.last(workArea);        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JComboBox<String> comboClass;
+    private javax.swing.JComboBox<String> comboJob;
     private javax.swing.JComboBox<String> comboPrinciple;
     private javax.swing.JComboBox<String> comboProvider;
     private javax.swing.JComboBox<String> comboType;
     private javax.swing.JComboBox<String> comboWorld;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel name2;
     private javax.swing.JTextField txtAmount;
+    private javax.swing.JTextField txtChance;
     private javax.swing.JTextArea txtMessage;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables

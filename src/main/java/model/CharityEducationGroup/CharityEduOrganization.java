@@ -19,6 +19,12 @@ public class CharityEduOrganization extends Organization{
         
         
     }
+
+    public CharityEduManager getCharityEdu() {
+        return charityEdu;
+    }
+    
+    
     
     
 }
