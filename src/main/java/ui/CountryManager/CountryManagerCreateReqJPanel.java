@@ -7,10 +7,13 @@ package ui.CountryManager;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Business;
+import model.CharityEducationGroup.CharityEduManager;
 import model.CharityEducationGroup.CharityEduOrganization;
+import model.CharityEducationGroup.EduClass;
 import model.CharityEducationGroup.SingleClass;
 import model.Company.Company;
 import model.Company.SingleJob;
@@ -480,6 +483,10 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
     
     public void populateClassCombo(){
         CharityEduOrganization ceo = (CharityEduOrganization) resourceProvider;
+        
+        CharityEduManager cem = ceo.getCharityEdu();
+        EduClass ec = cem.getEduClass();
+        ArrayList<SingleClass> classList = ec.getClassList();
         for(SingleClass sc:ceo.getCharityEdu().getEduClass().getClassList()){
             comboClass.addItem(sc.getName());
         }
