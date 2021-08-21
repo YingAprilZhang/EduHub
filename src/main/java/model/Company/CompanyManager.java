@@ -14,6 +14,13 @@ import model.UserAccount.UserAccount;
 public class CompanyManager extends UserAccount{
     private Job Job;
 
+    public CompanyManager() {
+        
+        this.Job = new Job();
+    }
+
+    
+    
     public Job getJob() {
         return Job;
     }

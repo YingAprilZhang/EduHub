@@ -133,6 +133,11 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
 
         txtAmount.setEditable(false);
         txtAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        txtAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAmountActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel2.setText("Resource Provider:");
@@ -389,6 +394,10 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Change status successfully!");
         back();
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAmountActionPerformed
 
     public void populateComboStatus(){
         comboStatus.removeAllItems();

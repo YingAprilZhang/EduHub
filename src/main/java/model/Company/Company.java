@@ -14,6 +14,12 @@ import model.Org.Organization;
 public class Company extends Organization {
     private CompanyManager companyManager;
 
+    
+    public  void setComManager(CompanyManager input) {
+        this.companyManager = input;
+    }
+    
+    
     public CompanyManager getCompanyManager() {
         return companyManager;
     }

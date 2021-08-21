@@ -21,14 +21,13 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form CompanyJPanel
      */
     JPanel userProcessContainer;
-    Business business;
+    Business business = Business.getInstance();
     CompanyManager company;
     UserAccount account;
 
     public CompanyWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.business = business;
         this.account = account;
         this.company = (CompanyManager) account;
 
@@ -82,7 +81,7 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setText("Company:");
 
         lblViewData.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        lblViewData.setText("View School Data");
+        lblViewData.setText("Manage Job");
         lblViewData.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblViewDataMouseClicked(evt);
@@ -174,7 +173,7 @@ public class CompanyWorkAreaJPanel extends javax.swing.JPanel {
 
     private void lblViewDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblViewDataMouseClicked
         // TODO add your handling code here:
-        ViewStudentJPanel vsjp = new ViewStudentJPanel(userProcessContainer, account, business);
+        ManageJobJPanel vsjp = new ManageJobJPanel(userProcessContainer, account, company);
         userProcessContainer.add(vsjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

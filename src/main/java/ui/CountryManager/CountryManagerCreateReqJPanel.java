@@ -485,6 +485,7 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
         CharityEduOrganization ceo = (CharityEduOrganization) resourceProvider;
         
         CharityEduManager cem = ceo.getCharityEdu();
+        System.out.println(">xo>>xx cem: " + cem);
         EduClass ec = cem.getEduClass();
         ArrayList<SingleClass> classList = ec.getClassList();
         for(SingleClass sc:ceo.getCharityEdu().getEduClass().getClassList()){

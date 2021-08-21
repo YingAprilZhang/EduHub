@@ -12,12 +12,12 @@ package model.Company;
 public class SingleJob {
 
     private String name;
-    private int salary;
+    private int num;
     private int jobID;
 
-    public SingleJob(String name, int salary, int JobID) {
+    public SingleJob(String name, int num, int JobID) {
         this.name = name;
-        this.salary = salary;
+        this.num = num;
         this.jobID = JobID;
     }
 
@@ -29,12 +29,12 @@ public class SingleJob {
         this.name = name;
     }
 
-    public int getSalary() {
-        return salary;
+    public int getNum() {
+        return num;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public int getJobID() {

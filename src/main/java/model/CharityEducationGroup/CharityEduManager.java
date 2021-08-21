@@ -28,7 +28,6 @@ public class CharityEduManager extends UserAccount{
         this.eduClass = eduClass;
     }
     
-    
     @Override 
     public String toString(){
         return this.getName();
