@@ -20,7 +20,8 @@ public abstract class Request {
     public enum RequestType {
         FundRequest("Funding Request"),
         CompanyRequest("Employement Opportunity Request"),
-        EduRequest("Class and Teacher Request");
+        EduRequest("Class and Teacher Request"),
+        GeneralRequest("General Request");
 
         private String value;
 
@@ -44,7 +45,9 @@ public abstract class Request {
         AcceptCountryManager("Accepted by Country Manager"),
         RejectCountryManager("Rejected by Country Manager"),
         AcceptResourceProvider("Accepted by Resource Provider"),
-        RejectResourceProvider("Rejected by Resource Provider");
+        RejectResourceProvider("Rejected by Resource Provider"),
+        AckCountryManager("Acknowledged by Country Manager"),
+        AckWorldManager("Acknowledged by World Manager");
 
         private String value;
 

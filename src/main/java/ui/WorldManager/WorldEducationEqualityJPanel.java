@@ -58,6 +58,9 @@ public class WorldEducationEqualityJPanel extends javax.swing.JPanel {
         for(Country c: countryDirectory.getName2Country().values()){
             comboCountry.addItem(c.toString());
         }
+        comboCountry.removeItem("World");
+        comboCountry.removeItem("world");
+
     }
     
     public void refreshChart(){

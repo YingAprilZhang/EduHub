@@ -65,6 +65,8 @@ public class WorldEducationDevelopmentJPanel extends javax.swing.JPanel {
         for(String name: countryDirectory.getName2Country().keySet()){
             comboCountry.addItem(name);
         }
+        comboCountry.removeItem("World");
+        comboCountry.removeItem("world");
     }    
 
     public void refreshFluc(){        

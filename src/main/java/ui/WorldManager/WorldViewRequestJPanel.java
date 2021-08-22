@@ -3,35 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.CountryManager;
+package ui.WorldManager;
 
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.Request.CompanyRequest;
-import model.Request.EduRequest;
-import model.Request.FundRequest;
 import model.Request.Request;
-import model.Request.Request.RequestStatusType;
 import model.UserAccount.UserAccount;
 
 /**
  *
  * @author changxu
  */
-public class CountryViewRequestJPanel extends javax.swing.JPanel {
+public class WorldViewRequestJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CountryViewRequestJPanel
+     * Creates new form WorldViewRequestJPanel
      */
     JPanel userProcessContainer;
     UserAccount account;
     Request request;
-    RequestStatusType requestStatusType;
+    Request.RequestStatusType requestStatusType;
     
-    public CountryViewRequestJPanel(JPanel userProcessContainer, UserAccount account, Request request) {
+    public WorldViewRequestJPanel(JPanel userProcessContainer, UserAccount account, Request request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
@@ -40,37 +36,13 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
         
         txtType.setText(request.getRequestType().getValue());
         txtPrinciple.setText(request.getSchool()==null?"":request.getSchool().toString());
-        txtProvider.setText(request.getResourceProvider()==null?"":request.getResourceProvider().toString());
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         txtRequestDate.setText(request.getRequestDate()==null?"":df.format(request.getRequestDate()));
         comboStatus.setSelectedItem(requestStatusType);
         txtResolveDate.setText(request.getResolveDate()==null?"":df.format(request.getRequestDate()));
         txtTitle.setText(request.getTitle());
         txtMessage.setText(request.getMessage());
-        txtWorldManager.setText(request.getWorldManager()==null?"":request.getWorldManager().getName());
-        
-        
-        Request.RequestType type = request.getRequestType();
-        if (null != type) {
-            switch (type) {
-                case CompanyRequest:
-                    CompanyRequest cr = (CompanyRequest) request;
-                    txtChance.setText(String.valueOf(cr.getChance()));
-                    txtJob.setText(cr.getJobName());
-                    break;
-                case EduRequest:
-                    EduRequest er = (EduRequest) request;
-                    txtClass.setText(er.getClassName());
-                    break;
-                case FundRequest:
-                    FundRequest fr = (FundRequest) request;
-                    txtAmount.setText(String.valueOf(fr.getFundingAmount()));
-                    break;
-            }
-        }
-                        
 
-        
     }
 
     /**
@@ -86,9 +58,6 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
         name2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtPrinciple = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtAmount = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtRequestDate = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -105,15 +74,8 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
         btnUpdate = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         comboStatus = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        txtChance = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtResolveDate = new javax.swing.JTextField();
-        txtJob = new javax.swing.JTextField();
-        txtClass = new javax.swing.JTextField();
-        txtProvider = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(250, 250, 250));
 
@@ -128,20 +90,6 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
 
         txtPrinciple.setEditable(false);
         txtPrinciple.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-
-        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel7.setText("Fund Amount:");
-
-        txtAmount.setEditable(false);
-        txtAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-        txtAmount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAmountActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel2.setText("Resource Provider:");
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel5.setText("Request Date:");
@@ -212,29 +160,11 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel13.setText("Job:");
-
-        jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel14.setText("Interview Chance:");
-
-        txtChance.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-
-        jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel15.setText("Class:");
-
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel10.setText("Resolve Date:");
 
         txtResolveDate.setEditable(false);
         txtResolveDate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-
-        txtJob.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-
-        txtClass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
-
-        txtProvider.setEditable(false);
-        txtProvider.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -247,38 +177,26 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtType, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                                    .addComponent(txtPrinciple, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtType, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                    .addComponent(txtPrinciple, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                                     .addComponent(txtWorldManager, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                                     .addComponent(txtRequestDate, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                                     .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                                     .addComponent(comboStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtResolveDate, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                    .addComponent(txtProvider, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel14))
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                    .addComponent(txtChance)
-                                    .addComponent(txtJob)
-                                    .addComponent(txtClass))
-                                .addGap(261, 261, 261))
+                                    .addComponent(txtResolveDate, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
@@ -287,18 +205,15 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
                                         .addComponent(btnUpdate)
                                         .addGap(30, 30, 30)
                                         .addComponent(btnSave))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
                         .addComponent(bg))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(name2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(1062, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnSave, btnUpdate});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -310,37 +225,17 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(name2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrinciple, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProvider, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtJob, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtChance, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrinciple, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtWorldManager, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtWorldManager, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,11 +279,6 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
         comboStatus.setSelectedItem(request.getRequestStatusType());
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void comboStatusPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboStatusPopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-        requestStatusType = Request.getStatusByName(comboStatus.getSelectedItem().toString());        
-    }//GEN-LAST:event_comboStatusPopupMenuWillBecomeInvisible
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         request.setRequestStatusType(requestStatusType);
@@ -396,27 +286,27 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
         back();
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
+    private void comboStatusPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboStatusPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAmountActionPerformed
+        requestStatusType = Request.getStatusByName(comboStatus.getSelectedItem().toString());
+    }//GEN-LAST:event_comboStatusPopupMenuWillBecomeInvisible
 
     public void populateComboStatus(){
         comboStatus.removeAllItems();
-        comboStatus.addItem(Request.RequestStatusType.Sent.getValue());
-        comboStatus.addItem(Request.RequestStatusType.AcceptCountryManager.getValue());
-        comboStatus.addItem(Request.RequestStatusType.RejectCountryManager.getValue());
-        comboStatus.addItem(Request.RequestStatusType.AckCountryManager.getValue());
+        comboStatus.addItem(Request.RequestStatusType.AckWorldManager.getValue());
     }
+
     public void back(){
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        CountryManagerRequestJPanel cmrjp = (CountryManagerRequestJPanel) component;
-        cmrjp.refreshRequestTable();
+        WorldManagerRequestJPanel wmrjp = (WorldManagerRequestJPanel) component;
+        wmrjp.refreshRequestTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.last(userProcessContainer);        
     }
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnBack;
@@ -425,26 +315,16 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> comboStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel name2;
-    private javax.swing.JTextField txtAmount;
-    private javax.swing.JTextField txtChance;
-    private javax.swing.JTextField txtClass;
-    private javax.swing.JTextField txtJob;
     private javax.swing.JTextArea txtMessage;
     private javax.swing.JTextField txtPrinciple;
-    private javax.swing.JTextField txtProvider;
     private javax.swing.JTextField txtRequestDate;
     private javax.swing.JTextField txtResolveDate;
     private javax.swing.JTextField txtTitle;
