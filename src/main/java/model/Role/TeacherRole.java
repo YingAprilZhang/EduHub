@@ -8,7 +8,7 @@ package model.Role;
 import javax.swing.JPanel;
 import model.Business;
 import model.UserAccount.UserAccount;
-import ui.Teacher.TeacherAreaJPanel;
+import ui.Teacher.TeacherWorkAreaJPanel;
 
 /**
  *
@@ -28,8 +28,9 @@ public class TeacherRole extends Role {
     public TeacherRole() {
         super(Role.RoleType.Teacher);
     }
-    
-     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new TeacherAreaJPanel(userProcessContainer, account);
+
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+        return new TeacherWorkAreaJPanel(userProcessContainer, account);
     }
 }

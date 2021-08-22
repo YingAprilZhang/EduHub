@@ -54,5 +54,38 @@ public class EduDataAnalyze {
         */
         return result;
     }
+     
+     // gender: Female / Male
+    // course: reading / math / science
+     public static Map<Integer, double[]> getAvgCourseScore (School school) {
+        Map<Integer, double[]> result = new TreeMap<>();
+        Map<Integer, Integer> year2count = new HashMap<>();
+        for(EduData ed : school.eduDataList) {
+            if (null==result.get(ed.year)) {
+                 result.put(ed.year,new double[]{ed.readingScore, ed.mathScore, ed.scienceScore});
+            } else {
+                 double[] scores = result.get(ed.year);
+                 scores[0] += ed.readingScore;
+                 scores[1] += ed.mathScore;
+                 scores[2] += ed.scienceScore;
+                 result.put(ed.year,scores);
+            }
+            year2count.put(ed.year, 1 + (null==year2count.get(ed.year) ? 0 : year2count.get(ed.year)));
+        }
+        
+        for (int year : result.keySet()) {
+               result.get(year)[0] = result.get(year)[0]/year2count.get(year);
+               result.get(year)[1] = result.get(year)[1]/year2count.get(year);
+               result.get(year)[2] = result.get(year)[2]/year2count.get(year);
+        }
+        for (int year : result.keySet()) {
+            System.out.println(
+                      ", year: " + year
+                    +", readingScore: "+ result.get(year)[0]
+                    +", mathScore: "+ result.get(year)[1]
+                    +", scienceScore"+ result.get(year)[2]);
+        }
+        return result;
+    }
 
 }

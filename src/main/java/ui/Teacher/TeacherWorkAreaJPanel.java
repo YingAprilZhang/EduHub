@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.Student;
+package ui.Teacher;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -13,15 +13,15 @@ import model.UserAccount.UserAccount;
  *
  * @author aprilyz
  */
-public class StudentAreaJPanel extends javax.swing.JPanel {
-
+public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
+    
     JPanel workArea;
     UserAccount account;
-    
+
     /**
-     * Creates new form StudentAreaJPanel
+     * Creates new form TeacherWorkAreaJPanel
      */
-    public StudentAreaJPanel(JPanel workArea, UserAccount account) {
+    public TeacherWorkAreaJPanel(JPanel workArea, UserAccount account) {
         initComponents();
         
         this.workArea = workArea;
@@ -37,42 +37,26 @@ public class StudentAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        schoolBtn = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
+        logoRequest1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        studentBtn = new javax.swing.JButton();
         lblStudentName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         logoAnalyze = new javax.swing.JLabel();
-        schoolBtn = new javax.swing.JButton();
-        logoRequest1 = new javax.swing.JLabel();
-        studentBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
-
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel3.setText("Student Work Area");
-
-        lblStudentName.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        lblStudentName.setText("<Student Label>");
-
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel4.setText("Student:");
-
-        logoAnalyze.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-combo-chart-64.png"))); // NOI18N
-        logoAnalyze.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoAnalyzeMouseClicked(evt);
-            }
-        });
-
         schoolBtn.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        schoolBtn.setText("View My Records");
+        schoolBtn.setText("Manage Educational Records");
         schoolBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 schoolBtnActionPerformed(evt);
             }
         });
+
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
         logoRequest1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
         logoRequest1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,11 +65,27 @@ public class StudentAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel3.setText("Teacher Work Area");
+
         studentBtn.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        studentBtn.setText("My Personal Info");
+        studentBtn.setText("View Educational Summary");
         studentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 studentBtnActionPerformed(evt);
+            }
+        });
+
+        lblStudentName.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblStudentName.setText("<Student Label>");
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel4.setText("Teacher:");
+
+        logoAnalyze.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-combo-chart-64.png"))); // NOI18N
+        logoAnalyze.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoAnalyzeMouseClicked(evt);
             }
         });
 
@@ -95,11 +95,11 @@ public class StudentAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(schoolBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(schoolBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jLabel4)
@@ -110,8 +110,8 @@ public class StudentAreaJPanel extends javax.swing.JPanel {
                         .addGap(6, 6, 6)
                         .addComponent(logoRequest1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(studentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 528, Short.MAX_VALUE)
+                        .addComponent(studentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 511, Short.MAX_VALUE)
                 .addComponent(bg))
         );
         layout.setVerticalGroup(
@@ -126,12 +126,11 @@ public class StudentAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblStudentName))
+                .addGap(120, 120, 120)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(logoAnalyze, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
+                        .addGap(13, 13, 13)
                         .addComponent(schoolBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -143,27 +142,10 @@ public class StudentAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoAnalyzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoAnalyzeMouseClicked
-        // TODO add your handling code here:
-        /*
-        int selectedRow = tblYear.getSelectedRow();
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(this, "Please select a year.");
-            return;
-        }
-
-        MacroData md = (MacroData) tblYear.getValueAt(selectedRow, 0);
-        ViewRegionalDataJPanel vrdj = (ViewRegionalDataJPanel) new ViewRegionalDataJPanel(userProcessContainer, md, country);
-        userProcessContainer.add("ViewRegionalDataJPanel", vrdj);
-        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
-        crdLyt.next(userProcessContainer);
-        */
-    }//GEN-LAST:event_logoAnalyzeMouseClicked
-
     private void schoolBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolBtnActionPerformed
         // TODO add your handling code here:
-        StudentScoreJPanel msijp = new StudentScoreJPanel(workArea, account);
-        workArea.add("StudentScoreJPanel",msijp);
+        TeacherAddScoreJPanel msijp = new TeacherAddScoreJPanel(workArea, account);
+        workArea.add("TeacherAddScoreJPanel",msijp);
         CardLayout layout = (CardLayout)workArea.getLayout();
         layout.next(workArea);
     }//GEN-LAST:event_schoolBtnActionPerformed
@@ -174,11 +156,15 @@ public class StudentAreaJPanel extends javax.swing.JPanel {
 
     private void studentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentBtnActionPerformed
         // TODO add your handling code here:
-        StudentInfoJPanel msijp = new StudentInfoJPanel(workArea, account);
-        workArea.add("StudentInfoJPanel",msijp);
+       TeacherScoreSummaryJPanel msijp = new TeacherScoreSummaryJPanel(workArea, account);
+        workArea.add("TeacherScoreSummaryJPanel",msijp);
         CardLayout layout = (CardLayout)workArea.getLayout();
         layout.next(workArea);
     }//GEN-LAST:event_studentBtnActionPerformed
+
+    private void logoAnalyzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoAnalyzeMouseClicked
+
+    }//GEN-LAST:event_logoAnalyzeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
