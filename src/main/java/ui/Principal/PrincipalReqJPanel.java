@@ -228,7 +228,7 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
                     CompanyRequest cr = new CompanyRequest();
                     cr.setTitle(titleField.getText());
                     cr.setMessage(jTextPane1.getText());
-                    cr.setSchool(account.getOrganization());
+                    cr.setSchool(account.getOrganization().getEnterprise());
                     cr.setRequestType(type);
                     cr.setRequestStatusType(Request.RequestStatusType.Sent);
                     country.getRequestList().add(cr);
@@ -237,7 +237,7 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
                     EduRequest er = new EduRequest();
                     er.setTitle(titleField.getText());
                     er.setMessage(jTextPane1.getText());
-                    er.setSchool(account.getOrganization());
+                    er.setSchool(account.getOrganization().getEnterprise());
                     er.setRequestType(type);
                     er.setRequestStatusType(Request.RequestStatusType.Sent);
                     country.getRequestList().add(er);
@@ -246,7 +246,7 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
                     FundRequest fr = new FundRequest();
                     fr.setTitle(titleField.getText());
                     fr.setMessage(jTextPane1.getText());
-                    fr.setSchool(account.getOrganization());
+                    fr.setSchool(account.getOrganization().getEnterprise());
                     fr.setRequestType(type);
                     fr.setRequestStatusType(Request.RequestStatusType.Sent);
                     fr.setFundingAmount(Double.valueOf(amountField.getText()));

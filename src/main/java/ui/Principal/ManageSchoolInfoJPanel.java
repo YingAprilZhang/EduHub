@@ -31,7 +31,7 @@ public class ManageSchoolInfoJPanel extends javax.swing.JPanel {
         initComponents();
         this.workArea = workArea;
         this.principal = (Principal)account;
-        this.school = (School)this.principal.getOrganization();
+        this.school = (School)this.principal.getOrganization().getEnterprise();
         nameField.setText(this.school.getName());
         countryField.setText(this.school.getCountry().getName());
     }

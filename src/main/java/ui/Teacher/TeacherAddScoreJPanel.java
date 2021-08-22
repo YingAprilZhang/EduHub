@@ -10,12 +10,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Business;
-import model.Country.Country;
-import model.DataAnalyze.EduDataAnalyze;
+import model.Org.Organization;
 import model.Role.Role;
 import model.School.EduData;
 import model.School.School;
 import model.School.Student;
+import model.School.StudentGroup;
 import model.UserAccount.UserAccount;
 
 /**
@@ -27,6 +27,7 @@ public class TeacherAddScoreJPanel extends javax.swing.JPanel {
     JPanel workArea;
     UserAccount account;
     School school;
+    StudentGroup studentGroup;
     Business business = Business.getInstance();
     
     /**
@@ -38,7 +39,12 @@ public class TeacherAddScoreJPanel extends javax.swing.JPanel {
         this.workArea = workArea;
         this.account = account;
         this.school = (School)account.getOrganization().getEnterprise();
-        
+        for (Organization o : school.orgList){
+            if (o.getOrgType().equals(Organization.OrgType.StudentGroup)) {
+                this.studentGroup = (StudentGroup)o;
+                break;
+            }
+        }     
         refreshTable();
         
     }
@@ -300,11 +306,11 @@ public class TeacherAddScoreJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-              
+        
         Student student = (Student) business.getUserAccountDirectory().createUserAccount(studentField.getText()
-                ,studentField.getText(), studentField.getText(), Role.RoleType.Student, school);
+                ,studentField.getText(), studentField.getText(), Role.RoleType.Student, studentGroup);
         student.setGender(jComboBox1.getSelectedItem().toString());
-        school.username2student.put(student.getUsername(), student);
+        studentGroup.username2student.put(student.getUsername(), student);
         
         EduData data = new EduData(Integer.valueOf(yearField.getText()), student
                 , Double.valueOf(literacyField.getText())
@@ -407,7 +413,7 @@ public class TeacherAddScoreJPanel extends javax.swing.JPanel {
        for (int i = 0; i < model.getRowCount(); i++) {
            EduData ed = school.eduDataList.get(i);
            ed.year = Integer.valueOf(tblInfo.getValueAt(i, 0).toString());
-           ed.student = school.getStudentByName(tblInfo.getValueAt(i, 1).toString());
+           ed.student = studentGroup.getStudentByName(tblInfo.getValueAt(i, 1).toString());
            ed.student.gender = tblInfo.getValueAt(i, 2).toString();
            ed.readingScore = Double.valueOf(tblInfo.getValueAt(i, 3).toString());
            ed.mathScore = Double.valueOf(tblInfo.getValueAt(i, 4).toString());

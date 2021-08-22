@@ -28,7 +28,7 @@ public class StudentScoreJPanel extends javax.swing.JPanel {
         this.workArea = workArea;
         this.account = account;
         
-        School school = (School)account.getOrganization();
+        School school = (School)account.getOrganization().getEnterprise();
         EduData eduData = school.getEduDataOfStudent(account.getUsername());
         yearField.setText(String.valueOf(eduData.year));
         readingField.setText(String.valueOf(eduData.readingScore));
