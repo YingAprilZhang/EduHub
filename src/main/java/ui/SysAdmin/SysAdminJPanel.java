@@ -49,7 +49,7 @@ public class SysAdminJPanel extends javax.swing.JPanel {
 
         leftPanel.setBackground(new java.awt.Color(132, 178, 208));
 
-        orgBtn.setText("Manage Organizations");
+        orgBtn.setText("Manage Enterprise");
         orgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgBtnActionPerformed(evt);
