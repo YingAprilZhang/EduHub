@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.Company;
+package model.School;
 
-import model.Enterprise.Enterprise;
 import model.Org.Organization;
 
 /**
  *
- * @author kkkkayla
+ * @author aprilyz
  */
-public class Company extends Enterprise {
+public class StudentGroup extends Organization{
     
 }

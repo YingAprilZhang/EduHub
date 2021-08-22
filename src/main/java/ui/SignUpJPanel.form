@@ -32,31 +32,41 @@
                       <EmptySpace pref="301" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblUsername" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
-                                          <Component id="lblPassword" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                                          <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblTemperature1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblTemperature2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="userNameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                          <Component id="passWordField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                          <Component id="nameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                          <Component id="roleBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                          <Component id="organizationBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Component id="lblTemperature2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblUsername" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="lblPassword" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblTemperature1" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="submitBtn" alignment="1" min="-2" pref="268" max="-2" attributes="0"/>
+                                  <Component id="lblTemperature3" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="roleBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="enterpriseBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="organizationBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="323" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="submitBtn" min="-2" pref="268" max="-2" attributes="0"/>
+                              <EmptySpace min="323" pref="323" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="102" pref="102" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="nameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="passWordField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="userNameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -98,10 +108,15 @@
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblTemperature3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="enterpriseBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTemperature2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="organizationBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="submitBtn" min="-2" pref="49" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -192,6 +207,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="roleBoxPopupMenuWillBecomeInvisible"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -234,6 +252,31 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="submitBtnMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTemperature3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Enterprise"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="enterpriseBox">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="enterpriseBoxPopupMenuWillBecomeInvisible"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enterpriseBoxActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

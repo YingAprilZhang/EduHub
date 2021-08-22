@@ -8,6 +8,8 @@ package model.Org;
 import java.util.HashMap;
 import java.util.Map;
 import model.Country.Country;
+import model.Enterprise.Enterprise;
+import model.Enterprise.Enterprise.EtprType;
 import model.Role.Role.RoleType;
 
 /**
@@ -18,15 +20,34 @@ public class Organization {
      private String name;
      private Country country;
      private OrgType orgType;
+     private Enterprise enterprise;
 
      
      public enum OrgType{
-        School,
-        CharityEdu,
+        TeachingGroup,
+        StudentGroup,
+        SchoolManagementGroup,
         CharityFunding,
-        Company,
-        CountryEdu;
+        CharityEdu,
+        HRGroup,
+        CountryEdu,
+        WorldEdu
+        ;
     }
+     
+     public static final Map<OrgType, EtprType> OrgType2EtprType = new HashMap<OrgType, EtprType>() {{
+        put(OrgType.TeachingGroup, EtprType.School);
+        put(OrgType.StudentGroup, EtprType.School);
+        put(OrgType.SchoolManagementGroup, EtprType.School);
+        
+        put(OrgType.CharityFunding, EtprType.Charity);
+        put(OrgType.CharityEdu, EtprType.Charity);
+        
+        put(OrgType.HRGroup, EtprType.Company);
+        
+        put(OrgType.CountryEdu, EtprType.UnitedEduOrg);
+        put(OrgType.WorldEdu, EtprType.UnitedEduOrg);
+    }};
 
     public String getName() {
         return name;
@@ -54,6 +75,14 @@ public class Organization {
     
     public static OrgType getOrgTypeByName(String name) {
         return Enum.valueOf(Organization.OrgType.class, name);
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
     
      

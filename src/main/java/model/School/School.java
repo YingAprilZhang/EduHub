@@ -12,14 +12,14 @@ import java.util.Map;
 import java.util.TreeMap;
 import model.Business;
 import model.Country.Country;
-import model.Org.Organization;
+import model.Enterprise.Enterprise;
 import model.Role.Role;
 
 /**
  *
  * @author aprilyz
  */
-public class School extends Organization {
+public class School extends Enterprise {
     public Principal principal;
     public Map<String, Student> username2student;
     public List<EduData> eduDataList;

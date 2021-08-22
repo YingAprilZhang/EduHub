@@ -37,7 +37,7 @@ public class TeacherAddScoreJPanel extends javax.swing.JPanel {
         
         this.workArea = workArea;
         this.account = account;
-        this.school = (School)account.getOrganization();
+        this.school = (School)account.getOrganization().getEnterprise();
         
         refreshTable();
         

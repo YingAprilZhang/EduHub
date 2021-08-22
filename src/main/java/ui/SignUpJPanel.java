@@ -16,7 +16,9 @@ import model.CharityFundingGroup.CharityFundingManager;
 import model.CharityFundingGroup.CharityFundingOrganization;
 import model.Company.Company;
 import model.Company.CompanyManager;
+import model.Company.HRGroup;
 import model.Country.Country;
+import model.Enterprise.Enterprise;
 import model.Org.Organization;
 import model.Role.Role;
 import model.UserAccount.UserAccount;
@@ -39,7 +41,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
         initComponents();
 
         populateComboRole();
-        populateComboOrganization();
+        populateComboEnterprise();
 
         backLbl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         submitBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -51,12 +53,22 @@ public class SignUpJPanel extends javax.swing.JPanel {
             roleBox.addItem(type.getValue());
         }
     }
-
-    private void populateComboOrganization() {
-        for (Organization organization : business.getOrganizationDirectory().getOrganizationList()) {
-            organizationBox.addItem(organization.getName());
+    
+    private void populateComboEnterprise() {
+        for (Enterprise enterprise : business.getEnterpriseDirectory().getEnterpriseList()) {
+            enterpriseBox.addItem(enterprise.getName());
         }
     }
+
+    private void populateComboOrganization(Enterprise.EtprType enterpriseType) {
+        for (Organization organization : business.getOrganizationDirectory().getOrganizationList()) {
+            if (enterpriseType == Organization.OrgType2EtprType.get(organization.getOrgType())) {
+                organizationBox.addItem(organization.getName());
+            }
+        }
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,6 +93,8 @@ public class SignUpJPanel extends javax.swing.JPanel {
         lblTemperature2 = new javax.swing.JLabel();
         organizationBox = new javax.swing.JComboBox<>();
         submitBtn = new javax.swing.JButton();
+        lblTemperature3 = new javax.swing.JLabel();
+        enterpriseBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -129,6 +143,15 @@ public class SignUpJPanel extends javax.swing.JPanel {
         });
 
         roleBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        roleBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                roleBoxPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
 
         lblTemperature2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblTemperature2.setText("Organization");
@@ -154,6 +177,25 @@ public class SignUpJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblTemperature3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblTemperature3.setText("Enterprise");
+
+        enterpriseBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        enterpriseBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                enterpriseBoxPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        enterpriseBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterpriseBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,26 +210,34 @@ public class SignUpJPanel extends javax.swing.JPanel {
                         .addContainerGap(301, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(388, 388, 388))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblName, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblTemperature1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblTemperature2, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(passWordField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(organizationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(submitBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblTemperature2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblName, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblTemperature1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(lblTemperature3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(roleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enterpriseBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(organizationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(323, 323, 323))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(388, 388, 388)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(323, 323, 323))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(102, 102, 102)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passWordField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addComponent(bg))
         );
         layout.setVerticalGroup(
@@ -218,9 +268,13 @@ public class SignUpJPanel extends javax.swing.JPanel {
                     .addComponent(lblTemperature1))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTemperature3)
+                    .addComponent(enterpriseBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTemperature2)
                     .addComponent(organizationBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                .addGap(39, 39, 39)
                 .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -260,13 +314,11 @@ public class SignUpJPanel extends javax.swing.JPanel {
         if (org.getOrgType() == Organization.OrgType.CharityFunding) {
             CharityFundingOrganization cfo = (CharityFundingOrganization) org;
             cfo.setCharityFund((CharityFundingManager) newAcc);
-
         }
 
-        if (org.getOrgType() == Organization.OrgType.Company) {
-            Company c = (Company) org;
-            c.setComManager((CompanyManager) newAcc);
-
+        if (org.getOrgType() == Organization.OrgType.HRGroup) {
+            HRGroup hrGroup = (HRGroup) org;
+            hrGroup.setComManager((CompanyManager) newAcc);
         }
 
         JOptionPane.showMessageDialog(null, "User successfully signed up!", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -281,6 +333,22 @@ public class SignUpJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_organizationBoxActionPerformed
 
+    private void enterpriseBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterpriseBoxActionPerformed
+
+    private void roleBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_roleBoxPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleBoxPopupMenuWillBecomeInvisible
+
+    private void enterpriseBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_enterpriseBoxPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if(enterpriseBox.getSelectedItem() != null){
+             Enterprise.EtprType type = Enterprise.getEtprTypeByName(enterpriseBox.getSelectedItem().toString());
+             populateComboOrganization(type);
+         }
+    }//GEN-LAST:event_enterpriseBoxPopupMenuWillBecomeInvisible
+
     private void back() {
         workArea.remove(this);
         CardLayout layout = (CardLayout) workArea.getLayout();
@@ -290,11 +358,13 @@ public class SignUpJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
+    private javax.swing.JComboBox<String> enterpriseBox;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTemperature1;
     private javax.swing.JLabel lblTemperature2;
+    private javax.swing.JLabel lblTemperature3;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField nameField;
     private javax.swing.JComboBox<String> organizationBox;
