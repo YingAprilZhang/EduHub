@@ -24,6 +24,7 @@ public class Organization {
         School,
         CharityEdu,
         CharityFunding,
+        Company,
         CountryEdu;
     }
 

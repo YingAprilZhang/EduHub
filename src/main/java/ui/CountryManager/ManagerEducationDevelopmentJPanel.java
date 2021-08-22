@@ -8,6 +8,7 @@ package ui.CountryManager;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.util.TreeMap;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Country.Country;
 import model.DataAnalyze.EduDataAnalyze;
@@ -16,7 +17,12 @@ import model.UserAccount.UserAccount;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
+import org.jfree.chart.labels.StandardXYItemLabelGenerator;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -52,8 +58,8 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
     public void refreshFluc(){        
         String selectedItem = (String) comboDevelopment.getSelectedItem();
         switch(selectedItem){
-            case "Unemployement Rate" :
-                developmentIndicator = "Unemployement rate";
+            case "Unemployement rate" :
+                developmentIndicator = "Unemployement Rate";
                 developmentDataMap = MacroDataAnalyze.getUnemployment(country);
                 break;
             case "Government expenditure on education(% of government expenditure)" :
@@ -71,16 +77,58 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
                 
         }
         
+        if(developmentDataMap.size() == 0){
+            JOptionPane.showMessageDialog(this, "No " + developmentIndicator + " data yet.");
+            return;
+        }
+        
+        Integer lowerX = 0;
+        Integer upperX = 0;
+        Double lowerY = 0.0D;
+        Double upperY = 0.0D;
+        Integer count = 0;
+        
         XYSeriesCollection collection = new XYSeriesCollection();
 
-        XYSeries series = new XYSeries("EducationDevelopment");
+        XYSeries series = new XYSeries(developmentIndicator);
         for(Integer year: developmentDataMap.keySet()){
             series.add(year, developmentDataMap.get(year));
+            if(count == 0){
+                lowerX = year;
+                upperX = year;
+                lowerY = developmentDataMap.get(year);
+                upperY = developmentDataMap.get(year);
+            }            
+            if(year < lowerX){
+                lowerX = year;
+            }else if(year > upperX){
+                upperX = year;
+            }
+            if(developmentDataMap.get(year) < lowerY){
+                lowerY = developmentDataMap.get(year);
+            }else if(developmentDataMap.get(year) > upperY){
+                upperY = developmentDataMap.get(year);
+            }
+            count ++;            
         }
+        count = 0;
         collection.addSeries(series);
     
-        JFreeChart lineChart = ChartFactory.createXYLineChart(developmentIndicator + "Fluctuation", "Year", "Value",
+        JFreeChart lineChart = ChartFactory.createXYLineChart(developmentIndicator + " Fluctuation", "Year", "Value",
         collection, PlotOrientation.VERTICAL, true, true, false);
+
+        XYPlot plot = (XYPlot) lineChart.getPlot();
+        
+        NumberAxis xAxis = (NumberAxis) plot.getDomainAxis();
+        xAxis.setTickUnit(new NumberTickUnit(1));
+        xAxis.setRange(lowerX-1,upperX+1);
+        
+        NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
+        yAxis.setRange(lowerY - (upperY-lowerY)/2,upperY + (upperY-lowerY)/2);
+        
+        XYItemRenderer renderer = (XYItemRenderer) plot.getRenderer();
+        renderer.setBaseItemLabelGenerator(new StandardXYItemLabelGenerator());
+        renderer.setBaseItemLabelsVisible(Boolean.TRUE);
         
         ChartPanel lineChartPanel = new ChartPanel(lineChart);
         flucPanel.removeAll();
@@ -114,47 +162,96 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
                 break;
             case "Math Score" :
                 equalityIndicator = "Math Score";
-                maleEqualityDataMap = EduDataAnalyze.getAvgMathScoreMale(country);
-                femaleEqualityDataMap = EduDataAnalyze.getAvgMathScoreFemale(country);
+                maleEqualityDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "math", "Male");
+                femaleEqualityDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "math", "Female");
                 break;
             case "Literacy Score" :
                 equalityIndicator = "Literacy Score";
-                maleEqualityDataMap = EduDataAnalyze.getAvgLiteracyScoreMale(country);
-                femaleEqualityDataMap = EduDataAnalyze.getAvgLiteracyScoreFemale(country);
+                maleEqualityDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "reading", "Male");
+                femaleEqualityDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "reading", "Female");
                 break;
             case "Science Score" :
                 equalityIndicator = "Science Score";
-                maleEqualityDataMap = EduDataAnalyze.getAvgScienceScoreMale(country);
-                femaleEqualityDataMap = EduDataAnalyze.getAvgScienceScoreFemale(country);
+                maleEqualityDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "science", "Male");
+                femaleEqualityDataMap = EduDataAnalyze.getAvgCourseScoreByGender(country, "science", "Female");
                 break;                                            
         }
+        
+        if(developmentDataMap.size() == 0 || maleEqualityDataMap.size() == 0 || femaleEqualityDataMap.size() == 0){
+            JOptionPane.showMessageDialog(this, "No data yet.");
+            return;
+        }        
         
         TreeMap<Double, Double> maleRelationshipMap = generateRelationshipMap(maleEqualityDataMap, developmentDataMap);
         TreeMap<Double, Double> femaleRelationshipMap = generateRelationshipMap(femaleEqualityDataMap, developmentDataMap);        
 
+        Double lowerX = 0.0D;
+        Double upperX = 0.0D;
+        Double lowerY = 0.0D;
+        Double upperY = 0.0D;
+        Integer count = 0;
+
         XYSeriesCollection collection = new XYSeriesCollection();
         
-        XYSeries maleSeries = new XYSeries("MaleRelationship");
+        XYSeries maleSeries = new XYSeries("Male");
         for(Double x: maleRelationshipMap.keySet()){
             maleSeries.add(x, maleRelationshipMap.get(x));
+            if(count == 0){
+                lowerX = x;
+                upperX = x;
+                lowerY = maleRelationshipMap.get(x);
+                upperY = maleRelationshipMap.get(x);
+            }            
+            if(x < lowerX){
+                lowerX = x;
+            }else if(x > upperX){
+                upperX = x;
+            }
+            if(maleRelationshipMap.get(x) < lowerY){
+                lowerY = maleRelationshipMap.get(x);
+            }else if(maleRelationshipMap.get(x) > upperY){
+                upperY = maleRelationshipMap.get(x);
+            }
+            count ++;            
         }
         collection.addSeries(maleSeries);
         
-        XYSeries femaleSeries = new XYSeries("femaleRelationship");
+        XYSeries femaleSeries = new XYSeries("Female");
         for(Double x: femaleRelationshipMap.keySet()){
-            maleSeries.add(x, femaleRelationshipMap.get(x));
+            femaleSeries.add(x, femaleRelationshipMap.get(x));
+            if(x < lowerX){
+                lowerX = x;
+            }else if(x > upperX){
+                upperX = x;
+            }
+            if(femaleRelationshipMap.get(x) < lowerY){
+                lowerY = femaleRelationshipMap.get(x);
+            }else if(femaleRelationshipMap.get(x) > upperY){
+                upperY = femaleRelationshipMap.get(x);
+            }            
+            
         }
         collection.addSeries(femaleSeries);
         
-        JFreeChart lineChart = ChartFactory.createXYLineChart("Equality & Development Relationship", "equalityIndicator", "developmentIndicator",
+        JFreeChart lineChart = ChartFactory.createXYLineChart("Equality & Development Relationship", equalityIndicator, developmentIndicator,
                 collection, PlotOrientation.VERTICAL, true, true, false);
+        
+        XYPlot plot = (XYPlot) lineChart.getPlot();
+        
+        NumberAxis xAxis = (NumberAxis) plot.getDomainAxis();        
+        xAxis.setRange(lowerX - (upperX-lowerX)/2,upperX + (upperX-lowerX)/2);
+        
+        NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
+        yAxis.setRange(lowerY - (upperY-lowerY)/2,upperY + (upperY-lowerY)/2);
+        
+        XYItemRenderer renderer = (XYItemRenderer) plot.getRenderer();
+        renderer.setBaseItemLabelGenerator(new StandardXYItemLabelGenerator());
+        renderer.setBaseItemLabelsVisible(Boolean.TRUE);
         
         ChartPanel lineChartPanel = new ChartPanel(lineChart);
         relationPanel.removeAll();
         relationPanel.add(lineChartPanel, BorderLayout.CENTER);
-        relationPanel.validate();
-        
-        
+        relationPanel.validate();               
     }
     
     public TreeMap<Double, Double> generateRelationshipMap(TreeMap<Integer, Double> equalityMap, TreeMap<Integer, Double> developmentMap){
@@ -203,6 +300,11 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
         jLabel4.setText("Select an Education Development Indicator:");
 
         comboDevelopment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unemployement rate", "Government expenditure on education(% of government expenditure)", "Pupil-teacher ratio", "GDP" }));
+        comboDevelopment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboDevelopmentActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +345,7 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel3)))
                 .addGap(18, 18, 18)
                 .addComponent(btnRefresh)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(614, Short.MAX_VALUE))
         );
         InfoPanelLayout.setVerticalGroup(
             InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,30 +367,10 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
         );
 
         flucPanel.setBackground(new java.awt.Color(255, 255, 102));
+        flucPanel.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout flucPanelLayout = new javax.swing.GroupLayout(flucPanel);
-        flucPanel.setLayout(flucPanelLayout);
-        flucPanelLayout.setHorizontalGroup(
-            flucPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
-        );
-        flucPanelLayout.setVerticalGroup(
-            flucPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 674, Short.MAX_VALUE)
-        );
-
-        relationPanel.setBackground(new java.awt.Color(204, 255, 204));
-
-        javax.swing.GroupLayout relationPanelLayout = new javax.swing.GroupLayout(relationPanel);
-        relationPanel.setLayout(relationPanelLayout);
-        relationPanelLayout.setHorizontalGroup(
-            relationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 947, Short.MAX_VALUE)
-        );
-        relationPanelLayout.setVerticalGroup(
-            relationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        relationPanel.setBackground(new java.awt.Color(255, 255, 102));
+        relationPanel.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -296,9 +378,11 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(InfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(flucPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(relationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(flucPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(relationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,8 +390,9 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
                 .addComponent(InfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(relationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(flucPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(flucPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(relationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -321,6 +406,10 @@ public class ManagerEducationDevelopmentJPanel extends javax.swing.JPanel {
         refreshFluc();
         refreshRelation();
     }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void comboDevelopmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDevelopmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboDevelopmentActionPerformed
 
     public void back(){
         userProcessContainer.remove(this);

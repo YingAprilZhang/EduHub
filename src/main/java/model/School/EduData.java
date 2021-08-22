@@ -10,12 +10,22 @@ package model.School;
  * @author aprilyz
  */
 public class EduData {
-    public String year;
+    public int year;
     
     public Student student;
-    double literacyScore;
-    double mathScore;
-    double scienceScore;
-    double totalScore;
+    public double readingScore;
+    public double mathScore;
+    public double scienceScore;
+    public double totalScore;
+
+    public EduData(int year, Student student, double readingScore, double mathScore, double scienceScore) {
+        this.year = year;
+        this.student = student;
+        this.readingScore = readingScore;
+        this.mathScore = mathScore;
+        this.scienceScore = scienceScore;
+        this.totalScore = readingScore + mathScore + scienceScore;
+    }
+    
     
 }

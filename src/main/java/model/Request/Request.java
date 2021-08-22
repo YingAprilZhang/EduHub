@@ -6,10 +6,9 @@
 package model.Request;
 
 import java.util.Date;
-import model.CharityEducationGroup.CharityEduGroup;
-import model.Company.Company;
+import model.CharityEducationGroup.CharityEduManager;
+import model.Company.CompanyManager;
 import model.Org.Organization;
-import model.Student.Student;
 import model.UserAccount.UserAccount;
 
 /**
@@ -17,12 +16,13 @@ import model.UserAccount.UserAccount;
  * @author changxu
  */
 public abstract class Request {
-    
+
     public enum RequestType {
         FundRequest("Funding Request"),
         CompanyRequest("Employement Opportunity Request"),
-        EduRequest("Class and Teacher Request");
-        
+        EduRequest("Class and Teacher Request"),
+        GeneralRequest("General Request");
+
         private String value;
 
         private RequestType(String value) {
@@ -37,7 +37,7 @@ public abstract class Request {
         public String toString() {
             return value;
         }
-        
+
     }
 
     public enum RequestStatusType {
@@ -45,7 +45,9 @@ public abstract class Request {
         AcceptCountryManager("Accepted by Country Manager"),
         RejectCountryManager("Rejected by Country Manager"),
         AcceptResourceProvider("Accepted by Resource Provider"),
-        RejectResourceProvider("Rejected by Resource Provider");
+        RejectResourceProvider("Rejected by Resource Provider"),
+        AckCountryManager("Acknowledged by Country Manager"),
+        AckWorldManager("Acknowledged by World Manager");
 
         private String value;
 
@@ -63,18 +65,22 @@ public abstract class Request {
         }
 
     }
-    
+
     private String title;
     private String message;
-    private Organization principle;
+    private Organization School;
     private Organization countryManager;
     private Organization resourceProvider;
-    private Organization worldManager;    
+    private Organization worldManager;
     private Date requestDate;
     private Date resolveDate;
     private RequestType requestType;
     private RequestStatusType requestStatusType;
-    
+
+    public static RequestType getReqTypeByName(String name) {
+        return Enum.valueOf(RequestType.class, name);
+    }
+
     public Request() {
         requestDate = new Date();
     }
@@ -86,7 +92,7 @@ public abstract class Request {
     public RequestStatusType getRequestStatusType() {
         return requestStatusType;
     }
-    
+
     public String getTitle() {
         return title;
     }
@@ -103,12 +109,12 @@ public abstract class Request {
         this.message = message;
     }
 
-    public Organization getPrinciple() {
-        return principle;
+    public Organization getSchool() {
+        return School;
     }
 
-    public void setPrinciple(Organization principle) {
-        this.principle = principle;
+    public void setSchool(Organization School) {
+        this.School = School;
     }
 
     public Organization getCountryManager() {
@@ -150,11 +156,27 @@ public abstract class Request {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
-        
 
+    public void setRequestType(RequestType requestType) {
+        this.requestType = requestType;
+    }
+
+    public void setRequestStatusType(RequestStatusType requestStatusType) {
+        this.requestStatusType = requestStatusType;
+    }
     
-    @Override
+    public static RequestStatusType getStatusByName(String name){
+        RequestStatusType result = null;
+        for(RequestStatusType r: RequestStatusType.values()){
+            if(r.getValue().equals(name)){
+                result = r;
+                return result;
+            }
+        }
+        return null;
+    }
 
+    @Override
     public String toString() {
         return this.title;
     }

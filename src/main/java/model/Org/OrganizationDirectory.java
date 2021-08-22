@@ -6,7 +6,10 @@
 package model.Org;
 
 import java.util.ArrayList;
-import model.CharityEducationGroup.CharityEduGroup;
+import model.CharityEducationGroup.CharityEduManager;
+import model.CharityEducationGroup.CharityEduOrganization;
+import model.CharityFundingGroup.CharityFundingOrganization;
+import model.Company.Company;
 import model.Country.Country;
 import model.CountryEdu.CountryEdu;
 import model.School.School;
@@ -36,16 +39,18 @@ public class OrganizationDirectory {
         Organization o;
           switch (type) {
             case School:
-                o = new School();
+                o = new School(country);
+                country.getSchoolList().add((School) o);
                 break;
-            /*
             case CharityEdu:
-                // o = ;
+                o = new CharityEduOrganization();
                 break;
             case CharityFunding:
-                 // o = ;
+                o = new CharityFundingOrganization();;
                 break;   
-            */
+            case Company:
+                o = new Company();
+                break;   
             case CountryEdu:
                 o = new CountryEdu();
                 break;

@@ -43,10 +43,11 @@ public class Job {
         this.jobCount = jobCount;
     }
 
-    public SingleJob addNewJob(String name, int salary) {
-        SingleJob newJob = new SingleJob(name, salary, jobCount);
+    public SingleJob addNewJob(String name, int num) {
+        SingleJob newJob = new SingleJob(name, num, jobCount);
         jobList.add(newJob);
         jobCount++;
+        System.out.println(">>> xxx nc: " + newJob);
         return newJob;
     }
 

@@ -11,9 +11,14 @@ import model.UserAccount.UserAccount;
  *
  * @author kkkkayla
  */
-public class CharityEduGroup extends UserAccount{
+public class CharityEduManager extends UserAccount{
     
     private EduClass eduClass;
+    
+    public CharityEduManager(){
+        
+        this.eduClass = new EduClass();
+    }
 
     public EduClass getEduClass() {
         return eduClass;
@@ -22,7 +27,6 @@ public class CharityEduGroup extends UserAccount{
     public void setEduClass(EduClass eduClass) {
         this.eduClass = eduClass;
     }
-    
     
     @Override 
     public String toString(){

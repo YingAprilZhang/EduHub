@@ -9,7 +9,10 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.CharityEducationGroup.CharityEduGroup;
+import model.Business;
+import model.CharityEducationGroup.CharityEduManager;
+import model.CharityEducationGroup.CharityEduOrganization;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -21,12 +24,20 @@ public class AddClassJPanel extends javax.swing.JPanel {
      * Creates new form AddClassJPanel
      */
     JPanel userProcessContainer;
-    CharityEduGroup eduGroup;
-    
-    public AddClassJPanel(JPanel userProcessContainer,CharityEduGroup eduGroup) {
+    Business business = Business.getInstance();
+    CharityEduManager eduGroup;
+    UserAccount account;
+
+    public AddClassJPanel(JPanel userProcessContainer, UserAccount account, CharityEduManager eduGroup) {
         initComponents();
+
         this.userProcessContainer = userProcessContainer;
+        
+        this.account = account;
         this.eduGroup = eduGroup;
+
+       System.out.println(">>>>>>>>>> addcjp: " + this.eduGroup.getUsername());
+
     }
 
     /**
@@ -129,21 +140,22 @@ public class AddClassJPanel extends javax.swing.JPanel {
     private void buttonDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDoneActionPerformed
         // TODO add your handling code here:
         String name = textName.getText();
-       
 
+//        System.out.println(">Add>>>>>>>>>"+ eduGroup.getUsername());
+//        System.out.println(">Add>>>>>>>>>"+ eduGroup.getEduClass());
         eduGroup.getEduClass().addNewClass(name);
         JOptionPane.showMessageDialog(this, "Complete!");
 
         backRefreshAction();
     }//GEN-LAST:event_buttonDoneActionPerformed
 
-    private void backAction(){
+    private void backAction() {
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }
-    
-    private void backRefreshAction(){
+
+    private void backRefreshAction() {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];

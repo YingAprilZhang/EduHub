@@ -5,6 +5,7 @@
  */
 package model;
 
+import com.github.javafaker.Faker;
 import model.Country.CountryDirectory;
 import model.Org.OrganizationDirectory;
 import model.UserAccount.UserAccountDirectory;
@@ -14,6 +15,7 @@ import model.UserAccount.UserAccountDirectory;
  * @author aprilyz
  */
 public class Business {
+
      private static Business business;
      private UserAccountDirectory userAccountDirectory;
      private CountryDirectory countryDirectory;

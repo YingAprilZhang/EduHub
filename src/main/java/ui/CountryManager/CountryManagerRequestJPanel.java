@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Country.Country;
 import model.CountryManager.CountryManager;
 import model.Request.Request;
 import model.UserAccount.UserAccount;
@@ -26,48 +27,35 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     CountryManager countryManager;
     UserAccount account;
+    Country country;
     
     public CountryManagerRequestJPanel(JPanel userProcessContainer, UserAccount account, CountryManager countryManager) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.countryManager = countryManager;
+        this.country = account.getOrganization().getCountry();
         
-        refreshReceivedTable();
-        refreshSentTable();
+        refreshRequestTable();
     }
 
-    public void refreshReceivedTable(){
-        DefaultTableModel model = (DefaultTableModel) tblReceived.getModel();
+    public void refreshRequestTable(){
+        DefaultTableModel model = (DefaultTableModel) tblRequest.getModel();
         model.setRowCount(0);
-
-        for(Request r: countryManager.getRequestQueue()){
-            if(r.getReceiver() == account){
-                Object[] row = new Object[3];
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                row[0] = df.format(r.getRequestDate());
-                row[1] = r.getSender();
-                row[2] = r;
-                model.addRow(row);
-            }
+        
+        for(Request r: country.getRequestList()){
+            Object[] row = new Object[6];
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            row[0] = df.format(r.getRequestDate());
+            row[1] = r.getRequestType().toString();
+            row[2] = r.getSchool()==null?"":r.getSchool();
+            row[3] = r.getResourceProvider()==null?"":r.getResourceProvider().getName();
+            row[4] = r;
+            row[5] = r.getRequestStatusType().toString();
+            model.addRow(row);
         }
-    }
-    
-    public void refreshSentTable(){
-        DefaultTableModel model = (DefaultTableModel) tblReceived.getModel();
-        model.setRowCount(0);
-
-        for(Request r: countryManager.getRequestQueue()){
-            if(r.getSender() == account){
-                Object[] row = new Object[3];
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                row[0] = df.format(r.getRequestDate());
-                row[1] = r.getReceiver();
-                row[2] = r;
-                model.addRow(row);
-            }
-        }
-
+        
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,12 +68,9 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
 
         bg = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblReceived = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblSent = new javax.swing.JTable();
+        tblRequest = new javax.swing.JTable();
         btnViewReceived = new javax.swing.JButton();
-        btnViewSent = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
@@ -96,37 +81,20 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel3.setText("My Request Work Area");
 
-        tblReceived.setModel(new javax.swing.table.DefaultTableModel(
+        tblRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Received Date", "Sender", "Title"
+                "Request Date", "Request Type", "School", "Provider", "Title", "Status"
             }
         ));
-        jScrollPane1.setViewportView(tblReceived);
+        jScrollPane2.setViewportView(tblRequest);
 
-        tblSent.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Sent Date", "Receiver", "Title"
-            }
-        ));
-        jScrollPane2.setViewportView(tblSent);
-
-        btnViewReceived.setText("View Received Request");
+        btnViewReceived.setText("View Request");
         btnViewReceived.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewReceivedActionPerformed(evt);
-            }
-        });
-
-        btnViewSent.setText("View Sent Request");
-        btnViewSent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewSentActionPerformed(evt);
             }
         });
 
@@ -152,21 +120,17 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnViewReceived))
-                        .addGap(76, 76, 76)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnViewSent)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCreate)))
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnViewReceived)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnCreate)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addComponent(bg))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreate, btnViewReceived, btnViewSent});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreate, btnViewReceived});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,28 +142,24 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnViewSent, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnViewReceived))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCreate)
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewReceived)
+                    .addComponent(btnCreate))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewReceivedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewReceivedActionPerformed
         // TODO add your handling code here:
-        int indexRow = tblReceived.getSelectedRow();
+        int indexRow = tblRequest.getSelectedRow();
         if(indexRow < 0){
             JOptionPane.showMessageDialog(this, "Please select a request to view.");
             return;
         }
-        Request r = (Request) tblReceived.getValueAt(indexRow, 2);
+        Request r = (Request) tblRequest.getValueAt(indexRow, 4);
         CountryViewRequestJPanel cvrjp = (CountryViewRequestJPanel) new CountryViewRequestJPanel(userProcessContainer, account, r);
         userProcessContainer.add("CountryViewRequestJPanel", cvrjp);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
@@ -207,12 +167,13 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnViewReceivedActionPerformed
 
-    private void btnViewSentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewSentActionPerformed
-
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
+        CountryManagerCreateReqJPanel cmcrj = (CountryManagerCreateReqJPanel) new CountryManagerCreateReqJPanel(userProcessContainer, account);
+        userProcessContainer.add("CountryManagerCreateReqJPanel", cmcrj);
+        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+        crdLyt.next(userProcessContainer);        
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -231,11 +192,8 @@ public class CountryManagerRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnViewReceived;
-    private javax.swing.JButton btnViewSent;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblReceived;
-    private javax.swing.JTable tblSent;
+    private javax.swing.JTable tblRequest;
     // End of variables declaration//GEN-END:variables
 }

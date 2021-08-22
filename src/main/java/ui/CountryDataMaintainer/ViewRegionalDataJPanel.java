@@ -69,7 +69,6 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         name5 = new javax.swing.JLabel();
         name6 = new javax.swing.JLabel();
         name7 = new javax.swing.JLabel();
-        name8 = new javax.swing.JLabel();
         name9 = new javax.swing.JLabel();
         name10 = new javax.swing.JLabel();
         name11 = new javax.swing.JLabel();
@@ -90,6 +89,8 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        name12 = new javax.swing.JLabel();
+        name8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -164,12 +165,6 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         jLayeredPane1.add(name7);
         name7.setBounds(860, 300, 200, 17);
 
-        name8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        name8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        name8.setText("on education(% of GDP)");
-        jLayeredPane1.add(name8);
-        name8.setBounds(860, 370, 200, 30);
-
         name9.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         name9.setText("Pupil-teacher Ratio");
@@ -178,7 +173,7 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
 
         name10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         name10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        name10.setText("GDP");
+        name10.setText("GDP per capita");
         jLayeredPane1.add(name10);
         name10.setBounds(860, 510, 230, 17);
 
@@ -186,7 +181,7 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         name11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         name11.setText("Government expenditure");
         jLayeredPane1.add(name11);
-        name11.setBounds(860, 350, 200, 30);
+        name11.setBounds(860, 340, 200, 30);
 
         logoGender2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-kyrgyzstani-som-50.png"))); // NOI18N
         jLayeredPane1.add(logoGender2);
@@ -286,6 +281,18 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
         jLayeredPane1.add(btnUpdate);
         btnUpdate.setBounds(60, 600, 110, 40);
 
+        name12.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name12.setText("on education(% of government");
+        jLayeredPane1.add(name12);
+        name12.setBounds(860, 360, 220, 30);
+
+        name8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name8.setText("expenditure)");
+        jLayeredPane1.add(name8);
+        name8.setBounds(860, 380, 220, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -344,7 +351,7 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
             return;
         }
 
-        if(txtYear.getText().isBlank()){
+        if(txtYear.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Please make sure to enter all data.");
             return;
         }
@@ -374,6 +381,7 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        txtYear.setEditable(true);
         txtExp.setEditable(true);
         txtFemaleEnroll.setEditable(true);
         txtFemaleMeanYear.setEditable(true);
@@ -408,6 +416,7 @@ public class ViewRegionalDataJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel name1;
     private javax.swing.JLabel name10;
     private javax.swing.JLabel name11;
+    private javax.swing.JLabel name12;
     private javax.swing.JLabel name2;
     private javax.swing.JLabel name3;
     private javax.swing.JLabel name4;

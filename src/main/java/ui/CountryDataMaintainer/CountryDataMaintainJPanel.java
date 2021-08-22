@@ -39,7 +39,7 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         this.account = account;
         this.business = Business.getInstance();
         this.role = (DataMaintainerRole) account.getRole();
-        this.country = account.getCountry();
+        this.country = account.getOrganization().getCountry();
         
         if(country != null){           
             lblCountry.setText(country.toString());
@@ -80,6 +80,8 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         tblYear = new javax.swing.JTable();
         logoView = new javax.swing.JLabel();
         lblView = new javax.swing.JLabel();
+        logoDelete = new javax.swing.JLabel();
+        lblDelete = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -147,6 +149,22 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
             }
         });
 
+        logoDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-delete-50.png"))); // NOI18N
+
+        lblDelete.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblDelete.setText("Delete Annual Data");
+        lblDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDeleteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDeleteMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,7 +185,11 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(lblCountry))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(logoDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblDelete)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
                 .addComponent(bg))
         );
@@ -194,6 +216,12 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblAdd)
                             .addComponent(lblView))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logoDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(lblDelete)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -276,6 +304,30 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
         lblView.setFont(new Font("Lucida",  Font.PLAIN, 18));
     }//GEN-LAST:event_lblViewMouseExited
 
+    private void lblDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDeleteMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = tblYear.getSelectedRow();        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(this, "Please select a year.");
+            return;
+        }
+        MacroData md = (MacroData) tblYear.getValueAt(selectedRow, 0);
+        country.getMacroDataMap().remove(md.getYear(), md);
+        JOptionPane.showMessageDialog(this, "Delete successfully.");
+        refreshTable();
+
+    }//GEN-LAST:event_lblDeleteMouseClicked
+
+    private void lblDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDeleteMouseEntered
+        // TODO add your handling code here:
+        lblDelete.setFont(new Font("Lucida",  Font.BOLD, 18));
+    }//GEN-LAST:event_lblDeleteMouseEntered
+
+    private void lblDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDeleteMouseExited
+        // TODO add your handling code here:
+        lblDelete.setFont(new Font("Lucida",  Font.PLAIN, 18));
+    }//GEN-LAST:event_lblDeleteMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
@@ -284,8 +336,10 @@ public class CountryDataMaintainJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdd;
     private javax.swing.JLabel lblCountry;
+    private javax.swing.JLabel lblDelete;
     private javax.swing.JLabel lblView;
     private javax.swing.JLabel logoAdd;
+    private javax.swing.JLabel logoDelete;
     private javax.swing.JLabel logoView;
     private javax.swing.JTable tblYear;
     // End of variables declaration//GEN-END:variables

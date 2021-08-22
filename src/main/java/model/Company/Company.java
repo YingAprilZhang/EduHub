@@ -5,29 +5,24 @@
  */
 package model.Company;
 
-import model.UserAccount.UserAccount;
+import model.Org.Organization;
 
 /**
  *
  * @author kkkkayla
  */
-public class Company extends UserAccount{
-    private Job Job;
+public class Company extends Organization {
+    private CompanyManager companyManager;
 
-    public Job getJob() {
-        return Job;
-    }
-
-    public void setJob(Job Job) {
-        this.Job = Job;
+    
+    public  void setComManager(CompanyManager input) {
+        this.companyManager = input;
     }
     
     
-    @Override
-    public String toString() {
-        return this.getName();
+    public CompanyManager getCompanyManager() {
+        return companyManager;
     }
-    
     
     
 }

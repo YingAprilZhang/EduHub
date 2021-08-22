@@ -9,7 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Font;
 import javax.swing.JPanel;
 import model.Business;
-import model.CharityEducationGroup.CharityEduGroup;
+import model.CharityEducationGroup.CharityEduManager;
 import model.UserAccount.UserAccount;
 
 /**
@@ -17,22 +17,27 @@ import model.UserAccount.UserAccount;
  * @author kkkkayla
  */
 public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form CharityGroupLoginJPanel
      */
     JPanel userProcessContainer;
-    Business business;
-    CharityEduGroup eduGroup;
+    Business business = Business.getInstance();
+    CharityEduManager eduGroup;
     UserAccount account;
 
     public CharityEduGroupWorkAreaJPanel(JPanel userProcessContainer,UserAccount account) {
         initComponents();
-        
-        this.userProcessContainer = userProcessContainer;
-        this.business = business;
         this.account = account;
-        //this.eduGroup = business.
+        this.userProcessContainer = userProcessContainer;
+        // this.eduGroup = new CharityEduManager();
+        // this.eduGroup.setUsername(account.getUsername());
+        //this.eduGroup.setRole(account.getRole());
+        this.eduGroup= (CharityEduManager)account;
+        //System.out.println("xoxo>>>>>>>>>"+ this.eduGroup.getUsername());
+        //System.out.println(">>>>>>>>>> wajpxoxo: " + this.eduGroup.getEduClass());
+        labelName.setText(this.eduGroup.getUsername());
+        
     }
 
     /**
@@ -48,13 +53,10 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
-        btnManageReq = new javax.swing.JButton();
-        btnManageClass1 = new javax.swing.JButton();
         logoClass = new javax.swing.JLabel();
         lblManageClass = new javax.swing.JLabel();
         logoRequest1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        backLbl = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -79,24 +81,6 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel.setText("Charity Education Group:");
         add(enterpriseLabel);
         enterpriseLabel.setBounds(70, 280, 226, 22);
-
-        btnManageReq.setText("Manage Request");
-        btnManageReq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageReqActionPerformed(evt);
-            }
-        });
-        add(btnManageReq);
-        btnManageReq.setBounds(610, 770, 400, 29);
-
-        btnManageClass1.setText("Manage Education Class");
-        btnManageClass1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageClass1ActionPerformed(evt);
-            }
-        });
-        add(btnManageClass1);
-        btnManageClass1.setBounds(610, 670, 400, 29);
 
         logoClass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-classroom-40.png"))); // NOI18N
         logoClass.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,32 +125,7 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(jLabel3);
         jLabel3.setBounds(150, 510, 143, 22);
-
-        backLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-to-52.png"))); // NOI18N
-        backLbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                backLblMouseClicked(evt);
-            }
-        });
-        add(backLbl);
-        backLbl.setBounds(60, 60, 52, 52);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnManageReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageReqActionPerformed
-        // TODO add your handling code here:
-        CharityEduGroupReqJPanel cegrjp = new CharityEduGroupReqJPanel(userProcessContainer, account, business);
-        userProcessContainer.add(cegrjp);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(cegrjp);
-    }//GEN-LAST:event_btnManageReqActionPerformed
-
-    private void btnManageClass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageClass1ActionPerformed
-        // TODO add your handling code here:
-        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, business, eduGroup);
-        userProcessContainer.add("mcjp",mcjp);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnManageClass1ActionPerformed
 
     private void logoClassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoClassMouseClicked
         // TODO add your handling code here:
@@ -184,7 +143,7 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
 
     private void lblManageClassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblManageClassMouseClicked
         // TODO add your handling code here:
-        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, business,eduGroup);
+        ManageClassJPanel mcjp = new ManageClassJPanel(userProcessContainer, account, eduGroup);
         userProcessContainer.add(mcjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -200,30 +159,22 @@ public class CharityEduGroupWorkAreaJPanel extends javax.swing.JPanel {
         lblManageClass.setFont(new Font("Lucida",  Font.PLAIN, 18));
     }//GEN-LAST:event_lblManageClassMouseExited
 
-    private void backLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLblMouseClicked
-        // TODO add your handling code here:
-        back();
-    }//GEN-LAST:event_backLblMouseClicked
-
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        CharityEduGroupReqJPanel cegrjp = new CharityEduGroupReqJPanel(userProcessContainer, account, business);
+        CharityEduGroupReqJPanel cegrjp = new CharityEduGroupReqJPanel(userProcessContainer, eduGroup);
         userProcessContainer.add(cegrjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void back() {
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }
+//    private void back() {
+//        userProcessContainer.remove(this);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.previous(userProcessContainer);
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel backLbl;
     private javax.swing.JLabel bg;
-    private javax.swing.JButton btnManageClass1;
-    private javax.swing.JButton btnManageReq;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
