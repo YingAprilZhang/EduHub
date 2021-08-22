@@ -23,7 +23,9 @@ import model.Org.OrganizationDirectory;
 import model.Request.CompanyRequest;
 import model.Request.EduRequest;
 import model.Request.FundRequest;
+import model.Request.GeneralRequest;
 import model.Request.Request;
+import model.Role.Role;
 import model.School.School;
 import model.UserAccount.UserAccount;
 import ui.CountryDataMaintainer.CountryDataMaintainJPanel;
@@ -58,7 +60,7 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
         this.organizationDirectory = business.getOrganizationDirectory();
                 
         populatePrincipleCombo();
-//        populateWorldCombo();
+        populateWorldCombo();
         populateProviderCombo();
         
         populateTypeCombo();
@@ -91,7 +93,16 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
         }
      }
 
-    
+    public void populateWorldCombo(){
+        comboWorld.removeAllItems();
+        comboWorld.addItem(null);
+        for(UserAccount ua:business.getUserAccountDirectory().getUserAccountList()){
+            if(ua.getRole().getRoleType() == Role.RoleType.WorldManager){
+                comboWorld.addItem(ua.getOrganization().getName());
+            }
+        }
+        
+    }    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -381,19 +392,17 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
         Request.RequestType type = Request.getReqTypeByName(comboType.getSelectedItem().toString());
         if (null != type) {
             switch (type) {
-                case CompanyRequest:
+                case CompanyRequest:                    
                     CompanyRequest cr = new CompanyRequest();
                     cr.setTitle(txtTitle.getText());
                     cr.setMessage(txtMessage.getText());
-                    if(comboPrinciple.getSelectedItem() != null){
-                        School = country.getSchoolByName(comboPrinciple.getSelectedItem().toString());
-                    }                    
+                    cr.setWorldManager(worldManager);
                     cr.setSchool(School);
                     cr.setCountryManager(account.getOrganization());  
                     cr.setResourceProvider(resourceProvider);
                     cr.setRequestType(type);
-                    cr.setJobName(comboJob.getSelectedItem().toString());
-                    cr.setChance(Integer.parseInt(txtChance.getText()));                    
+                    cr.setJobName(comboJob.getSelectedItem()==null?"":comboJob.getSelectedItem().toString());
+                    cr.setChance(txtChance.getText()==null?"":Integer.parseInt(txtChance.getText()));                    
                     cr.setRequestStatusType(Request.RequestStatusType.Sent);
                     country.getRequestList().add(cr);
                     break;
@@ -401,14 +410,12 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
                     EduRequest er = new EduRequest();
                     er.setTitle(txtTitle.getText());
                     er.setMessage(txtMessage.getText());
-                    if(comboPrinciple.getSelectedItem() != null){
-                        School = country.getSchoolByName(comboPrinciple.getSelectedItem().toString());
-                    }                                        
+                    er.setWorldManager(worldManager);                    
                     er.setSchool(School);
                     er.setCountryManager(account.getOrganization());
                     er.setResourceProvider(resourceProvider);
                     er.setRequestType(type);
-                    er.setClassName(comboClass.getSelectedItem().toString());
+                    er.setClassName(comboClass.getSelectedItem()==null?"":comboClass.getSelectedItem().toString());
                     er.setRequestStatusType(Request.RequestStatusType.Sent);
                     country.getRequestList().add(er);
                     break;
@@ -416,9 +423,7 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
                     FundRequest fr = new FundRequest();
                     fr.setTitle(txtTitle.getText());
                     fr.setMessage(txtMessage.getText());                    
-                    if(comboPrinciple.getSelectedItem() != null){
-                        School = country.getSchoolByName(comboPrinciple.getSelectedItem().toString());
-                    }
+                    fr.setWorldManager(worldManager);                    
                     fr.setSchool(School);
                     fr.setCountryManager(account.getOrganization());
                     fr.setResourceProvider(resourceProvider);                    
@@ -427,6 +432,19 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
                     fr.setRequestStatusType(Request.RequestStatusType.Sent);
                     country.getRequestList().add(fr);
                     break;
+                case GeneralRequest:
+                    GeneralRequest gr = new GeneralRequest();
+                    gr.setTitle(txtTitle.getText());
+                    gr.setMessage(txtMessage.getText());                    
+                    gr.setWorldManager(worldManager);                    
+                    gr.setSchool(School);
+                    gr.setCountryManager(account.getOrganization());
+                    gr.setResourceProvider(resourceProvider);                    
+                    gr.setRequestType(type);
+                    gr.setRequestStatusType(Request.RequestStatusType.Sent);
+                    country.getRequestList().add(gr);
+                    break;
+                
                 default:
                     break;
             }
@@ -447,7 +465,14 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
         requestType = Request.getReqTypeByName(comboType.getSelectedItem().toString());
         if(comboProvider.getSelectedItem() != null){
             resourceProvider = organizationDirectory.getOrgByName(comboProvider.getSelectedItem().toString());
-        }        
+        }
+        if(comboPrinciple.getSelectedItem() != null){
+            School = country.getSchoolByName(comboPrinciple.getSelectedItem().toString());
+        }
+        if(comboWorld.getSelectedItem() != null){
+            worldManager = organizationDirectory.getOrgByName(comboWorld.getSelectedItem().toString());
+        }
+
         
         comboJob.removeAllItems();
         txtAmount.setText("");

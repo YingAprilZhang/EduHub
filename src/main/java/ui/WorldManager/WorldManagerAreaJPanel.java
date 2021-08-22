@@ -162,14 +162,10 @@ public class WorldManagerAreaJPanel extends javax.swing.JPanel {
 
     private void lblRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRequestMouseClicked
         // TODO add your handling code here:
-//        if(country == null){
-//            JOptionPane.showMessageDialog(this, "Plese select a country first.");
-//            return;
-//        }
-//        CountryManagerRequestJPanel cmrj = (CountryManagerRequestJPanel) new CountryManagerRequestJPanel(userProcessContainer, account, countryManager);
-//        userProcessContainer.add("CountryManagerRequestJPanel", cmrj);
-//        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
-//        crdLyt.next(userProcessContainer);
+        WorldManagerRequestJPanel wmrj = (WorldManagerRequestJPanel) new WorldManagerRequestJPanel(userProcessContainer, account);
+        userProcessContainer.add("WorldManagerRequestJPanel", wmrj);
+        CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
+        crdLyt.next(userProcessContainer);
 
     }//GEN-LAST:event_lblRequestMouseClicked
 
