@@ -41,4 +41,14 @@ public class School extends Organization {
         }
         return c;
     }
+    
+    public EduData getEduDataOfStudent(String userName) {
+        for (EduData e : eduDataList) {
+            if (e.student.getName().equals(userName)){
+                return e;
+            }
+        }
+        return null;
+    }
+    
 }

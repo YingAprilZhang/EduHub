@@ -26,12 +26,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="logoRequest" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="logoAnalyze" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="logoRequest1" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="schoolBtn" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
-                  <Component id="studentBtn" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
                   <Component id="reqBtn" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="744" max="32767" attributes="0"/>
@@ -78,22 +76,16 @@
                       <Component id="schoolBtn" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="logoRequest" alignment="1" min="-2" pref="70" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="logoRequest1" min="-2" pref="70" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="logoRequest" min="-2" pref="70" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="studentBtn" min="-2" pref="42" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <EmptySpace pref="16" max="-2" attributes="0"/>
                       <Component id="reqBtn" min="-2" pref="42" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="328" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -150,16 +142,6 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoAnalyzeMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="logoRequest1">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons8-communicate-50.png"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoRequest1MouseClicked"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="schoolBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -169,17 +151,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="schoolBtnActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="studentBtn">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="View Student Data Summary"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="studentBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="reqBtn">

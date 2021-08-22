@@ -6,6 +6,7 @@
 package ui.SysAdmin;
 
 import com.github.javafaker.Faker;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -29,8 +30,8 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
      JPanel workArea;
      public Faker FAKER = new Faker();
      
-     
-      public static final Map<String, int[]> country2ScoreSetting = new HashMap<String, int[]>() {{
+     public static String[] SUPPORTED_COUNTRIES = {"Turkey","Togo","Chile"};
+     public static final Map<String, int[]> country2ScoreSetting = new HashMap<String, int[]>() {{
         put("Turkey2015",new int[]{54, 58, 58, 66, 56, 58});
         put("Turkey2016",new int[]{58, 62, 61, 70, 58, 62});
         put("Turkey2017",new int[]{65, 67, 66, 76, 63, 65});
@@ -307,7 +308,8 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
     }
      
      public void initEduData(School school) {
-        if (school.eduDataList.size() < 1) {
+        if (school.eduDataList.size() < 1 
+                || Arrays.stream(SUPPORTED_COUNTRIES).anyMatch(school.getCountry().getName()::equals)) {
             for (int year=2015; year<2020; year++) { //每年15个男生和15个女生
                 int[] avgScoreSetting = country2ScoreSetting.get(school.getCountry().getName() + String.valueOf(year));
                 int MR = avgScoreSetting[0]; // eg. male reading
