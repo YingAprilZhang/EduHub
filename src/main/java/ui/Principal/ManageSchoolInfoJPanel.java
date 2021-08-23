@@ -167,6 +167,11 @@ public class ManageSchoolInfoJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "School info saved successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
         nameField.setText("");
         countryField.setText("");
+
+        workArea.remove(this);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed

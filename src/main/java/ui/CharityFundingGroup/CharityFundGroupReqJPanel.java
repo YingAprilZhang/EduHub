@@ -164,11 +164,11 @@ public class CharityFundGroupReqJPanel extends javax.swing.JPanel {
                 if (r.getRequestType() == Request.RequestType.FundRequest) {
 
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    row[0] = r.getSchool().getName();
+                    row[0] = r.getSchool()==null?"":r.getSchool().getName();
                     row[1] = df.format(r.getRequestDate());
                     row[2] = r;
                     FundRequest fr = (FundRequest)  r;
-                    row[3] = String.valueOf(fr.getFundingAmount());
+                    row[3] = fr.getFundingAmount()==null?"":String.valueOf(fr.getFundingAmount());
                     row[4] = r.getRequestStatusType().toString();
                     row[5] = r.getResolveDate() == null ? "" : df.format(r.getResolveDate());
                     model.addRow(row);

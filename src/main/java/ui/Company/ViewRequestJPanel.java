@@ -45,6 +45,7 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
         CompanyRequest cr = (CompanyRequest) request;
         txtChance.setText(String.valueOf(cr.getChance()));
         txtJob.setText(cr.getJobName());
+        txtCountryManager.setText(request.getCountryManager()==null?"":request.getCountryManager().getName());
     }
 
     /**
@@ -63,7 +64,7 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtRequestDate = new javax.swing.JTextField();
-        txtWorldManager = new javax.swing.JTextField();
+        txtCountryManager = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
@@ -82,6 +83,8 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
         txtJob = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtChance = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(250, 250, 250));
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel9.setText("Request Type:");
@@ -103,13 +106,13 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
         jLabel5.setText("Request Date:");
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel8.setText("World Manager:");
+        jLabel8.setText("Country Manager:");
 
         txtRequestDate.setEditable(false);
         txtRequestDate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
 
-        txtWorldManager.setEditable(false);
-        txtWorldManager.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        txtCountryManager.setEditable(false);
+        txtCountryManager.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel6.setText("Status:");
@@ -186,7 +189,7 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtType, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                                             .addComponent(txtPrinciple, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                            .addComponent(txtWorldManager, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                            .addComponent(txtCountryManager, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                                             .addComponent(txtRequestDate, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                                             .addComponent(txtProvider, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
@@ -242,7 +245,7 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtWorldManager, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCountryManager, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,6 +311,7 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel name2;
     private javax.swing.JTextField txtChance;
+    private javax.swing.JTextField txtCountryManager;
     private javax.swing.JTextField txtJob;
     private javax.swing.JTextArea txtMessage;
     private javax.swing.JTextField txtPrinciple;
@@ -317,6 +321,5 @@ public class ViewRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtTitle;
     private javax.swing.JTextField txtType;
-    private javax.swing.JTextField txtWorldManager;
     // End of variables declaration//GEN-END:variables
 }

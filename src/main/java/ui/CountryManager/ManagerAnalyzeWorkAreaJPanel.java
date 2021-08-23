@@ -55,7 +55,7 @@ public class ManagerAnalyzeWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel3.setText("Analyze Education Data");
 
-        logoEquality.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
+        logoEquality.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-area-chart-64.png"))); // NOI18N
         logoEquality.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoEqualityMouseClicked(evt);

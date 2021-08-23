@@ -56,6 +56,8 @@ public class EditJobJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(250, 250, 250));
+
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N

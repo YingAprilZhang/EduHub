@@ -22,5 +22,10 @@ public class Student extends UserAccount{
         this.gender = gender;
     }
     
+    @Override
+    public String toString(){
+        return super.getName();
+    }
+    
     
 }

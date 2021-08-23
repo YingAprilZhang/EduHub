@@ -402,7 +402,7 @@ public class CountryManagerCreateReqJPanel extends javax.swing.JPanel {
                     cr.setResourceProvider(resourceProvider);
                     cr.setRequestType(type);
                     cr.setJobName(comboJob.getSelectedItem()==null?"":comboJob.getSelectedItem().toString());
-                    cr.setChance(txtChance.getText()==null?"":Integer.parseInt(txtChance.getText()));                    
+                    cr.setChance(txtChance.getText()==null?0:Integer.parseInt(txtChance.getText()));                    
                     cr.setRequestStatusType(Request.RequestStatusType.Sent);
                     country.getRequestList().add(cr);
                     break;

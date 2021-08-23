@@ -73,7 +73,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Name", "Request Date", "Title", "Status", "Resolve Date"
+                "School", "Request Date", "Title", "Status", "Resolve Date"
             }
         ));
         jScrollPane1.setViewportView(tblReq);
@@ -171,7 +171,7 @@ public class CharityEduGroupReqJPanel extends javax.swing.JPanel {
                 if (r.getRequestType() == Request.RequestType.EduRequest) {
                     //if(r.getResourceProvider().getName()== eduGroup.getOrganization().getName()){
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    row[0] = r.getSchool().getName();
+                    row[0] = r.getSchool()==null?"":r.getSchool().getName();
                     row[1] = df.format(r.getRequestDate());
                     row[2] = r;
                     row[3] = r.getRequestStatusType().toString();

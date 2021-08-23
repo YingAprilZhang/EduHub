@@ -177,14 +177,14 @@ public class ManageRequestJPanel extends javax.swing.JPanel {
                 //if(r.getResourceProvider().getName()== company.getOrganization().getName()){
                 if (r.getRequestType() == Request.RequestType.CompanyRequest) {
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    row[0] = r.getSchool().getName();
+                    row[0] = r.getSchool()==null?"":r.getSchool().getName();
                     row[1] = df.format(r.getRequestDate());
                     row[2] = r;
                     row[3] = r.getRequestStatusType().toString();
                     row[4] = r.getResolveDate() == null ? "" : df.format(r.getResolveDate());
                     CompanyRequest cr = (CompanyRequest) r;
-                    row[5] = cr.getJobName();
-                    row[6] = String.valueOf(cr.getChance());
+                    row[5] = cr.getJobName()==null?"":cr.getJobName();
+                    row[6] = cr.getChance()==0?"":String.valueOf(cr.getChance());
                     model.addRow(row);
                 }
                 //}
