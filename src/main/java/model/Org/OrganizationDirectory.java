@@ -66,7 +66,7 @@ public class OrganizationDirectory {
                 o = new CountryEdu();
                 break;
             default:
-                o = new Organization();
+                o = new Organization(null);
                 break;
           }
         o.setName(name);

@@ -30,6 +30,7 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
      JPanel workArea;
      public Faker FAKER = new Faker();
      
+     /*
      public static String[] SUPPORTED_COUNTRIES = {"Turkey","Togo","Chile"};
      public static final Map<String, int[]> country2ScoreSetting = new HashMap<String, int[]>() {{
         put("Turkey2015",new int[]{54, 58, 58, 66, 56, 58});
@@ -51,7 +52,7 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
         put("Chile2019", new int[]{61, 36, 50, 72, 30, 45});
           
     }};
-    
+    */
      
     /**
      * Creates new form ManageOrgJPanel
@@ -273,9 +274,11 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
         Country country = business.getCountryDirectory().getCountryByName(txtCountry.getText());
         Organization.OrgType orgType = Organization.getOrgTypeByName(typeBox.getSelectedItem().toString());
         Organization o = business.getOrganizationDirectory().createOrganization(txtName.getText(), country, orgType);
+        /*
         if(orgType == Organization.OrgType.School) {
             initEduData((School)o);
-        }
+        }   
+        */
         JOptionPane.showMessageDialog(null, "Organization added successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
         refreshTable();
         txtName.setText("");
@@ -306,7 +309,7 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
            o.setOrgType(Organization.getOrgTypeByName(tblInfo.getValueAt(i, 2).toString()));
        }
     }
-     
+     /*
      public void initEduData(School school) {
         if (school.eduDataList.size() < 1 
                 || Arrays.stream(SUPPORTED_COUNTRIES).anyMatch(school.getCountry().getName()::equals)) {
@@ -346,6 +349,7 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
             }
         }
     }
+*/
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

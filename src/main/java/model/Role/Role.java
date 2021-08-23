@@ -26,16 +26,26 @@ public abstract class Role {
     
     public enum RoleType{
         SysAdmin("SysAdmin"),
+        
         Accountant("Accountant"),
+        
         CountryManager("Country Manager"),
         WorldManager("World Manager"),
         DataMaintainer("Data Maintainer"),
+        
         CharityEdu("Charity Edu"),
         CharityFunding("Charity Funding"),
         CompanyRole("Company Role"),
+        
         Student("Student"),
         Teacher("Teacher"),
-        Principal("Principal");
+        Principal("Principal"),
+        
+        SchoolAdmin("School Admin"),
+        CharityAdmin("Charity Admin"),
+        CompanyAdmin("Company Admin"),
+        UnitedEduOrgAdmin("UnitedEduOrg Admin"),
+        ;
         
         private String value;
         private RoleType(String value){
@@ -81,9 +91,20 @@ public abstract class Role {
         put(RoleType.CountryManager, CountryManagerRole.getInstance());
         put(RoleType.DataMaintainer, DataMaintainerRole.getInstance());
         put(RoleType.WorldManager, WorldManagerRole.getInstance());
+        
+        put(RoleType.CharityAdmin, CharityAdminRole.getInstance());
+        put(RoleType.CompanyAdmin, CompanyAdminRole.getInstance());
+        put(RoleType.SchoolAdmin, SchoolAdminRole.getInstance());
+        put(RoleType.UnitedEduOrgAdmin, WorldManagerRole.getInstance());
+        
+        
     }};
     
     
+    public static RoleType getRoleTypeByName(String name) {
+        return Enum.valueOf(RoleType.class, name);
+    }
+
     public static RoleType getRoleTypeByValue(String value) {
         RoleType result = null;
         for(RoleType r: RoleType.values()) {

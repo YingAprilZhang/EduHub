@@ -48,7 +48,15 @@ public class Organization {
         put(OrgType.CountryEdu, EtprType.UnitedEduOrg);
         put(OrgType.WorldEdu, EtprType.UnitedEduOrg);
     }};
+     
+     public Organization() {
+ 
+    }
 
+    public Organization(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+     
     public String getName() {
         return name;
     }

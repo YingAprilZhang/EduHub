@@ -6,6 +6,7 @@
 package model.Enterprise;
 
 import model.Country.Country;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -15,6 +16,7 @@ public class Enterprise {
      private String name;
      private Country country;
      private Enterprise.EtprType etprType;
+     private UserAccount enterpriseAdmin;
      
      public enum EtprType{
         School,
@@ -46,6 +48,15 @@ public class Enterprise {
     public void setEtprType(EtprType etprType) {
         this.etprType = etprType;
     }
+
+    public UserAccount getEnterpriseAdmin() {
+        return enterpriseAdmin;
+    }
+
+    public void setEnterpriseAdmin(UserAccount enterpriseAdmin) {
+        this.enterpriseAdmin = enterpriseAdmin;
+    }
+    
     
     public static Enterprise.EtprType getEtprTypeByName(String name) {
         return Enum.valueOf(Enterprise.EtprType.class, name);
