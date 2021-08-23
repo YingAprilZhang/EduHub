@@ -22,7 +22,7 @@ public class ConfigureASystem {
         //initialize some organizations
         //have some employees 
         //create user account
-        UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", "", Role.RoleType.SysAdmin, new Organization());
+        UserAccount ua = business.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", Role.RoleType.SysAdmin);
         return business;
     }
 

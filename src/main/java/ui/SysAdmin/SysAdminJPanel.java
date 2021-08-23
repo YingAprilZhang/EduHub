@@ -49,7 +49,7 @@ public class SysAdminJPanel extends javax.swing.JPanel {
 
         leftPanel.setBackground(new java.awt.Color(132, 178, 208));
 
-        orgBtn.setText("Manage Organizations");
+        orgBtn.setText("Manage Enterprise");
         orgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgBtnActionPerformed(evt);
@@ -109,8 +109,8 @@ public class SysAdminJPanel extends javax.swing.JPanel {
 
     private void orgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgBtnActionPerformed
         // TODO add your handling code here:
-        ManageOrgJPanel panel = new ManageOrgJPanel(rightPanel);
-        rightPanel.add("ManageOrgJPanel",panel);
+        ManageEnterprsieJPanel panel = new ManageEnterprsieJPanel(rightPanel);
+        rightPanel.add("ManageEnterprsieJPanel",panel);
         CardLayout layout = (CardLayout)rightPanel.getLayout();
         layout.next(rightPanel);
     }//GEN-LAST:event_orgBtnActionPerformed

@@ -7,6 +7,7 @@ package model;
 
 import com.github.javafaker.Faker;
 import model.Country.CountryDirectory;
+import model.Enterprise.EnterPriseDirectory;
 import model.Org.OrganizationDirectory;
 import model.UserAccount.UserAccountDirectory;
 
@@ -20,7 +21,8 @@ public class Business {
      private UserAccountDirectory userAccountDirectory;
      private CountryDirectory countryDirectory;
      private OrganizationDirectory organizationDirectory;
-     
+     private EnterPriseDirectory enterpriseDirectory;
+      
      public static Business getInstance(){
         if(business == null){
             business = new Business();
@@ -32,6 +34,7 @@ public class Business {
         this.userAccountDirectory =  new UserAccountDirectory();
         this.countryDirectory =  new CountryDirectory();
         this.organizationDirectory =  new OrganizationDirectory();
+        this.enterpriseDirectory =  new EnterPriseDirectory();
     }
      
     public static void setBusiness(Business business) {
@@ -60,6 +63,14 @@ public class Business {
 
     public void setOrganizationDirectory(OrganizationDirectory organizationDirectory) {
         this.organizationDirectory = organizationDirectory;
+    }
+
+    public EnterPriseDirectory getEnterpriseDirectory() {
+        return enterpriseDirectory;
+    }
+
+    public void setEnterpriseDirectory(EnterPriseDirectory enterpriseDirectory) {
+        this.enterpriseDirectory = enterpriseDirectory;
     }
      
      

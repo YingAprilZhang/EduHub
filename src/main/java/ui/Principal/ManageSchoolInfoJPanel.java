@@ -31,7 +31,7 @@ public class ManageSchoolInfoJPanel extends javax.swing.JPanel {
         initComponents();
         this.workArea = workArea;
         this.principal = (Principal)account;
-        this.school = (School)this.principal.getOrganization();
+        this.school = (School)this.principal.getOrganization().getEnterprise();
         nameField.setText(this.school.getName());
         countryField.setText(this.school.getCountry().getName());
     }
@@ -167,6 +167,11 @@ public class ManageSchoolInfoJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "School info saved successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
         nameField.setText("");
         countryField.setText("");
+
+        workArea.remove(this);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed

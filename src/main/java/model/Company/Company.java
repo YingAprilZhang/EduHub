@@ -5,24 +5,21 @@
  */
 package model.Company;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Enterprise.Enterprise;
 import model.Org.Organization;
 
 /**
  *
  * @author kkkkayla
  */
-public class Company extends Organization {
-    private CompanyManager companyManager;
+public class Company extends Enterprise {
+     public List<Organization> orgList;
 
-    
-    public  void setComManager(CompanyManager input) {
-        this.companyManager = input;
+    public Company() {
+        this.orgList = new ArrayList();
     }
-    
-    
-    public CompanyManager getCompanyManager() {
-        return companyManager;
-    }
-    
-    
+     
+     
 }

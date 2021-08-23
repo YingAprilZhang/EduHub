@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import model.Business;
 import model.Country.Country;
+import model.Enterprise.Enterprise;
 import model.Org.Organization;
 import model.Role.Role;
 
@@ -19,28 +20,23 @@ import model.Role.Role;
  *
  * @author aprilyz
  */
-public class School extends Organization {
+public class School extends Enterprise {
     public Principal principal;
-    public Map<String, Student> username2student;
     public List<EduData> eduDataList;
+    public List<Organization> orgList;
 
+    public School() {
+        this.eduDataList = new ArrayList();
+        this.orgList = new ArrayList();
+    }
+    
+    
     public School(Country country) {
         this.setCountry(country);
-        this.username2student = new TreeMap<>();
         this.eduDataList = new ArrayList();
+        this.orgList = new ArrayList();
     }
 
-    public Student getStudentByName(String name) {
-        Student c = username2student.get(name);
-        if (c == null) {
-            c = new Student();
-            c.setName(name);
-            c.setUsername(name);
-            c.setPassword(name);
-            username2student.put(name, c);
-        }
-        return c;
-    }
     
     public EduData getEduDataOfStudent(String userName) {
         for (EduData e : eduDataList) {

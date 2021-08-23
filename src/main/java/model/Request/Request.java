@@ -8,6 +8,7 @@ package model.Request;
 import java.util.Date;
 import model.CharityEducationGroup.CharityEduManager;
 import model.Company.CompanyManager;
+import model.Enterprise.Enterprise;
 import model.Org.Organization;
 import model.UserAccount.UserAccount;
 
@@ -68,7 +69,7 @@ public abstract class Request {
 
     private String title;
     private String message;
-    private Organization School;
+    private Enterprise School;
     private Organization countryManager;
     private Organization resourceProvider;
     private Organization worldManager;
@@ -109,11 +110,11 @@ public abstract class Request {
         this.message = message;
     }
 
-    public Organization getSchool() {
+    public Enterprise getSchool() {
         return School;
     }
 
-    public void setSchool(Organization School) {
+    public void setSchool(Enterprise School) {
         this.School = School;
     }
 

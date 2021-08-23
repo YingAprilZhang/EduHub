@@ -26,6 +26,7 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
         
         this.workArea = workArea;
         this.account = account;
+        lblStudentName.setText(account.getUsername());
     }
 
     /**
@@ -132,7 +133,7 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addComponent(schoolBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(logoRequest1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()

@@ -10,9 +10,14 @@ import model.CharityEducationGroup.CharityEduManager;
 import model.CharityEducationGroup.CharityEduOrganization;
 import model.CharityFundingGroup.CharityFundingOrganization;
 import model.Company.Company;
+import model.Company.HRGroup;
 import model.Country.Country;
 import model.CountryEdu.CountryEdu;
+import model.Enterprise.Enterprise;
 import model.School.School;
+import model.School.SchoolManagementGroup;
+import model.School.StudentGroup;
+import model.School.TeachingGroup;
 import model.SysAdmin.SysAdmin;
 import model.UserAccount.UserAccount;
 
@@ -35,12 +40,17 @@ public class OrganizationDirectory {
         this.organizationList = organizationList;
     }
     
-    public Organization createOrganization(String name, Country country, Organization.OrgType type) {
+    public Organization createOrganization(String name, Country country, Organization.OrgType type, Enterprise e) {
         Organization o;
           switch (type) {
-            case School:
-                o = new School(country);
-                country.getSchoolList().add((School) o);
+            case SchoolManagementGroup:
+                o = new SchoolManagementGroup(); 
+                break;
+            case StudentGroup:
+                o = new StudentGroup();
+                break;
+            case TeachingGroup:
+                o = new TeachingGroup();    
                 break;
             case CharityEdu:
                 o = new CharityEduOrganization();
@@ -48,19 +58,20 @@ public class OrganizationDirectory {
             case CharityFunding:
                 o = new CharityFundingOrganization();;
                 break;   
-            case Company:
-                o = new Company();
+            case HRGroup:
+                o = new HRGroup();
                 break;   
             case CountryEdu:
                 o = new CountryEdu();
                 break;
             default:
-                o = new Organization();
+                o = new Organization(null);
                 break;
           }
         o.setName(name);
         o.setCountry(country);
         o.setOrgType(type);
+        o.setEnterprise(e);
         organizationList.add(o);
         return o;
     }

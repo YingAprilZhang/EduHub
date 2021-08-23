@@ -86,8 +86,20 @@ public class UserAccountDirectory {
             case  Principal:
                 userAccount = new Principal();
                 break;
+            case  SchoolAdmin:
+                userAccount = new SysAdmin();
+                break;
+            case  CharityAdmin:
+                userAccount = new SysAdmin();
+                break;
+            case  CompanyAdmin:
+                userAccount = new SysAdmin();
+                break;
+            case  UnitedEduOrgAdmin:
+                userAccount = new SysAdmin();
+                break;
             default:
-                userAccount = new UserAccount();
+                userAccount = new SysAdmin();
                 break;
         }
         Role role = Role.RoleTypeToRoleMapping.get(roleType);
