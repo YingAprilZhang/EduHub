@@ -24,10 +24,17 @@ public class School extends Enterprise {
     public Principal principal;
     public List<EduData> eduDataList;
     public List<Organization> orgList;
+
+    public School() {
+        this.eduDataList = new ArrayList();
+        this.orgList = new ArrayList();
+    }
+    
     
     public School(Country country) {
         this.setCountry(country);
         this.eduDataList = new ArrayList();
+        this.orgList = new ArrayList();
     }
 
     

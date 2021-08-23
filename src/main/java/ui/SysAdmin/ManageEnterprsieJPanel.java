@@ -101,11 +101,9 @@ public class ManageEnterprsieJPanel extends javax.swing.JPanel {
         tblInfo = new javax.swing.JTable();
         typeBox = new javax.swing.JComboBox<>();
         lblPressure1 = new javax.swing.JLabel();
-        lblPressure2 = new javax.swing.JLabel();
         lblPressure3 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
-        cmbRole = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -178,8 +176,6 @@ public class ManageEnterprsieJPanel extends javax.swing.JPanel {
 
         lblPressure1.setText("Password:");
 
-        lblPressure2.setText("Role:");
-
         lblPressure3.setText("Username:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -203,13 +199,11 @@ public class ManageEnterprsieJPanel extends javax.swing.JPanel {
                         .addGap(98, 98, 98)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPressure1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPressure3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPressure2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblPressure3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsername)
-                            .addComponent(txtPassword)
-                            .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(txtPassword)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
@@ -255,13 +249,11 @@ public class ManageEnterprsieJPanel extends javax.swing.JPanel {
                         .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblPressure1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTemperature1)
-                    .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPressure2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(112, Short.MAX_VALUE))
         );
@@ -310,11 +302,13 @@ public class ManageEnterprsieJPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Country country = business.getCountryDirectory().getCountryByName(txtCountry.getText());
         Enterprise.EtprType etprType = Enterprise.getEtprTypeByName(typeBox.getSelectedItem().toString());
-        business.getEnterpriseDirectory().createEnterprise(txtName.getText(), country, etprType);
+        business.getEnterpriseDirectory().createEnterprise(txtName.getText(), country, etprType, txtUsername.getText(), txtPassword.getText());
         JOptionPane.showMessageDialog(null, "Enterprise added successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
         refreshTable();
         txtName.setText("");
         txtCountry.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
 
 
@@ -323,11 +317,9 @@ public class ManageEnterprsieJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbRole;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPressure;
     private javax.swing.JLabel lblPressure1;
-    private javax.swing.JLabel lblPressure2;
     private javax.swing.JLabel lblPressure3;
     private javax.swing.JLabel lblTemperature;
     private javax.swing.JLabel lblTemperature1;

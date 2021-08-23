@@ -41,13 +41,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblPressure1" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="lblPressure3" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="lblPressure2" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtUsername" max="32767" attributes="0"/>
+                          <Component id="txtUsername" pref="154" max="32767" attributes="0"/>
                           <Component id="txtPassword" max="32767" attributes="0"/>
-                          <Component id="cmbRole" min="-2" pref="154" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
@@ -108,14 +106,12 @@
                   </Group>
                   <Component id="txtPassword" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTemperature1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="typeBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPressure2" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="cmbRole" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="btnAdd" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace pref="112" max="32767" attributes="0"/>
           </Group>
@@ -276,11 +272,6 @@
         <Property name="text" type="java.lang.String" value="Password:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblPressure2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Role:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblPressure3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Username:"/>
@@ -289,16 +280,6 @@
     <Component class="javax.swing.JTextField" name="txtPassword">
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsername">
-    </Component>
-    <Component class="javax.swing.JComboBox" name="cmbRole">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

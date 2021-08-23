@@ -32,41 +32,32 @@
                       <EmptySpace pref="301" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblTemperature2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblUsername" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <Component id="lblPassword" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                                      <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblTemperature1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblPassword" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="lblUsername" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTemperature1" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblTemperature3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTemperature2" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="userNameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="passWordField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="nameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                   <Component id="roleBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                   <Component id="enterpriseBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                                   <Component id="organizationBox" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="323" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="317" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="submitBtn" min="-2" pref="268" max="-2" attributes="0"/>
                               <EmptySpace min="323" pref="323" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="102" pref="102" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                  <Component id="passWordField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                                  <Component id="userNameField" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="388" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -83,40 +74,38 @@
               <Component id="backLbl" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                       <Component id="lblUsername" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="lblPassword" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="lblName" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="lblTemperature1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="lblTemperature3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="lblTemperature2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="userNameField" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="userNameField" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="passWordField" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="nameField" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="roleBox" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="enterpriseBox" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="organizationBox" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="passWordField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="lblPassword" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="nameField" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="roleBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="lblTemperature1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTemperature3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="enterpriseBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTemperature2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="organizationBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="submitBtn" min="-2" pref="49" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>

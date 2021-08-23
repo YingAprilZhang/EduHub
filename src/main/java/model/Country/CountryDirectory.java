@@ -19,8 +19,6 @@ public class CountryDirectory {
 
     public CountryDirectory() {
         this.name2Country = new HashMap<>();
-        // 添加默认country "world" 给无国界Org
-        this.name2Country.put("world", new Country("world"));
     }
 
     public Map<String, Country> getName2Country() {

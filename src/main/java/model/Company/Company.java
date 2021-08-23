@@ -5,6 +5,7 @@
  */
 package model.Company;
 
+import java.util.List;
 import model.Enterprise.Enterprise;
 import model.Org.Organization;
 
@@ -13,5 +14,11 @@ import model.Org.Organization;
  * @author kkkkayla
  */
 public class Company extends Enterprise {
-    
+     public List<Organization> orgList;
+
+    public Company() {
+        this.orgList = orgList;
+    }
+     
+     
 }

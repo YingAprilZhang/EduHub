@@ -374,8 +374,8 @@ public class TeacherAddScoreJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE );
             return;
         }
-        UserAccount selectedRec = (UserAccount) tblInfo.getValueAt(row, 0);
-        business.getUserAccountDirectory().getUserAccountList().remove(selectedRec);
+        EduData selectedRec = (EduData) tblInfo.getValueAt(row, 0);
+        school.eduDataList.remove(selectedRec);
         refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 

@@ -26,6 +26,7 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
         
         this.workArea = workArea;
         this.account = account;
+        lblStudentName.setText(account.getUsername());
     }
 
     /**

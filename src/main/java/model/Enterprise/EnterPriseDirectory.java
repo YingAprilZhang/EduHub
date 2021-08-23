@@ -20,9 +20,12 @@ import model.UserAccount.UserAccount;
  */
 public class EnterPriseDirectory {
     
-    Business business = Business.getInstance();
-    
     private ArrayList<Enterprise> enterpriseList;
+
+    public EnterPriseDirectory() {
+        this.enterpriseList = new ArrayList<>();
+    }
+    
 
     public ArrayList<Enterprise> getEnterpriseList() {
         return enterpriseList;
@@ -32,26 +35,26 @@ public class EnterPriseDirectory {
         this.enterpriseList = enterpriseList;
     }
     
-    public Enterprise createEnterprise(String name, Country country, Enterprise.EtprType type) {
+    public Enterprise createEnterprise(String name, Country country, Enterprise.EtprType type, String username, String password) {
         Enterprise o;
         UserAccount ua = null; 
           switch (type) {
             case School:
                 o = new School(country);
                 country.getSchoolList().add((School) o);
-                ua = business.getUserAccountDirectory().createUserAccount("schooladmin", "schooladmin", "", Role.RoleType.SchoolAdmin, new Organization(o));
+                ua = Business.getInstance().getUserAccountDirectory().createUserAccount(username, password, "", Role.RoleType.SchoolAdmin, new Organization(o));
                 break;
             case Charity:
                 o = new Charity();
-                ua = business.getUserAccountDirectory().createUserAccount("charityadmin", "charityadmin", "", Role.RoleType.CharityAdmin, new Organization(o));
+                ua = Business.getInstance().getUserAccountDirectory().createUserAccount(username, password, "", Role.RoleType.CharityAdmin, new Organization(o));
                 break;  
             case Company:
                 o = new Company();
-                ua = business.getUserAccountDirectory().createUserAccount("companyadmin", "companyadmin", "", Role.RoleType.CompanyAdmin, new Organization(o));
+                ua = Business.getInstance().getUserAccountDirectory().createUserAccount(username, password, "", Role.RoleType.CompanyAdmin, new Organization(o));
                 break;   
             case UnitedEduOrg:
                 o = new UnitedEduOrg();
-                ua = business.getUserAccountDirectory().createUserAccount("unitedadmin", "unitedadmin", "", Role.RoleType.UnitedEduOrgAdmin, new Organization(o));
+                ua = Business.getInstance().getUserAccountDirectory().createUserAccount(username, password, "", Role.RoleType.UnitedEduOrgAdmin, new Organization(o));
                 break;
             default:
                 o = new Enterprise();
@@ -65,7 +68,7 @@ public class EnterPriseDirectory {
         return o;
     }
     
-    public Enterprise getOrgByName(String name) {
+    public Enterprise getEnterpriseByName(String name) {
         for (Enterprise o : enterpriseList) {
             if(o.getName().equals(name)) {
                 return o;

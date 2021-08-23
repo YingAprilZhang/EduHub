@@ -13,6 +13,7 @@ import model.Company.Company;
 import model.Company.HRGroup;
 import model.Country.Country;
 import model.CountryEdu.CountryEdu;
+import model.Enterprise.Enterprise;
 import model.School.School;
 import model.School.SchoolManagementGroup;
 import model.School.StudentGroup;
@@ -39,12 +40,10 @@ public class OrganizationDirectory {
         this.organizationList = organizationList;
     }
     
-    public Organization createOrganization(String name, Country country, Organization.OrgType type) {
+    public Organization createOrganization(String name, Country country, Organization.OrgType type, Enterprise e) {
         Organization o;
           switch (type) {
             case SchoolManagementGroup:
-               //o = new School(country);
-                // country.getSchoolList().add((School) o);
                 o = new SchoolManagementGroup(); 
                 break;
             case StudentGroup:
@@ -72,6 +71,7 @@ public class OrganizationDirectory {
         o.setName(name);
         o.setCountry(country);
         o.setOrgType(type);
+        o.setEnterprise(e);
         organizationList.add(o);
         return o;
     }
