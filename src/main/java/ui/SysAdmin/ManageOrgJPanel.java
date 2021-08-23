@@ -273,7 +273,7 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Country country = business.getCountryDirectory().getCountryByName(txtCountry.getText());
         Organization.OrgType orgType = Organization.getOrgTypeByName(typeBox.getSelectedItem().toString());
-        Organization o = business.getOrganizationDirectory().createOrganization(txtName.getText(), country, orgType);
+        // Organization o = business.getOrganizationDirectory().createOrganization(txtName.getText(), country, orgType);
         /*
         if(orgType == Organization.OrgType.School) {
             initEduData((School)o);

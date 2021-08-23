@@ -49,13 +49,11 @@ public class CompanyAdminJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblInfo.getModel();
         model.setRowCount(0);
 
-        for (Organization o : business.getOrganizationDirectory().getOrganizationList()) {
-            if (Enterprise.EtprType.Company == Organization.OrgType2EtprType.get(o.getOrgType())){
-                Object row[] = new Object[2];
-                row[0] = o;
-                row[1] = o.getOrgType().name();
-                model.addRow(row);
-            }
+        for (Organization o : company.orgList) {
+            Object row[] = new Object[2];
+            row[0] = o;
+            row[1] = o.getOrgType().name();
+            model.addRow(row);
         }
      }
      
@@ -258,7 +256,6 @@ public class CompanyAdminJPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        /*
         int row = tblInfo.getSelectedRow();
         if (row < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE );
@@ -266,8 +263,8 @@ public class CompanyAdminJPanel extends javax.swing.JPanel {
         }
         Organization selectedRec = (Organization) tblInfo.getValueAt(row, 0);
         business.getOrganizationDirectory().getOrganizationList().remove(selectedRec);
+        company.orgList.remove(selectedRec);
         refreshTable();
-        */
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -277,7 +274,8 @@ public class CompanyAdminJPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Country country = company.getCountry();
         Organization.OrgType orgType = Organization.getOrgTypeByName(typeBox.getSelectedItem().toString());
-        business.getOrganizationDirectory().createOrganization(txtName.getText(), country, orgType, company);
+         Organization o = business.getOrganizationDirectory().createOrganization(txtName.getText(), country, orgType, company);
+        company.orgList.add(o);
         JOptionPane.showMessageDialog(null, "Organization added successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
         refreshTable();
         txtName.setText("");

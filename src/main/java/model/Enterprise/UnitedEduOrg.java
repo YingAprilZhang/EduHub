@@ -5,10 +5,21 @@
  */
 package model.Enterprise;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Org.Organization;
+
 /**
  *
  * @author aprilyz
  */
 public class UnitedEduOrg extends Enterprise {
+    
+    public List<Organization> orgList;
+
+    public UnitedEduOrg() {
+        this.orgList = new ArrayList();
+    }
+     
     
 }

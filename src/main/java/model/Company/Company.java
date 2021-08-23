@@ -5,6 +5,7 @@
  */
 package model.Company;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.Enterprise.Enterprise;
 import model.Org.Organization;
@@ -17,7 +18,7 @@ public class Company extends Enterprise {
      public List<Organization> orgList;
 
     public Company() {
-        this.orgList = orgList;
+        this.orgList = new ArrayList();
     }
      
      

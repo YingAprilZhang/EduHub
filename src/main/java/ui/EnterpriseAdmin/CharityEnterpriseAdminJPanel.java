@@ -5,96 +5,65 @@
  */
 package ui.EnterpriseAdmin;
 
-import com.github.javafaker.Faker;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Business;
-
 import model.Country.Country;
+import model.Enterprise.Charity;
 import model.Enterprise.Enterprise;
 import model.Org.Organization;
-import model.Role.Role;
-import model.School.EduData;
 import model.School.School;
-import model.School.Student;
-import model.School.StudentGroup;
 import model.UserAccount.UserAccount;
 
 /**
  *
  * @author aprilyz
  */
-public class SchoolAdminJPanel extends javax.swing.JPanel {
+public class CharityEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     Business business = Business.getInstance();
     JPanel workArea;
     UserAccount account;
-    School school;
-    public Faker FAKER = new Faker();
-    
-     public static String[] SUPPORTED_COUNTRIES = {"Turkey","Togo","Chile"};
-     public static final Map<String, int[]> country2ScoreSetting = new HashMap<String, int[]>() {{
-        put("Turkey2015",new int[]{54, 58, 58, 66, 56, 58});
-        put("Turkey2016",new int[]{58, 62, 61, 70, 58, 62});
-        put("Turkey2017",new int[]{65, 67, 66, 76, 63, 65});
-        put("Turkey2018",new int[]{68, 69, 71, 79, 66, 71});
-        put("Turkey2019",new int[]{72, 71, 75, 78, 70, 75});
-        
-        put("Togo2015", new int[]{37, 49, 44, 41, 46, 41});
-        put("Togo2016", new int[]{39, 53, 49, 41, 51, 45});
-        put("Togo2017", new int[]{41, 55, 55, 44, 52, 50});
-        put("Togo2018", new int[]{47, 58, 58, 49, 55, 53});
-        put("Togo2019", new int[]{49, 60, 62, 53, 57, 57});
-        
-        put("Chile2015", new int[]{69, 42, 53, 74, 41, 52});
-        put("Chile2016", new int[]{72, 44, 55, 77, 40, 55});
-        put("Chile2017", new int[]{68, 40, 54, 75, 36, 51});
-        put("Chile2018", new int[]{64, 38, 52, 73, 32, 47});
-        put("Chile2019", new int[]{61, 36, 50, 72, 30, 45});
-          
-    }};
+    Charity charity;
     
     /**
-     * Creates new form SchoolAdminJPanel
+     * Creates new form CharityEnterpriseAdminJPanel
      */
-    public SchoolAdminJPanel(JPanel workArea, UserAccount account) {
+    public CharityEnterpriseAdminJPanel(JPanel workArea, UserAccount account) {
+        initComponents();
         this.workArea = workArea;
         this.account = account;
-        this.school = (School)account.getOrganization().getEnterprise();
-        initComponents();
+        this.charity = (Charity)account.getOrganization().getEnterprise();
         populateComboOrgType();
-        lblEnterprise.setText(this.school.getName());
+        lblEnterprise.setText(this.charity.getName());
         refreshTable();
     }
-
+    
     private void populateComboOrgType(){
         for (Organization.OrgType type : Organization.OrgType.values()) {
-            if (Enterprise.EtprType.School == Organization.OrgType2EtprType.get(type)){
+            if (Enterprise.EtprType.Charity == Organization.OrgType2EtprType.get(type)){
                 typeBox.addItem(type.name());
             }
         }
     }
     
-    private void refreshTable(){
+     private void refreshTable(){
         DefaultTableModel model = (DefaultTableModel) tblInfo.getModel();
         model.setRowCount(0);
 
-        for (Organization o : school.orgList) {
+        for (Organization o : charity.orgList) {
             Object row[] = new Object[2];
             row[0] = o;
             row[1] = o.getOrgType().name();
             model.addRow(row);
         }
      }
-    
+     
      private void saveInfo(){
       
      }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,20 +75,18 @@ public class SchoolAdminJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblInfo = new javax.swing.JTable();
-        lblTitle = new javax.swing.JLabel();
-        lblPressure = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        btnDelete = new javax.swing.JButton();
-        lblEnterprise = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
-        lblPressure1 = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JButton();
-        bg = new javax.swing.JLabel();
         typeBox = new javax.swing.JComboBox<>();
-        lblTemperature1 = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
+        lblPressure1 = new javax.swing.JLabel();
+        btnSave = new javax.swing.JButton();
+        lblEnterprise = new javax.swing.JLabel();
+        btnDelete = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
+        lblPressure = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
-
-        setBackground(new java.awt.Color(255, 255, 255));
+        lblTemperature1 = new javax.swing.JLabel();
 
         tblInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,27 +102,17 @@ public class SchoolAdminJPanel extends javax.swing.JPanel {
         tblInfo.setEnabled(false);
         jScrollPane1.setViewportView(tblInfo);
 
-        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Manage Organizations In School");
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
-        lblPressure.setText("Name:");
-
-        txtName.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Unlock/Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        lblEnterprise.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        lblEnterprise.setText("<Enterprise>");
+        lblPressure1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblPressure1.setText("Enterprise:");
 
         btnSave.setText("Save");
         btnSave.setEnabled(false);
@@ -165,19 +122,27 @@ public class SchoolAdminJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblPressure1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        lblPressure1.setText("Enterprise:");
+        lblEnterprise.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblEnterprise.setText("<Enterprise>");
 
-        btnUpdate.setText("Unlock/Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
 
-        lblTemperature1.setText("Type:");
+        lblPressure.setText("Name:");
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Manage Organizations In Charity Enterprise");
 
         btnAdd.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         btnAdd.setText("Add");
@@ -187,6 +152,8 @@ public class SchoolAdminJPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
+
+        lblTemperature1.setText("Type:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -220,7 +187,7 @@ public class SchoolAdminJPanel extends javax.swing.JPanel {
                         .addComponent(lblPressure1)
                         .addGap(18, 18, 18)
                         .addComponent(lblEnterprise)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bg))
         );
         layout.setVerticalGroup(
@@ -258,22 +225,13 @@ public class SchoolAdminJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int row = tblInfo.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE );
-            return;
-        }
-        Organization selectedRec = (Organization) tblInfo.getValueAt(row, 0);
-        business.getOrganizationDirectory().getOrganizationList().remove(selectedRec);
-        school.orgList.remove(selectedRec);
-        refreshTable();
-    }//GEN-LAST:event_btnDeleteActionPerformed
+       
+        tblInfo.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnDelete.setEnabled(true);
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
@@ -288,68 +246,34 @@ public class SchoolAdminJPanel extends javax.swing.JPanel {
         refreshTable();
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        tblInfo.setEnabled(true);
-        btnSave.setEnabled(true);
-        btnDelete.setEnabled(true);
-    }//GEN-LAST:event_btnUpdateActionPerformed
+        int row = tblInfo.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE );
+            return;
+        }
+        Organization selectedRec = (Organization) tblInfo.getValueAt(row, 0);
+        business.getOrganizationDirectory().getOrganizationList().remove(selectedRec);
+        charity.orgList.remove(selectedRec);
+        refreshTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Country country = school.getCountry();
+        Country country = charity.getCountry();
         Organization.OrgType orgType = Organization.getOrgTypeByName(typeBox.getSelectedItem().toString());
-        Organization o = business.getOrganizationDirectory().createOrganization(txtName.getText(), country, orgType, school);
-        school.orgList.add(o);
+        Organization o = business.getOrganizationDirectory().createOrganization(txtName.getText(), country, orgType, charity);
+        charity.orgList.add(o);
         JOptionPane.showMessageDialog(null, "Organization added successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
         refreshTable();
         txtName.setText("");
-        
-        if (orgType.equals(Organization.OrgType.StudentGroup)) {
-            initEduData((StudentGroup)o);
-        }
     }//GEN-LAST:event_btnAddActionPerformed
 
 
-     public void initEduData(StudentGroup studentGroup) {
-        if (school.eduDataList.size() < 1 
-                && Arrays.stream(SUPPORTED_COUNTRIES).anyMatch(school.getCountry().getName()::equals)) {
-            for (int year=2015; year<2020; year++) { //每年15个男生和15个女生
-                int[] avgScoreSetting = country2ScoreSetting.get(school.getCountry().getName() + String.valueOf(year));
-                int MR = avgScoreSetting[0]; // eg. male reading
-                int MM = avgScoreSetting[1];
-                int MS = avgScoreSetting[2];
-                int FR = avgScoreSetting[3];
-                int FM = avgScoreSetting[4];
-                int FS = avgScoreSetting[5];
-                String name = "";
-                for (int i=0; i<15; i++) { // 男
-                    name = FAKER.name().firstName();
-                     Student student = (Student) Business.getInstance().getUserAccountDirectory()
-                            .createUserAccount(name, name, name, Role.RoleType.Student, studentGroup);
-                     student.setGender(FAKER.options().option("Male"));
-                     studentGroup.username2student.put(student.getUsername(), student);
-                     EduData data = new EduData(year, student
-                            , FAKER.number().randomDouble(0, MR-10, Math.max(MR+10, 100))
-                            , FAKER.number().randomDouble(0, MM-10, Math.max(MM+10, 100))
-                            , FAKER.number().randomDouble(0, MS-10, Math.max(MS+10, 100)));
-                     school.eduDataList.add(data);
-                }
-                for (int i=0; i<15; i++) {  // 女
-                    name = FAKER.name().firstName();
-                    Student student = (Student) Business.getInstance().getUserAccountDirectory()
-                            .createUserAccount(name, name, name, Role.RoleType.Student, studentGroup);
-                    student.setGender(FAKER.options().option("Female"));
-                    studentGroup.username2student.put(student.getUsername(), student);
-                    EduData data = new EduData(year, student
-                            , FAKER.number().randomDouble(0, FR-10, Math.max(FR+10, 100))
-                            , FAKER.number().randomDouble(0, FM-10, Math.max(FM+10, 100))
-                            , FAKER.number().randomDouble(0, FS-10, Math.max(FS+10, 100)));
-                    school.eduDataList.add(data);
-                }
-            }
-        }
-    }
-     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAdd;

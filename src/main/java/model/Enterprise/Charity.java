@@ -5,10 +5,18 @@
  */
 package model.Enterprise;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Org.Organization;
+
 /**
  *
  * @author aprilyz
  */
 public class Charity extends Enterprise {
-    
+    public List<Organization> orgList;
+
+    public Charity() {
+        this.orgList = new ArrayList();
+    }
 }
