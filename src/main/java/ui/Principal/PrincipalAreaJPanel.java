@@ -28,6 +28,7 @@ public class PrincipalAreaJPanel extends javax.swing.JPanel {
         
         this.workArea = workArea;
         this.account = account;
+        lblCountry.setText(account.getOrganization().getName());
     }
 
     /**

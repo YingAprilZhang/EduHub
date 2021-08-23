@@ -10,6 +10,9 @@ import java.awt.Component;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Business;
+import model.Org.Organization;
+import model.Org.OrganizationDirectory;
 import model.Request.CompanyRequest;
 import model.Request.EduRequest;
 import model.Request.FundRequest;
@@ -30,6 +33,9 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
     UserAccount account;
     Request request;
     RequestStatusType requestStatusType;
+    Business business;
+    OrganizationDirectory organizationDirectory;
+    Organization resourceProvider;
     
     public CountryViewRequestJPanel(JPanel userProcessContainer, UserAccount account, Request request) {
         initComponents();
@@ -37,18 +43,20 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
         this.account = account;
         this.request = request;
         this.requestStatusType = request.getRequestStatusType();
+        this.business = Business.getInstance();
+        this.organizationDirectory = business.getOrganizationDirectory();
+        request.setCountryManager(account.getOrganization());
         
         txtType.setText(request.getRequestType().getValue());
         txtPrinciple.setText(request.getSchool()==null?"":request.getSchool().toString());
-        txtProvider.setText(request.getResourceProvider()==null?"":request.getResourceProvider().toString());
+        comboProvider.setSelectedItem(request.getResourceProvider()==null?"":request.getResourceProvider().toString());
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         txtRequestDate.setText(request.getRequestDate()==null?"":df.format(request.getRequestDate()));
         comboStatus.setSelectedItem(requestStatusType);
         txtResolveDate.setText(request.getResolveDate()==null?"":df.format(request.getRequestDate()));
         txtTitle.setText(request.getTitle());
-        txtMessage.setText(request.getMessage());
+        txtMessage.setText(request.getMessage()==null?"":request.getMessage());
         txtWorldManager.setText(request.getWorldManager()==null?"":request.getWorldManager().getName());
-        
         
         Request.RequestType type = request.getRequestType();
         if (null != type) {
@@ -56,15 +64,15 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
                 case CompanyRequest:
                     CompanyRequest cr = (CompanyRequest) request;
                     txtChance.setText(String.valueOf(cr.getChance()));
-                    txtJob.setText(cr.getJobName());
+                    txtJob.setText(cr.getJobName()==null?"":cr.getJobName());
                     break;
                 case EduRequest:
                     EduRequest er = (EduRequest) request;
-                    txtClass.setText(er.getClassName());
+                    txtClass.setText(er.getClassName()==null?"":er.getClassName());
                     break;
                 case FundRequest:
                     FundRequest fr = (FundRequest) request;
-                    txtAmount.setText(String.valueOf(fr.getFundingAmount()));
+                    txtAmount.setText(fr.getFundingAmount()==null?"":String.valueOf(fr.getFundingAmount()));
                     break;
             }
         }
@@ -113,7 +121,7 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
         txtResolveDate = new javax.swing.JTextField();
         txtJob = new javax.swing.JTextField();
         txtClass = new javax.swing.JTextField();
-        txtProvider = new javax.swing.JTextField();
+        comboProvider = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(250, 250, 250));
 
@@ -233,8 +241,8 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
 
         txtClass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
 
-        txtProvider.setEditable(false);
-        txtProvider.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(130, 176, 207)));
+        comboProvider.setEditable(true);
+        comboProvider.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -264,7 +272,7 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
                                     .addComponent(txtTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                                     .addComponent(comboStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtResolveDate, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                    .addComponent(txtProvider, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                                    .addComponent(comboProvider, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(32, 32, 32)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,7 +330,7 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProvider, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboProvider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,9 +387,21 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         comboStatus.setEnabled(true);
+        comboProvider.setEnabled(true);
         btnSave.setEnabled(true);
+        
         populateComboStatus();
         comboStatus.setSelectedItem(request.getRequestStatusType());
+        
+        populateComboProvider();
+        if(request.getResourceProvider() != null){
+            comboProvider.setSelectedItem(request);
+        }
+        
+        txtAmount.setEditable(true);
+        txtJob.setEditable(true);
+        txtChance.setEditable(true);
+        txtClass.setEditable(true);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void comboStatusPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboStatusPopupMenuWillBecomeInvisible
@@ -392,6 +412,11 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         request.setRequestStatusType(requestStatusType);
+        if(comboProvider.getSelectedItem() != null){
+            resourceProvider = organizationDirectory.getOrgByName(comboProvider.getSelectedItem().toString());
+            request.setResourceProvider(resourceProvider);
+        }        
+        
         JOptionPane.showMessageDialog(this, "Change status successfully!");
         back();
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -406,6 +431,37 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
         comboStatus.addItem(Request.RequestStatusType.AcceptCountryManager.getValue());
         comboStatus.addItem(Request.RequestStatusType.RejectCountryManager.getValue());
         comboStatus.addItem(Request.RequestStatusType.AckCountryManager.getValue());
+    }
+    
+    public void populateComboProvider(){
+        comboProvider.removeAllItems();
+        Request.RequestType type = request.getRequestType();
+        if (null != type) {
+            switch (type) {
+                case CompanyRequest:
+                    for(Organization o: business.getOrganizationDirectory().getOrganizationList()){            
+                    if(o.getOrgType() == Organization.OrgType.Company){
+                        comboProvider.addItem(o.toString());
+                        }
+                    }
+                    break;
+                case EduRequest:
+                    for(Organization o: business.getOrganizationDirectory().getOrganizationList()){            
+                    if(o.getOrgType() == Organization.OrgType.CharityEdu){
+                        comboProvider.addItem(o.toString());
+                        }
+                    }
+                    break;
+                case FundRequest:
+                    for(Organization o: business.getOrganizationDirectory().getOrganizationList()){            
+                    if(o.getOrgType() == Organization.OrgType.CharityFunding){
+                        comboProvider.addItem(o.toString());
+                        }
+                    }
+                    break;
+            }
+        }
+        
     }
     public void back(){
         userProcessContainer.remove(this);
@@ -422,6 +478,7 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> comboProvider;
     private javax.swing.JComboBox<String> comboStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -444,7 +501,6 @@ public class CountryViewRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtJob;
     private javax.swing.JTextArea txtMessage;
     private javax.swing.JTextField txtPrinciple;
-    private javax.swing.JTextField txtProvider;
     private javax.swing.JTextField txtRequestDate;
     private javax.swing.JTextField txtResolveDate;
     private javax.swing.JTextField txtTitle;

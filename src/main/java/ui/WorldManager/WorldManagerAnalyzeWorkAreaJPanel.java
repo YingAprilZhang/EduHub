@@ -45,12 +45,14 @@ public class WorldManagerAnalyzeWorkAreaJPanel extends javax.swing.JPanel {
         lblDevelopment = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(250, 250, 250));
+
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel3.setText("Analyze World Education Data");
 
-        logoEquality.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communicate-50.png"))); // NOI18N
+        logoEquality.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-area-chart-64.png"))); // NOI18N
         logoEquality.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoEqualityMouseClicked(evt);

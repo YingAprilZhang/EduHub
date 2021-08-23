@@ -57,6 +57,10 @@ public class AddClassJPanel extends javax.swing.JPanel {
         buttonDone = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(250, 250, 250));
+
+        jPanel1.setBackground(new java.awt.Color(250, 250, 250));
+
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background_vertical.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N

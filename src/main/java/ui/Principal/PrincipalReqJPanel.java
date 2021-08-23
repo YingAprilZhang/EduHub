@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Country.Country;
+import model.Org.Organization;
 import model.Request.CompanyRequest;
 import model.Request.EduRequest;
 import model.Request.FundRequest;
@@ -67,6 +68,7 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
         typeBox = new javax.swing.JComboBox<>();
         amountField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -120,6 +122,15 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel5.setText("Amount");
 
+        btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        btnBack.setText("<< Back");
+        btnBack.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(132, 178, 205), 2, true));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,7 +148,7 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
                             .addContainerGap()
                             .addComponent(btnViewSent)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
+                        .addGap(218, 218, 218)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -157,7 +168,10 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
                                     .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(201, 201, 201)
-                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(bg))
         );
@@ -167,13 +181,15 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
                 .addComponent(bg)
                 .addGap(0, 37, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(19, 19, 19)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnViewSent, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -258,11 +274,21 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
         }  
         refreshRequestTable();
         JOptionPane.showMessageDialog(this, "Request added!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        titleField.setText("");
+        jTextPane1.setText("");
+        amountField.setText("");
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void typeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_typeBoxActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        workArea.remove(this);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.previous(workArea);
+    }//GEN-LAST:event_btnBackActionPerformed
 
      public void populateTypeCombo(){
         typeBox.removeAllItems();
@@ -276,16 +302,18 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(Request r: country.getRequestList()){
-            if (r.getSchool().getName().equals(account.getOrganization().getName())) {
-                Object[] row = new Object[6];
-                row[0] = r;
-                row[1] = r.getRequestType().toString();
-                row[2] = r.getRequestStatusType().toString();
-                row[3] = r.getResourceProvider()==null?"":r.getResourceProvider().getName();
-                row[4] = df.format(r.getRequestDate());
-                row[5] = r.getResolveDate()==null?"":df.format(r.getResolveDate());
+            if (r.getSchool() != null){
+                if (r.getSchool().getName().equals(account.getOrganization().getName())) {
+                    Object[] row = new Object[6];
+                    row[0] = r;
+                    row[1] = r.getRequestType().toString();
+                    row[2] = r.getRequestStatusType().toString();
+                    row[3] = r.getResourceProvider()==null?"":r.getResourceProvider().getName();
+                    row[4] = df.format(r.getRequestDate());
+                    row[5] = r.getResolveDate()==null?"":df.format(r.getResolveDate());
 
-                model.addRow(row);
+                    model.addRow(row);                
+                }
             }
         }
         
@@ -293,6 +321,7 @@ public class PrincipalReqJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountField;
     private javax.swing.JLabel bg;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnViewSent;
     private javax.swing.JLabel jLabel1;
