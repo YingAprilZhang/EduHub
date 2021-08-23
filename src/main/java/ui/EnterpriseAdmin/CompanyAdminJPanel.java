@@ -25,7 +25,7 @@ public class CompanyAdminJPanel extends javax.swing.JPanel {
     Business business = Business.getInstance();
     JPanel workArea;
     UserAccount account;
-    Company company = (Company)account.getOrganization().getEnterprise();
+    Company company;
 
     /** Creates new form CompanyAdminJPanel */
     public CompanyAdminJPanel(JPanel workArea, UserAccount account) {
@@ -34,7 +34,9 @@ public class CompanyAdminJPanel extends javax.swing.JPanel {
         this.account = account;
         initComponents();
         populateComboOrgType();
-        lblEnterprise.setText(company.getName());
+        this.company = (Company)account.getOrganization().getEnterprise();
+        lblEnterprise.setText(this.company.getName());
+       
     }
     
      private void populateComboOrgType(){
